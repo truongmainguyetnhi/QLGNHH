@@ -1,5 +1,5 @@
 body {
-    background-color: #E26E43;
+    background-color: #F0F2F5;
 }
 
 #top {
@@ -16,21 +16,19 @@ body {
 }
 
 #center {
-    width: 70%;
+    width: 85%;
     height: 900px;
     float: left;
 }
 
-#right {
-    width: 15%;
-    height: 900px;
-    background-color: #E26E43;
-    float: left;
+a {
+    text-decoration: none;
+    color: black;
 }
 
-#bottom {
+#menudh,
+#menusp,
+#menuch {
     width: 100%;
     height: 50px;
-    clear: both;
-    background-color: #E26E43;
 }

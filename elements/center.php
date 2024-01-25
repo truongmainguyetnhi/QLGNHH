@@ -4,11 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title></title>
 </head>
 
 <body>
-
+    <?php
+    if (isset($_GET['req'])) {
+        $request = $_GET['req'];
+        switch ($request) {
+            case 'storeview':
+                require 'elements/mstore/viewstore.php';
+                break;
+            case 'updateuser':
+                require '';
+                break;
+            case 'shipperview':
+                require 'elements/mshipper/viewshipper.php';
+                break;
+            case 'oderview':
+                require 'elements/moder/viewoder.php';
+                break;
+            case 'hanghoaUpdate':
+                require '';
+                break;
+            case 'login':
+                require '';
+                break;
+        }
+    } else {
+        require 'elements/default.php';
+    }
+    ?>
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    //    alert("JS đã chạy");
+    // alert("JS đã chạy");
     //});
     $("p").mouseenter(function() {
         $(this).css("color", "aqua");

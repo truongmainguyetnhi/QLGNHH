@@ -8,6 +8,17 @@
 </head>
 
 <body>
+    <div class="menu">
+        <div id="menudh">
+            <a href="index.php?req=oderview">Đơn hàng</a>
+        </div>
+        <div id="menusp">
+            <a href="index.php?req=shipperview">Shipper</a>
+        </div>
+        <div id="menuch">
+            <a href="index.php?req=storeview">Cửa hàng</a>
+        </div>
+    </div>
 
 </body>
 
