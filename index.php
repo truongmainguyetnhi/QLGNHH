@@ -6,14 +6,32 @@ session_start();
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link type="test/css" rel="stylesheet" href="stylecss/css.css">
-    <title>Nhi</title>
+    <title>ENGLOGIS</title>
+    <link rel="stylesheet" href="stylecss/css.css" type="text/css" />
+    <link rel="shortcut icon" href="img/logo1.png" type="image/png">
 </head>
 
 <body>
-    <p>heheh</p>
+    <p></p>
+    <div id="top">
+        <?php require "elements/top.php" ?>
+    </div>
+    <div id="left">
+        <?php require "elements/left.php" ?>
+    </div>
+    <div id="center">
+        <?php require "elements/center.php" ?>
+    </div>
+    <div id="right">
+        <?php require "elements/right.php" ?>
+    </div>
+    <div id="bottom">
+        <?php require "elements/bottom.php" ?>
+    </div>
 
+
+    <script src="https://code.jquery.com/jquery-3.6.4.js" type="text/javascript"></script>
+    <script src="js/jscript.js" type="text/javascript"></script>
 </body>
 
 </html>
