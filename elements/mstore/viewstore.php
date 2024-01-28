@@ -1,1 +1,0 @@
-<div class="ql">Quản lý cửa hàng đối tác</div>

@@ -95,7 +95,7 @@ $("temps").click(function() {
     $("#right_inner").load("./elements_TMNN/mUser/userUpdate.php?iduser=" + iduser);
 });
 //btnupdateloaihang
-$("temploaihang").click(function() {
-    var idloaihang = $(this).attr("value");
-    $("#right_inner").load("./elements_TMNN/mLoaihang/loaihangUpdate.php?idloaihang=" + idloaihang);
+$("tempstore").click(function() {
+    var idstore = $(this).attr("value");
+    $("#right_inner").load("./elements/mstore/storeAct.php?reqact=updatestore&idstore=" + idstore);
 });

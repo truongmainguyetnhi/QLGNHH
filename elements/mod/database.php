@@ -17,7 +17,7 @@
                     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
                 );
                 $this->connect = new PDO("mysql:host=localhost;" .
-                    "dbname=qlgn;charset=utf8", "root", "");
+                    "dbname=test;charset=utf8", "root", "");
             }
         }
         ?>

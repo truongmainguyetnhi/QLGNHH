@@ -17,8 +17,8 @@ class store extends Database
     }
     public function StoreAdd($TEN_CH, $SDT_CH, $TRANGTHAI, $EMAIL, $TAIKHOAN)
     {
-        $add = $this->connect->prepare("INSERT INTO cuahang(TEN_CH, SDT_CH, TRANGTHAI, EMAIL, TAIKHOAN)
-        VALUES(?, ?, ?, ?, ? ");
+        $add = $this->connect->prepare("INSERT INTO cuahang (TEN_CH, SDT_CH, TRANGTHAI, EMAIL, TAIKHOAN)
+        VALUES(?, ?, ?, ?, ?) ");
         $add->execute(array($TEN_CH, $SDT_CH, $TRANGTHAI, $EMAIL, $TAIKHOAN));
         return $add->rowCount();
     }
@@ -40,5 +40,11 @@ class store extends Database
         $getId->setFetchMode(PDO::FETCH_OBJ);
         $getId->execute(array($ID_CH));
         return $getId->fetch();
+    }
+    public function StoreSetActive($ID_CH, $TRANGTHAI)
+    {
+        $update = $this->connect->prepare("UPDATE cuahang SET TRANGTHAI = ? WHERE ID_CH = ? ");
+        $update->execute(array($TRANGTHAI, $ID_CH));
+        return $update->rowCount();
     }
 }

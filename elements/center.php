@@ -13,7 +13,7 @@
         $request = $_GET['req'];
         switch ($request) {
             case 'storeview':
-                require 'elements/mstore/viewstore.php';
+                require 'elements/mstore/storeview.php';
                 break;
             case 'updateuser':
                 require '';
