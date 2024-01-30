@@ -1,7 +1,7 @@
 <div>
     <div class="body_them">
         <section class="them_header">
-            <h1>Thêm của hàng mới</h1>
+            <h1>Thêm cửa hàng mới</h1>
         </section>
         <section class="them_body">
             <form name="newstore" id="formadd_store" method="post" enctype="multipart/form-data"
@@ -30,13 +30,15 @@
                     <div class="input_container">
                         <input type="radio" name="trangthaistore" value="on">
                         <div class="radio_tile">
-                            <img class="iconbtn" src="./img/switch-on.png" />
+                            <ion-icon name="flash-outline"></ion-icon>
+                            <label for="on">on</label>
                         </div>
                     </div>
                     <div class="input_container">
                         <input type="radio" name="trangthaistore" value="off">
                         <div class="radio_tile">
-                            <img class="iconbtn" src="./img/switch-off.png" />
+                            <ion-icon name="flash-off-outline"></ion-icon>
+                            <label for="off">off</label>
                         </div>
                     </div>
 
@@ -104,11 +106,12 @@
                             <td class="td_table">
                                 <a
                                     href="./elements/mstore/storeAct.php?reqact=deletestore&idstore=<?php echo $n->ID_CH; ?>">
-                                    <img class="iconimg" src="./img/delete.png">
+                                    <img class="iconimg" src="./img/trash.png">
                                 </a>
-                                <tempstore class="btnupdatestore" value="<?php echo $n->ID_CH; ?>">
-                                    <img class="iconimg" src="./img/pencil.png" />
+                                <tempstore class="btnup" value="<?php echo $n->ID_CH; ?>">
+                                    <img class="iconimg" src="./img/edit.png" />
                                 </tempstore>
+
                             </td>
 
                         </tr>
@@ -120,4 +123,6 @@
             </section>
         </main>
     </div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </div>

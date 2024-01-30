@@ -97,5 +97,5 @@ $("temps").click(function() {
 //btnupdateloaihang
 $("tempstore").click(function() {
     var idstore = $(this).attr("value");
-    $("#right_inner").load("./elements/mstore/storeAct.php?reqact=updatestore&idstore=" + idstore);
+    $("#center").load("./elements/mstore/storeUpdate.php?&idstore=" + idstore);
 });

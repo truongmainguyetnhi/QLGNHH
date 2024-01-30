@@ -8,7 +8,9 @@
 </head>
 
 <body>
-    <p></p>
+    <p>làm trang defailt</p>
+    <p>lưu xong load trang storeview</p>
+    <p>alert thông báo lưu thành công-thật bại</p>
 </body>
 
 </html>

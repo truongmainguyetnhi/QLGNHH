@@ -28,10 +28,10 @@ class store extends Database
         $del->execute(array($ID_CH));
         return $del->rowCount();
     }
-    public function StoreUpdate($ID_CH, $TEN_CH, $SDT_CH, $TRANGTHAI, $EMAIL, $TAIKHOAN)
+    public function StoreUpdate($TEN_CH, $SDT_CH, $TRANGTHAI, $EMAIL, $TAIKHOAN, $ID_CH)
     {
-        $update = $this->connect->prepare("UPDATE cuahang SET TEN_CH = ?, SDT_CH = ?, TRANGTHAI = ?, EMAIL = ?, TAIKHOAN = ?");
-        $update->execute(array($ID_CH, $TEN_CH, $SDT_CH, $TRANGTHAI, $EMAIL, $TAIKHOAN));
+        $update = $this->connect->prepare("UPDATE cuahang SET TEN_CH = ?, SDT_CH = ?, TRANGTHAI = ?, EMAIL = ?, TAIKHOAN = ? WHERE ID_CH = ? ");
+        $update->execute(array($TEN_CH, $SDT_CH, $TRANGTHAI, $EMAIL, $TAIKHOAN, $ID_CH));
         return $update->rowCount();
     }
     public function StoreGetById($ID_CH)

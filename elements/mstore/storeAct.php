@@ -35,7 +35,7 @@ if (isset($_GET['reqact'])) {
             $EMAIL = $_POST['emailstore'];
             $TAIKHOAN = $_POST['taikhoanstore'];
             $store = new store();
-            $rs = $store->StoreUpdate($ID_CH, $TEN_CH, $SDT_CH, $TRANGTHAI, $EMAIL, $TAIKHOAN);
+            $rs = $store->StoreUpdate($TEN_CH, $SDT_CH, $TRANGTHAI, $EMAIL, $TAIKHOAN, $ID_CH);
             if ($rs) {
                 header('location:../../index.php?req=storeView&result=ok');
             } else {

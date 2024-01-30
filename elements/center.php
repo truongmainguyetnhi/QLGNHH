@@ -15,8 +15,8 @@
             case 'storeview':
                 require 'elements/mstore/storeview.php';
                 break;
-            case 'updateuser':
-                require '';
+            case 'updatestore':
+                require 'elements/mstore/storeUpdate.php';
                 break;
             case 'shipperview':
                 require 'elements/mshipper/viewshipper.php';
