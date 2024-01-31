@@ -23,7 +23,6 @@ session_start();
         <?php require "elements/center.php" ?>
     </div>
     <nav class="sidebar">
-
         <header>
             <div class="image-text">
                 <span class="image">
@@ -36,22 +35,64 @@ session_start();
             </div>
             <i class='bx bx-chevron-right toggle'></i>
         </header>
-        <div class="menu-">
+
+        <div class="menu-bar">
             <div class="menu">
-                <li class="nav-link">
-                    <a href="#">
-                        <i class='bx bx-home-smile'></i>
-                        <span class="text nav-text">Dasboard</span>
-                    </a>
+                <li class="search-box">
+                    <i class='bx bx-search icon'></i>
+                    <input type="search" placeholder="Search...">
                 </li>
                 <ul class="menu-links">
                     <li class="nav-link">
                         <a href="#">
-                            <i class='bx bx-home-smile'></i>
-                            <span class="text nav-text">Dasboard</span>
+                            <i class='bx bx-home-smile icon'></i>
+                            <span class="text nav-text">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-package icon'></i>
+                            <span class="text nav-text">Đơn hàng</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-store icon'></i>
+                            <span class="text nav-text">Cửa hàng</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-run icon'></i>
+                            <span class="text nav-text">Shipper</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bxs-user icon'></i>
+                            <span class="text nav-text">Nhân viên</span>
                         </a>
                     </li>
                 </ul>
+            </div>
+            <div class="bottom-content">
+                <li class="">
+                    <a href="#">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+
+                <li class="mode">
+                    <div class="moon-sun">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark</span>
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
             </div>
         </div>
     </nav>
