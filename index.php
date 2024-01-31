@@ -22,7 +22,7 @@ session_start();
     <div id="center">
         <?php require "elements/center.php" ?>
     </div>
-    <nav class="sidebar">
+    <nav class="sidebar close">
         <header>
             <div class="image-text">
                 <span class="image">
@@ -40,29 +40,29 @@ session_start();
             <div class="menu">
                 <li class="search-box">
                     <i class='bx bx-search icon'></i>
-                    <input type="search" placeholder="Search...">
+                    <input type="text" placeholder="Search...">
                 </li>
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="index.php">
                             <i class='bx bx-home-smile icon'></i>
                             <span class="text nav-text">Home</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="index.php?req=oderview">
                             <i class='bx bx-package icon'></i>
                             <span class="text nav-text">Đơn hàng</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="index.php?req=storeview">
                             <i class='bx bx-store icon'></i>
                             <span class="text nav-text">Cửa hàng</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="index.php?req=shipperview">
                             <i class='bx bx-run icon'></i>
                             <span class="text nav-text">Shipper</span>
                         </a>
@@ -76,7 +76,7 @@ session_start();
                 </ul>
             </div>
             <div class="bottom-content">
-                <li class="">
+                <li class="logout">
                     <a href="#">
                         <i class='bx bx-log-out icon'></i>
                         <span class="text nav-text">Logout</span>
