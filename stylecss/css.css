@@ -123,10 +123,11 @@
  }
  
  body.dark .sidebar header .toggle {
+     transform: rotate(180deg);
      color: var(--text-color);
  }
  
- .sidebar .close header .toggle {
+ .close header .toggle {
      transform: translateY(-50%);
  }
  

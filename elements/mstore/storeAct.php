@@ -12,9 +12,9 @@ if (isset($_GET['reqact'])) {
             $store = new store();
             $rs = $store->StoreAdd($TEN_CH, $SDT_CH, $TRANGTHAI, $EMAIL, $TAIKHOAN);
             if ($rs) {
-                header('location:../../index.php?req=storeView&result=ok');
+                header('location:../../index.php?req=storeview');
             } else {
-                header('location:../../index.php?req=storeView&result=notok');
+                header('location:../../index.php?req=storeview');
             }
             break;
         case 'deletestore':
@@ -22,9 +22,9 @@ if (isset($_GET['reqact'])) {
             $store = new store();
             $rs = $store->StoreDel($ID_CH);
             if ($rs) {
-                header('location:../../index.php?req=storeView&result=ok');
+                header('location:../../index.php?req=storeview');
             } else {
-                header('location:../../index.php?req=storeView&result=notok');
+                header('location:../../index.php?req=storeview');
             }
             break;
         case 'updatestore':
@@ -37,9 +37,9 @@ if (isset($_GET['reqact'])) {
             $store = new store();
             $rs = $store->StoreUpdate($TEN_CH, $SDT_CH, $TRANGTHAI, $EMAIL, $TAIKHOAN, $ID_CH);
             if ($rs) {
-                header('location:../../index.php?req=storeView&result=ok');
+                header('location:../../index.php?req=storeview');
             } else {
-                header('location:../../index.php?req=storeView&result=notok');
+                header('location:../../index.php?req=storeview');
             }
             break;
         case 'setlock':
@@ -52,9 +52,9 @@ if (isset($_GET['reqact'])) {
                 $rs = $store->StoreSetActive($ID_CH, "on");
             }
             if ($rs) {
-                header('location:../../index.php?req=storeview&result=ok');
+                header('location:../../index.php?req=storeview');
             } else {
-                header('location:../../index.php?req=storeview&result=notok');
+                header('location:../../index.php?req=storeview');
             }
             break;
         default:
