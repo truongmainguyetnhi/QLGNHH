@@ -30,9 +30,13 @@ $("tempstore").click(function() {
     var idstore = $(this).attr("value");
     $("#center").load("./elements/mstore/storeUpdate.php?&idstore=" + idstore);
 });
+
 /*$("form").submit(() => {
     alert("Thành công");
     swal("Are you sure you want to do this?", {
         buttons: ["Oh noez!", true],
     });
 })*/
+$(".xoa").click(() => {
+    alert("ĐÃ XÓA");
+})

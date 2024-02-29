@@ -9,8 +9,11 @@ if (isset($_GET['reqact'])) {
             $TRANGTHAI = $_POST['trangthaistore'];
             $EMAIL = $_POST['emailstore'];
             $TAIKHOAN = $_POST['taikhoanstore'];
+            $TENTK = $_POST['taikhoandangnhanstore'];
+            $MATKHAU = $_POST['matkhaustore'];
+            $LOAITK = $_POST['loaitaikhoanstore'];
             $store = new store();
-            $rs = $store->StoreAdd($TEN_CH, $SDT_CH, $TRANGTHAI, $EMAIL, $TAIKHOAN);
+            $rs = $store->StoreAdd($TEN_CH, $SDT_CH, $TRANGTHAI, $EMAIL, $TAIKHOAN, $TENTK, $MATKHAU, $LOAITK);
             if ($rs) {
                 header('location:../../index.php?req=storeview');
             } else {
@@ -31,11 +34,14 @@ if (isset($_GET['reqact'])) {
             $ID_CH = $_POST['idstore'];
             $TEN_CH = $_POST['tenstore'];
             $SDT_CH = $_POST['sdtstore'];
-            $TRANGTHAI = $_POST['trangthaistore'];
+
             $EMAIL = $_POST['emailstore'];
             $TAIKHOAN = $_POST['taikhoanstore'];
+            $TENTK = $_POST['taikhoandangnhapstore'];
+            $MATKHAU = $_POST['matkhaustore'];
+            $LOAITK = $_POST['loaitaikhoanstore'];
             $store = new store();
-            $rs = $store->StoreUpdate($TEN_CH, $SDT_CH, $TRANGTHAI, $EMAIL, $TAIKHOAN, $ID_CH);
+            $rs = $store->StoreUpdate($TEN_CH, $SDT_CH, $EMAIL, $TAIKHOAN, $TENTK, $MATKHAU, $LOAITK, $ID_CH);
             if ($rs) {
                 header('location:../../index.php?req=storeview');
             } else {

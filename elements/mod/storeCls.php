@@ -15,11 +15,11 @@ class store extends Database
         $getAll->execute();
         return $getAll->fetchAll();
     }
-    public function StoreAdd($TEN_CH, $SDT_CH, $TRANGTHAI, $EMAIL, $TAIKHOAN)
+    public function StoreAdd($TEN_CH, $SDT_CH, $TRANGTHAI, $EMAIL, $TAIKHOAN, $TENTK, $MATKHAU, $LOAITK)
     {
-        $add = $this->connect->prepare("INSERT INTO cuahang (TEN_CH, SDT_CH, TRANGTHAI, EMAIL, TAIKHOAN)
-        VALUES(?, ?, ?, ?, ?) ");
-        $add->execute(array($TEN_CH, $SDT_CH, $TRANGTHAI, $EMAIL, $TAIKHOAN));
+        $add = $this->connect->prepare("INSERT INTO cuahang (TEN_CH, SDT_CH, TRANGTHAI, EMAIL, TAIKHOAN, TENTK, MATKHAU, LOAITK)
+        VALUES(?, ?, ?, ?, ?, ?, ?, ?) ");
+        $add->execute(array($TEN_CH, $SDT_CH, $TRANGTHAI, $EMAIL, $TAIKHOAN, $TENTK, $MATKHAU, $LOAITK));
         return $add->rowCount();
     }
     public function StoreDel($ID_CH)
@@ -28,10 +28,10 @@ class store extends Database
         $del->execute(array($ID_CH));
         return $del->rowCount();
     }
-    public function StoreUpdate($TEN_CH, $SDT_CH, $TRANGTHAI, $EMAIL, $TAIKHOAN, $ID_CH)
+    public function StoreUpdate($TEN_CH, $SDT_CH, $EMAIL, $TAIKHOAN, $TENTK, $MATKHAU, $LOAITK, $ID_CH)
     {
-        $update = $this->connect->prepare("UPDATE cuahang SET TEN_CH = ?, SDT_CH = ?, TRANGTHAI = ?, EMAIL = ?, TAIKHOAN = ? WHERE ID_CH = ? ");
-        $update->execute(array($TEN_CH, $SDT_CH, $TRANGTHAI, $EMAIL, $TAIKHOAN, $ID_CH));
+        $update = $this->connect->prepare("UPDATE cuahang SET TEN_CH = ?, SDT_CH = ?, EMAIL = ?, TAIKHOAN = ?, TENTK = ?, MATKHAU = ?, LOAITK = ? WHERE ID_CH = ? ");
+        $update->execute(array($TEN_CH, $SDT_CH, $EMAIL, $TAIKHOAN, $TENTK, $MATKHAU, $LOAITK, $ID_CH));
         return $update->rowCount();
     }
     public function StoreGetById($ID_CH)

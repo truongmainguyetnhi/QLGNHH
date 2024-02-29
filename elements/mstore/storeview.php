@@ -4,7 +4,8 @@
             <h1>Thêm cửa hàng mới</h1>
         </section>
         <section class="them_body">
-            <form onsubmit="alert('Thành công')" name="newstore" id="formadd_store" method="post" enctype="multipart/form-data" action="./elements/mstore/storeAct.php?reqact=addnew">
+            <form onsubmit="alert('Thành công')" name="newstore" id="formadd_store" method="post"
+                enctype="multipart/form-data" action="./elements/mstore/storeAct.php?reqact=addnew">
                 <div class="input_group type-md">
                     <input type="text" name="tenstore" required>
                     <label for="tenstore">Tên cửa hàng</label>
@@ -25,6 +26,21 @@
                     <label for="taikhoanstore">Số dư tài khoản</label>
                     <span class="border"></span>
                 </div>
+                <div class="input_group type-md">
+                    <input type="text" name="taikhoandangnhanstore" required>
+                    <label for="taikhoandangnhapstore">Tài khoản đăng nhập</label>
+                    <span class="border"></span>
+                </div>
+                <div class="input_group type-md">
+                    <input type="text" name="matkhaustore" required>
+                    <label for="matkhaustore">Mật khẩu tài khoản</label>
+                    <span class="border"></span>
+                </div>
+                <div class="input_group type-md">
+                    <input type="text" name="loaitaikhoanstore" required>
+                    <label for="loaitaikhoanstore">Loại tài khoản</label>
+                    <span class="border"></span>
+                </div>
                 <div class="radio_group">
                     <div class="input_container">
                         <input type="radio" name="trangthaistore" value="on">
@@ -40,7 +56,6 @@
                             <label for="off">off</label>
                         </div>
                     </div>
-
                 </div>
                 <div class="contaniner">
                     <input type="reset" class="btn" id="refresh" value="Refresh">
@@ -71,6 +86,9 @@
                             <th class="th_table">Email</th>
                             <th class="th_table">Số dư tài khoản</th>
                             <th class="th_table">Trạng thái</th>
+                            <th class="th_table">Tên đăng nhập</th>
+                            <th class="th_table">Mật khẩu</th>
+                            <th class="th_table">Loại tài khoản</th>
                             <th class="th_table">Tùy chọn</th>
                         </tr>
                     </thead>
@@ -78,42 +96,50 @@
                         <?php
                         foreach ($list_store as $n) {
                         ?>
-                            <tr class="tr_table">
-                                <td class="td_table"><?php echo $n->TEN_CH; ?></td>
-                                <td class="td_table"><?php echo $n->SDT_CH; ?></td>
-                                <td class="td_table"><?php echo $n->EMAIL; ?></td>
-                                <td class="td_table"><strong><?php echo $n->TAIKHOAN; ?> VND</strong></td>
-                                <td class="td_table">
-                                    <?php
+                        <tr class="tr_table">
+                            <td class="td_table"><?php echo $n->TEN_CH; ?></td>
+                            <td class="td_table"><?php echo $n->SDT_CH; ?></td>
+                            <td class="td_table"><?php echo $n->EMAIL; ?></td>
+
+                            <td class="td_table"><strong><?php echo $n->TAIKHOAN . "VND"; ?></strong></td>
+                            <td class="td_table">
+                                <?php
                                     if ($n->TRANGTHAI == "on") {
                                     ?>
-                                        <a href="./elements/mstore/storeAct.php?reqact=setlock&idstore=<?php echo $n->ID_CH; ?> 
+                                <a href="./elements/mstore/storeAct.php?reqact=setlock&idstore=<?php echo $n->ID_CH; ?> 
                                     &trangthaistore=<?php echo $n->TRANGTHAI; ?>">
-                                            <img class="iconimgstw" src="./img/switch-on.png" />
+                                    <img class="iconimgstw" src="./img/switch-on.png" />
 
-                                        </a>
-                                    <?php
+                                </a>
+                                <?php
                                     } else {
                                     ?>
-                                        <a href="./elements/mstore/storeAct.php?reqact=setlock&idstore=<?php echo $n->ID_CH; ?>
+                                <a href="./elements/mstore/storeAct.php?reqact=setlock&idstore=<?php echo $n->ID_CH; ?>
                                     &trangthaistore=<?php echo $n->TRANGTHAI; ?>">
-                                            <img class="iconimgstw" src="./img/switch-off.png" />
-                                        </a>
-                                    <?php
+                                    <img class="iconimgstw" src="./img/switch-off.png" />
+                                </a>
+                                <?php
                                     }
                                     ?>
-                                </td>
-                                <td class="td_table">
-                                    <a href="./elements/mstore/storeAct.php?reqact=deletestore&idstore=<?php echo $n->ID_CH; ?>">
+                            </td>
+                            <td class="td_table"><?php echo $n->TENTK; ?></td>
+                            <td class="td_table"><?php echo $n->MATKHAU; ?></td>
+                            <td class="td_table">
+                                <p class="status store"><?php echo $n->LOAITK; ?></p>
+                            </td>
+                            <td class="td_table">
+                                <div class="xoa">
+                                    <a
+                                        href="./elements/mstore/storeAct.php?reqact=deletestore&idstore=<?php echo $n->ID_CH; ?>">
                                         <img class="iconimg" src="./img/trash.png">
                                     </a>
-                                    <tempstore class="btnup" value="<?php echo $n->ID_CH; ?>">
-                                        <img class="iconimg" src="./img/edit.png" />
-                                    </tempstore>
+                                </div>
+                                <tempstore class="btnup" value="<?php echo $n->ID_CH; ?>">
+                                    <img class="iconimg" src="./img/edit.png" />
+                                </tempstore>
 
-                                </td>
-
-                            </tr>
+                            </td>
+                        </tr>
                         <?php
                         }
                         ?>
@@ -122,7 +148,4 @@
             </section>
         </main>
     </div>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js"></script>
 </div>

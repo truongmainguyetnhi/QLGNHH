@@ -84,7 +84,7 @@
  
  .sidebar .image-text img {
      width: 40px;
-     border-radius: 6px;
+     border-radius: 10px;
  }
  
  .sidebar header .image-text {
@@ -473,6 +473,26 @@
      overflow: hidden;
  }
  
+ .body_them {
+     overflow-y: scroll;
+     overflow-x: hidden;
+ }
+ 
+ .body_them::-webkit-scrollbar {
+     width: 0.5rem;
+     height: 0.5rem;
+ }
+ 
+ .body_them::-webkit-scrollbar-thumb {
+     border-radius: .5rem;
+     background-color: #0004;
+     visibility: hidden;
+ }
+ 
+ .body_them:hover::-webkit-scrollbar-thumb {
+     visibility: visible;
+ }
+ 
  .table_header {
      width: 100%;
      height: 8%;
@@ -630,4 +650,15 @@
  input:checked+.radio_tile ion-icon,
  input:checked+.radio_tile label {
      color: #000;
+ }
+ 
+ .status {
+     padding: .4rem;
+     border-radius: 2rem;
+     width: 97px;
+ }
+ 
+ .status.store {
+     background-color: #86e49d;
+     color: #006b21;
  }
