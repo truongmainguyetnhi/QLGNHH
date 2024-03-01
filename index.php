@@ -63,7 +63,7 @@ session_start();
                     </li>
                     <li class="nav-link">
                         <a href="index.php?req=shipperview">
-                            <i class='bx bx-run icon'></i>
+                            <i class='bx bx-cycling icon'></i>
                             <span class="text nav-text">Shipper</span>
                         </a>
                     </li>

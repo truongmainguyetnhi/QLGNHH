@@ -388,6 +388,24 @@
      margin: 2rem 0;
  }
  
+ .phanloai {
+     width: 95%;
+     font-size: 1.1rem;
+     border: none;
+     outline: none;
+     width: 22rem;
+     padding-left: 0;
+     padding-bottom: 2rem;
+ }
+ 
+ .chonphanloai {
+     font-size: 1.1rem;
+     border: none;
+     outline: none;
+     padding-left: 0;
+     margin-left: .8rem;
+ }
+ 
  .input_group input {
      width: 95%;
      padding: 1rem;
@@ -525,7 +543,7 @@
  }
  
  .table_view {
-     padding: 1rem;
+     padding: 1rem 0;
      width: 100%;
      border-collapse: collapse;
      text-align: left;
@@ -653,12 +671,23 @@
  }
  
  .status {
-     padding: .4rem;
+     padding: .6rem;
      border-radius: 2rem;
-     width: 97px;
  }
  
  .status.store {
      background-color: #86e49d;
      color: #006b21;
+     width: 100px;
+ }
+ 
+ .status.ship {
+     background-color: #6fcaea;
+     width: 80px;
+ }
+ 
+ @media (max-width: 1000px) {
+     .td_table.th_table:not(:first-of-type) {
+         min-width: 15rem;
+     }
  }

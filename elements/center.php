@@ -19,7 +19,7 @@
                 require 'elements/mstore/storeUpdate.php';
                 break;
             case 'shipperview':
-                require 'elements/mshipper/viewshipper.php';
+                require 'elements/mshipper/shipperview.php';
                 break;
             case 'oderview':
                 require 'elements/moder/viewoder.php';
