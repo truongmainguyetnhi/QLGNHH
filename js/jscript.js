@@ -30,6 +30,10 @@ $("tempstore").click(function() {
     var idstore = $(this).attr("value");
     $("#center").load("./elements/mstore/storeUpdate.php?&idstore=" + idstore);
 });
+$("tempship").click(function() {
+    var idship = $(this).attr("value");
+    $("#center").load("./elements/mshipper/shipperUpdate.php?&idship=" + idship);
+});
 
 /*$("form").submit(() => {
     alert("Thành công");
