@@ -34,6 +34,10 @@ $("tempship").click(function() {
     var idship = $(this).attr("value");
     $("#center").load("./elements/mshipper/shipperUpdate.php?&idship=" + idship);
 });
+$("tempstaff").click(function() {
+    var idship = $(this).attr("value");
+    $("#center").load("./elements/mshipper/shipperUpdate.php?&idship=" + idship);
+});
 
 /*$("form").submit(() => {
     alert("Thành công");

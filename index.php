@@ -68,7 +68,7 @@ session_start();
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="index.php?req=staffview">
                             <i class='bx bxs-user icon'></i>
                             <span class="text nav-text">Nhân viên</span>
                         </a>

@@ -32,7 +32,7 @@ if (isset($_GET['reqact'])) {
             break;
         case 'updateship':
             $ID_SP = $_POST['idship'];
-            $TEN_SP = $_POST['tenship['];
+            $TEN_SP = $_POST['tenship'];
             $SDT_SP = $_POST['sdtship'];
             $EMAIL = $_POST['emailship'];
             $CCCD = $_POST['cccdship'];

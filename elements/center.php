@@ -24,8 +24,8 @@
             case 'oderview':
                 require 'elements/moder/viewoder.php';
                 break;
-            case 'hanghoaUpdate':
-                require '';
+            case 'staffview':
+                require 'elements/mstaff/staffview.php';
                 break;
             case 'login':
                 require '';

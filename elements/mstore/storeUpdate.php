@@ -12,40 +12,42 @@ $getstore = $store->StoreGetById($idstore);
         </section>
         <section class="them_body">
             <form name="updatestore" id="update_store" class="test" onsubmit="alert('Thành công')" method="post" enctype="multipart/form-data" action="./elements/mstore/storeAct.php?reqact=updatestore">
-                <input type="hidden" name="idstore" value="<?php echo $idstore; ?>">
-                <div class="input_group type-md">
-                    <input type="text" name="tenstore" value="<?php echo $getstore->TEN_CH; ?>" required>
-                    <label for="tenstore">Tên cửa hàng</label>
-                    <span class="border"></span>
-                </div>
-                <div class="input_group type-md">
-                    <input type="text" name="sdtstore" value="<?php echo $getstore->SDT_CH; ?>" required>
-                    <label for=" sdtstore">Số điện thoại</label>
-                    <span class="border"></span>
-                </div>
-                <div class="input_group type-md">
-                    <input type="text" name="emailstore" value="<?php echo $getstore->EMAIL; ?>" required>
-                    <label for=" emailstore">Email</label>
-                    <span class="border"></span>
-                </div>
-                <div class="input_group type-md">
-                    <input type="text" name="taikhoanstore" value="<?php echo $getstore->TAIKHOAN; ?>" required>
-                    <label for=" taikhoanstore">Số dư tài khoản</label>
-                    <span class="border"></span>
-                </div>
-                <div class="input_group type-md">
-                    <input type="text" name="taikhoandangnhapstore" value="<?php echo $getstore->TENTK; ?>" required>
-                    <label for=" taikhoandangnhapstore">Tên đăng nhập</label>
-                    <span class="border"></span>
-                </div>
-                <div class="input_group type-md">
-                    <input type="text" name="matkhaustore" value="<?php echo $getstore->MATKHAU; ?>" required>
-                    <label for=" matkhaustore">Mật khẩu</label>
-                    <span class="border"></span>
-                </div>
-                <input type="hidden" name="loaitaikhoanstore" value="<?php echo $LOAITK; ?>">
-                <div class="contaniner">
-                    <input type="submit" class="btn" value="Accept">
+                <div class="fields">
+                    <input type="hidden" name="idstore" value="<?php echo $idstore; ?>">
+                    <div class="input_group type-md">
+                        <input type="text" name="tenstore" value="<?php echo $getstore->TEN_CH; ?>" required>
+                        <label for="tenstore">Tên cửa hàng</label>
+                        <span class="border"></span>
+                    </div>
+                    <div class="input_group type-md">
+                        <input type="text" name="sdtstore" value="<?php echo $getstore->SDT_CH; ?>" required>
+                        <label for=" sdtstore">Số điện thoại</label>
+                        <span class="border"></span>
+                    </div>
+                    <div class="input_group type-md">
+                        <input type="text" name="emailstore" value="<?php echo $getstore->EMAIL; ?>" required>
+                        <label for=" emailstore">Email</label>
+                        <span class="border"></span>
+                    </div>
+                    <div class="input_group type-md">
+                        <input type="text" name="taikhoanstore" value="<?php echo $getstore->TAIKHOAN; ?>" required>
+                        <label for=" taikhoanstore">Số dư tài khoản</label>
+                        <span class="border"></span>
+                    </div>
+                    <div class="input_group type-md">
+                        <input type="text" name="taikhoandangnhapstore" value="<?php echo $getstore->TENTK; ?>" required>
+                        <label for=" taikhoandangnhapstore">Tên đăng nhập</label>
+                        <span class="border"></span>
+                    </div>
+                    <div class="input_group type-md">
+                        <input type="text" name="matkhaustore" value="<?php echo $getstore->MATKHAU; ?>" required>
+                        <label for=" matkhaustore">Mật khẩu</label>
+                        <span class="border"></span>
+                    </div>
+                    <input type="hidden" name="loaitaikhoanstore" value="<?php echo $LOAITK; ?>">
+                    <div class="contaniner">
+                        <input type="submit" class="btn" value="Accept">
+                    </div>
                 </div>
             </form>
         </section>
