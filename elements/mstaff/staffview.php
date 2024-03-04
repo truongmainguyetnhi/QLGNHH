@@ -4,7 +4,8 @@
             <h1>Thêm nhân viên mới</h1>
         </section>
         <section class="them_body">
-            <form onsubmit="alert('Thành công')" name="newstaff" id="formadd_staff" method="post" enctype="multipart/form-data" action="./elements/mstaff/staffAct.php?reqact=addnew">
+            <form onsubmit="alert('Thành công')" name="newstaff" id="formadd_staff" method="post"
+                enctype="multipart/form-data" action="./elements/mstaff/staffAct.php?reqact=addnew">
                 <div class="fields">
                     <div class="input_group type-md">
                         <input type="text" name="tenstaff" required>
@@ -36,18 +37,27 @@
                         <label for="matkhaustaff">Mật khẩu</label>
                         <span class="border"></span>
                     </div>
-                    <div class="phanloai">
-                        <label for="loaitaikhoanstaff">Loại tài khoản:</label>
-                        <select class="chonphanloai" name="loaitaikhoanstaff">
-                            <option value="Cửa hàng">Cửa hàng</option>
-                            <option value="Shipper">Shipper</option>
-                            <option value="Nhân viên">Nhân viên</option>
-                            <option value="Quản lý">Quản lý</option>
-                        </select>
+                    <div class="radio_group">
+                        <label for="loaitaikhoanstaff">Loại tài khoản</label><br>
+                        <div class="input_container">
+                            <input type="radio" name="loaitaikhoanstaff" value="Nhân viên" checked>
+                            <div class="radio_tile">
+                                <ion-icon name="person"></ion-icon>
+                                <label for="Nhân viên">staff</label>
+                            </div>
+                        </div>
+                        <div class="input_container">
+                            <input type="radio" name="loaitaikhoanstaff" value="Quản lý">
+                            <div class="radio_tile">
+                                <ion-icon name="sad"></ion-icon>
+                                <label for="Quản lý">Quản lý</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="radio_group">
+                        <label for="trangthaistore">Trạng thái</label><br>
                         <div class="input_container">
-                            <input type="radio" name="trangthaistaff" value="on">
+                            <input type="radio" name="trangthaistaff" value="on" checked>
                             <div class="radio_tile">
                                 <ion-icon name="flash-outline"></ion-icon>
                                 <label for="on">on</label>
@@ -90,6 +100,7 @@
                             <th class="th_table">Số điện thoại</th>
                             <th class="th_table">Email</th>
                             <th class="th_table">Số căn cước</th>
+                            <th class="th_table">Trạng thái</th>
                             <th class="th_table">Tên đăng nhập</th>
                             <th class="th_table">Mật khẩu</th>
                             <th class="th_table">Loại tài khoản</th>
@@ -100,47 +111,58 @@
                         <?php
                         foreach ($list_staff as $n) {
                         ?>
-                            <tr class="tr_table">
-                                <td class="td_table"><?php echo $n->TEN_NV; ?></td>
-                                <td class="td_table"><?php echo $n->SDT_NV; ?></td>
-                                <td class="td_table"><?php echo $n->EMAIL; ?></td>
-                                <td class="td_table"><strong><?php echo $n->CCCD; ?></strong></td>
-                                <td class="td_table">
-                                    <?php
+                        <tr class="tr_table">
+                            <td class="td_table"><?php echo $n->TEN_NV; ?></td>
+                            <td class="td_table"><?php echo $n->SDT_NV; ?></td>
+                            <td class="td_table"><?php echo $n->EMAIL; ?></td>
+                            <td class="td_table"><strong><?php echo $n->CCCD; ?></strong></td>
+                            <td class="td_table">
+                                <?php
                                     if ($n->TRANGTHAI == "on") {
                                     ?>
-                                        <a href="./elements/mstaff/staffAct.php?reqact=setlock&idstaff=<?php echo $n->ID_NV; ?> 
+                                <a href="./elements/mstaff/staffAct.php?reqact=setlock&idstaff=<?php echo $n->ID_NV; ?> 
                                     &trangthaistaff=<?php echo $n->TRANGTHAI; ?>">
-                                            <img class="iconimgstw" src="./img/switch-on.png" />
-                                        </a>
-                                    <?php
+                                    <img class="iconimgstw" src="./img/switch-on.png" />
+                                </a>
+                                <?php
                                     } else {
                                     ?>
-                                        <a href="./elements/mstaff/staffAct.php?reqact=setlock&idstaff=<?php echo $n->ID_NV; ?>
+                                <a href="./elements/mstaff/staffAct.php?reqact=setlock&idstaff=<?php echo $n->ID_NV; ?>
                                     &trangthaistaff=<?php echo $n->TRANGTHAI; ?>">
-                                            <img class="iconimgstw" src="./img/switch-off.png" />
-                                        </a>
-                                    <?php
+                                    <img class="iconimgstw" src="./img/switch-off.png" />
+                                </a>
+                                <?php
                                     }
                                     ?>
-                                </td>
-                                <td class="td_table"><?php echo $n->TENTK; ?></td>
-                                <td class="td_table"><?php echo $n->MATKHAU; ?></td>
-                                <td class="td_table">
-                                    <p class="status staff"><?php echo $n->LOAITK; ?></p>
-                                </td>
-                                <td class="td_table">
-                                    <div class="xoa">
-                                        <a href="./elements/mstaff/staffrAct.php?reqact=deletestaff&idstaff=<?php echo $n->ID_NV; ?>">
-                                            <img class="iconimg" src="./img/trash.png">
-                                        </a>
-                                    </div>
-                                    <tempstaff class="btnup" value="<?php echo $n->ID_NV; ?>">
-                                        <img class="iconimg" src="./img/edit.png" />
-                                    </tempstaff>
+                            </td>
+                            <td class="td_table"><?php echo $n->TENTK; ?></td>
+                            <td class="td_table"><?php echo $n->MATKHAU; ?></td>
+                            <td class="td_table">
+                                <?php
+                                    $nhi = $n->LOAITK;
+                                    if ('Nhân viên' === $nhi) {
+                                    ?>
+                                <p class="status staff"><?php echo $n->LOAITK; ?></p>
+                                <?php
+                                    } elseif ('Quản lý' === $nhi) {
+                                    ?>
+                                <p class="status qly"><?php echo $n->LOAITK; ?></p>
+                                <?php } ?>
+                            </td>
 
-                                </td>
-                            </tr>
+                            <td class="td_table">
+                                <div class="xoa">
+                                    <a
+                                        href="./elements/mstaff/staffrAct.php?reqact=deletestaff&idstaff=<?php echo $n->ID_NV; ?>">
+                                        <img class="iconimg" src="./img/trash.png">
+                                    </a>
+                                </div>
+                                <tempstaff class="btnup" value="<?php echo $n->ID_NV; ?>">
+                                    <img class="iconimg" src="./img/edit.png" />
+                                </tempstaff>
+
+                            </td>
+                        </tr>
                         <?php
                         }
                         ?>

@@ -37,18 +37,20 @@
                         <label for="matkhauship">Mật khẩu</label>
                         <span class="border"></span>
                     </div>
-                    <div class="phanloai">
-                        <label for="loaitaikhoanship">Loại tài khoản:</label>
-                        <select class="chonphanloai" name="loaitaikhoanship">
-                            <option value="Cửa hàng">Cửa hàng</option>
-                            <option value="Shipper">Shipper</option>
-                            <option value="Nhân viên">Nhân viên</option>
-                            <option value="Quản lý">Quản lý</option>
-                        </select>
+                    <div class="radio_group">
+                        <label for="loaitaikhoanship">Loại tài khoản</label><br>
+                        <div class="input_container loai">
+                            <input type="radio" name="loaitaikhoanship" value="Shipper" checked>
+                            <div class="radio_tile">
+                                <ion-icon name="bicycle"></ion-icon>
+                                <label for="Shipper">Shipper</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="radio_group">
+                        <label for="trangthaistore">Trạng thái</label><br>
                         <div class="input_container">
-                            <input type="radio" name="trangthaiship" value="on">
+                            <input type="radio" name="trangthaiship" value="on" checked>
                             <div class="radio_tile">
                                 <ion-icon name="flash-outline"></ion-icon>
                                 <label for="on">on</label>

@@ -44,7 +44,7 @@ $getship = $ship->ShipGetById($idship);
                         <label for=" matkhauship">Mật khẩu</label>
                         <span class="border"></span>
                     </div>
-                    <input type="hidden" name="loaitaikhoanship" value="<?php echo $LOAITK; ?>">
+                    <input type="hidden" name="loaitaikhoanship" value="<?php echo $getship->LOAITK; ?>">
                     <div class="contaniner">
                         <input type="submit" class="btn" value="Accept">
                     </div>

@@ -35,8 +35,8 @@ $("tempship").click(function() {
     $("#center").load("./elements/mshipper/shipperUpdate.php?&idship=" + idship);
 });
 $("tempstaff").click(function() {
-    var idship = $(this).attr("value");
-    $("#center").load("./elements/mshipper/shipperUpdate.php?&idship=" + idship);
+    var idstaff = $(this).attr("value");
+    $("#center").load("./elements/mstaff/staffUpdate.php?&idstaff=" + idstaff);
 });
 
 /*$("form").submit(() => {
