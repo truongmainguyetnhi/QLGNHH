@@ -95,14 +95,14 @@ $getstaff = $staff->staffGetById($idstaff);
                                 ?>
                             <a href="./elements/mstaff/staffAct.php?reqact=setlock&idstaff=<?php echo $n->ID_NV; ?> 
                                     &trangthaistaff=<?php echo $n->TRANGTHAI; ?>">
-                                <img class="iconimgstw" src="./img/switch-on.png" />
+                                <ion-icon name="lock-open"></ion-icon>
                             </a>
                             <?php
                                 } else {
                                 ?>
                             <a href="./elements/mstaff/staffAct.php?reqact=setlock&idstaffp=<?php echo $n->ID_NV; ?>
                                     &trangthaistaffp=<?php echo $n->TRANGTHAI; ?>">
-                                <img class="iconimgstw" src="./img/switch-off.png" />
+                                <ion-icon name="lock-closed"></ion-icon>
                             </a>
                             <?php
                                 }
@@ -122,10 +122,10 @@ $getstaff = $staff->staffGetById($idstaff);
                                 ?>
                         </td>
                         <td class="td_table">
-                            <div class="xoa" align="center">
+                            <div class="xoa">
                                 <a
-                                    href="./elements/mstaff/staffAct.php?reqact=deletestaffp&idstaff=<?php echo $n->ID_NV; ?>">
-                                    <img class="iconimg" src="./img/trash.png">
+                                    href="./elements/mstaff/staffAct.php?reqact=deletestaff&idstaff=<?php echo $n->ID_NV; ?>">
+                                    <ion-icon name="trash"></ion-icon>
                                 </a>
                             </div>
                         </td>

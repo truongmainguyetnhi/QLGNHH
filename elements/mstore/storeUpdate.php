@@ -31,6 +31,21 @@ $getstore = $store->StoreGetById($idstore);
                         <span class="border"></span>
                     </div>
                     <div class="input_group type-md">
+                        <input type="text" name="tinhstore" value="<?php echo $getstore->TINH_TP; ?>" required>
+                        <label for="tinhstore">Tỉnh/Thành phố</label>
+                        <span class="border"></span>
+                    </div>
+                    <div class="input_group type-md">
+                        <input type="text" name="phuongstore" value="<?php echo $getstore->PHUONG_XA; ?>" required>
+                        <label for=" phuongstore">Phường/Xã</label>
+                        <span class="border"></span>
+                    </div>
+                    <div class="input_group type-md">
+                        <input type="text" name="duongstore" value="<?php echo $getstore->DUONG_SONHA; ?>" required>
+                        <label for=" duongstore">Đường, số nhà</label>
+                        <span class="border"></span>
+                    </div>
+                    <div class="input_group type-md">
                         <input type="text" name="taikhoanstore" value="<?php echo $getstore->TAIKHOAN; ?>" required>
                         <label for=" taikhoanstore">Số dư tài khoản</label>
                         <span class="border"></span>
@@ -96,14 +111,14 @@ $getstore = $store->StoreGetById($idstore);
                                 ?>
                             <a href="./elements/mstore/storeAct.php?reqact=setlock&idstore=<?php echo $n->ID_CH; ?> 
                                     &trangthaistore=<?php echo $n->TRANGTHAI; ?>">
-                                <img class="iconimgstw" src="./img/switch-on.png" />
+                                <ion-icon name="lock-open"></ion-icon>
                             </a>
                             <?php
                                 } else {
                                 ?>
                             <a href="./elements/mstore/storeAct.php?reqact=setlock&idstore=<?php echo $n->ID_CH; ?>
                                     &trangthaistore=<?php echo $n->TRANGTHAI; ?>">
-                                <img class="iconimgstw" src="./img/switch-off.png" />
+                                <ion-icon name="lock-closed"></ion-icon>
                             </a>
                             <?php
                                 }
@@ -118,7 +133,7 @@ $getstore = $store->StoreGetById($idstore);
                             <div class="xoa" align="center">
                                 <a
                                     href="./elements/mstore/storeAct.php?reqact=deletestore&idstore=<?php echo $n->ID_CH; ?>">
-                                    <img class="iconimg" src="./img/trash.png">
+                                    <ion-icon name="trash"></ion-icon>
                                 </a>
                             </div>
                             <!-- <tempstore class="btnup" value="<?php echo $n->ID_CH; ?>">

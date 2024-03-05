@@ -266,27 +266,6 @@
      --text-color: #CCC;
  }
  
- .home {
-     position: relative;
-     height: 100vh;
-     width: calc(100% - 250px);
-     background: var(--body-color);
-     left: 250px;
-     transition: var(--tran-05);
-     color: var(--text-color);
-     padding: 8px 40px;
- }
- 
- .home .text {
-     font-size: 30px;
-     font-weight: 500;
- }
- 
- .sidebar.close~.home {
-     height: 100vh;
-     width: calc(100% - 78px);
- }
- 
  * {
      font-family: 'Poppins', sans-serif;
      margin: 0;
@@ -312,16 +291,19 @@
  }
  
  #left {
-     width: 15%;
+     width: 5%;
      height: 900px;
      background-color: #E4E9F7;
      float: left;
  }
  
  #center {
-     width: 85%;
+     position: relative;
+     left: 0%;
+     width: calc(100% - 5%);
      height: 900px;
      float: left;
+     transition: var(--tran-05);
  }
  
  a {
@@ -338,10 +320,6 @@
  
  .iconimg {
      height: 25px;
- }
- 
- .iconimgstw {
-     height: 45px;
  }
  
  td {
@@ -480,15 +458,18 @@
  .table_khu {
      display: flex;
      margin: 10px;
+     min-height: 40vh;
  }
  
  .table_view {
      height: 40px;
+     width: 97%;
  }
  
  .vung_table {
      min-height: 100vh;
      justify-content: center;
+     width: 100%;
      align-items: center;
      /*background: url(../img/nền.jpg) center/cover;*/
  }
@@ -499,8 +480,22 @@
      padding: 1rem;
  }
  
+ .set {
+     flex-wrap: wrap;
+     display: flex;
+     justify-content: space-around;
+     padding-top: 30px;
+ }
+ 
+ ion-icon {
+     font-size: 1.6rem;
+ }
+ 
+ .tt {
+     text-align: center;
+ }
+ 
  main.vung_table {
-     width: 84vw;
      height: 90vh;
      background-color: #ffffff;
      backdrop-filter: blur(7px);
@@ -537,7 +532,7 @@
  }
  
  .table_body {
-     width: 95%;
+     width: 98%;
      max-height: calc(89% - .8rem);
      background-color: rgba(230, 219, 219, 0.733);
      margin: .8rem auto;
