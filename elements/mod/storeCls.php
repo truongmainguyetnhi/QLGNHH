@@ -34,11 +34,16 @@ class store extends Database
     }
     public function StoreDel($ID_CH)
     {
+        $id = $this->connect->prepare("SELECT ID_DC FROM cua2 WHERE ID_CH = ?");
+        $id->execute(array($ID_CH));
+        $ID_DC_result = $id->fetch(PDO::FETCH_ASSOC);
+        $ID_DC = $ID_DC_result['ID_DC'];
+
         $delCua2 = $this->connect->prepare("DELETE FROM cua2 WHERE ID_CH = ?");
         $delCua2->execute(array($ID_CH));
 
-        $delDiachi = $this->connect->prepare("DELETE FROM diachi WHERE ID_DC IN (SELECT ID_DC FROM cua2 WHERE ID_CH = ?)");
-        $delDiachi->execute(array($ID_CH));
+        $delDiachi = $this->connect->prepare("DELETE FROM diachi WHERE ID_DC = ?");
+        $delDiachi->execute(array($ID_DC));
 
         $delCuahang = $this->connect->prepare("DELETE FROM cuahang WHERE ID_CH = ?");
         $delCuahang->execute(array($ID_CH));
@@ -57,8 +62,7 @@ class store extends Database
     }
     public function StoreGetById($ID_CH)
     {
-        $getId = $this->connect->prepare("
-        SELECT cuahang.*, diachi.*
+        $getId = $this->connect->prepare(" SELECT cuahang.*, diachi.*
         FROM cuahang
         INNER JOIN cua2 ON cuahang.ID_CH = cua2.ID_CH
         INNER JOIN diachi ON cua2.ID_DC = diachi.ID_DC

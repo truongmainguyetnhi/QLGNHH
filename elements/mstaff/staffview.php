@@ -4,7 +4,8 @@
             <h1>Thêm nhân viên mới</h1>
         </section>
         <section class="them_body">
-            <form onsubmit="alert('Thành công')" name="newstaff" id="formadd_staff" method="post" enctype="multipart/form-data" action="./elements/mstaff/staffAct.php?reqact=addnew">
+            <form onsubmit="alert('Thành công')" name="newstaff" id="formadd_staff" method="post"
+                enctype="multipart/form-data" action="./elements/mstaff/staffAct.php?reqact=addnew">
                 <div class="fields">
                     <div class="input_group type-md">
                         <input type="text" name="tenstaff" required>
@@ -19,6 +20,21 @@
                     <div class="input_group type-md">
                         <input type="text" name="emailstaff" required>
                         <label for="emailstaff">Email</label>
+                        <span class="border"></span>
+                    </div>
+                    <div class="input_group type-md">
+                        <input type="text" name="tinhstaff" required>
+                        <label for="tinhstaff">Tỉnh/Thành phố</label>
+                        <span class="border"></span>
+                    </div>
+                    <div class="input_group type-md">
+                        <input type="text" name="phuongstaff" required>
+                        <label for="phuongstaff">Phường/Xã</label>
+                        <span class="border"></span>
+                    </div>
+                    <div class="input_group type-md">
+                        <input type="text" name="duongstaff" required>
+                        <label for="duongstaff">Số nhà, đường</label>
                         <span class="border"></span>
                     </div>
                     <div class="input_group type-md">
@@ -70,6 +86,12 @@
                             </div>
                         </div>
                     </div>
+                    <div class="input_group type-md">
+                        <input type="date" name="ngaystaff" required placeholder="Ngày nhập"
+                            value="<?php echo date('Y-m-d'); ?>">
+                        <label for="ngaystaff" style="top: -0.5rem;">Ngày nhập</label>
+                        <span class="border"></span>
+                    </div>
                     <div class="contaniner">
                         <input type="reset" class="btn" id="refresh" value="Refresh">
                         <input type="submit" class="btn" value="Accept">
@@ -98,8 +120,12 @@
                             <th class="th_table">Tên nhân viên</th>
                             <th class="th_table">Số điện thoại</th>
                             <th class="th_table">Email</th>
+                            <th class="th_table">Tỉnh/Thành phố</th>
+                            <th class="th_table">Phường/Xã</th>
+                            <th class="th_table">Đường, số nhà</th>
                             <th class="th_table">Số căn cước</th>
                             <th class="th_table">Trạng thái</th>
+                            <th class="th_table">Ngày nhập</th>
                             <th class="th_table">Tên đăng nhập</th>
                             <th class="th_table">Mật khẩu</th>
                             <th class="th_table">Loại tài khoản</th>
@@ -110,57 +136,63 @@
                         <?php
                         foreach ($list_staff as $n) {
                         ?>
-                            <tr class="tr_table">
-                                <td class="td_table"><?php echo $n->TEN_NV; ?></td>
-                                <td class="td_table"><?php echo $n->SDT_NV; ?></td>
-                                <td class="td_table"><?php echo $n->EMAIL; ?></td>
-                                <td class="td_table"><strong><?php echo $n->CCCD; ?></strong></td>
-                                <td class="td_table tt">
-                                    <?php
+                        <tr class="tr_table">
+                            <td class="td_table"><?php echo $n->TEN_NV; ?></td>
+                            <td class="td_table"><?php echo $n->SDT_NV; ?></td>
+                            <td class="td_table"><?php echo $n->EMAIL; ?></td>
+                            <td class="td_table"><?php echo $n->TINH_TP; ?></td>
+                            <td class="td_table"><?php echo $n->PHUONG_XA; ?></td>
+                            <td class="td_table"><?php echo $n->DUONG_SONHA; ?></td>
+                            <td class="td_table"><strong><?php echo $n->CCCD; ?></strong></td>
+                            <td class="td_table tt">
+                                <?php
                                     if ($n->TRANGTHAI == "on") {
                                     ?>
-                                        <a href="./elements/mstaff/staffAct.php?reqact=setlock&idstaff=<?php echo $n->ID_NV; ?> 
+                                <a href="./elements/mstaff/staffAct.php?reqact=setlock&idstaff=<?php echo $n->ID_NV; ?> 
                                     &trangthaistaff=<?php echo $n->TRANGTHAI; ?>">
-                                            <ion-icon name="lock-open"></ion-icon>
-                                        </a>
-                                    <?php
+                                    <ion-icon name="lock-open"></ion-icon>
+                                </a>
+                                <?php
                                     } else {
                                     ?>
-                                        <a href="./elements/mstaff/staffAct.php?reqact=setlock&idstaff=<?php echo $n->ID_NV; ?>
+                                <a href="./elements/mstaff/staffAct.php?reqact=setlock&idstaff=<?php echo $n->ID_NV; ?>
                                     &trangthaistaff=<?php echo $n->TRANGTHAI; ?>">
-                                            <ion-icon name="lock-closed"></ion-icon>
-                                        </a>
-                                    <?php
+                                    <ion-icon name="lock-closed"></ion-icon>
+                                </a>
+                                <?php
                                     }
                                     ?>
-                                </td>
-                                <td class="td_table"><?php echo $n->TENTK; ?></td>
-                                <td class="td_table"><?php echo $n->MATKHAU; ?></td>
-                                <td class="td_table">
-                                    <?php
+                            </td>
+                            <td class="td_table"><?php echo $n->NGAYNHAP; ?></td>
+                            <td class="td_table"><?php echo $n->TENTK; ?></td>
+                            <td class="td_table"><?php echo $n->MATKHAU; ?></td>
+                            <td class="td_table">
+                                <?php
                                     $nhi = $n->LOAITK;
                                     if ('Nhân viên' === $nhi) {
                                     ?>
-                                        <p class="status staff"><?php echo $n->LOAITK; ?></p>
-                                    <?php
+                                <p class="status staff"><?php echo $n->LOAITK; ?></p>
+                                <?php
                                     } elseif ('Quản lý' === $nhi) {
                                     ?>
-                                        <p class="status qly"><?php echo $n->LOAITK; ?></p>
-                                    <?php } ?>
-                                </td>
+                                <p class="status qly"><?php echo $n->LOAITK; ?></p>
+                                <?php } ?>
+                            </td>
 
-                                <td class="td_table set">
-                                    <tempstaff class="btnup" value="<?php echo $n->ID_NV; ?>">
-                                        <ion-icon name="pencil"></ion-icon>
-                                    </tempstaff>
-                                    <div class="xoa">
-                                        <a href="./elements/mstaff/staffrAct.php?reqact=deletestaff&idstaff=<?php echo $n->ID_NV; ?>">
-                                            <ion-icon name="trash"></ion-icon>
-                                        </a>
-                                    </div>
 
-                                </td>
-                            </tr>
+                            <td class="td_table set">
+                                <tempstaff class="btnup" value="<?php echo $n->ID_NV; ?>">
+                                    <ion-icon name="pencil"></ion-icon>
+                                </tempstaff>
+                                <div class="xoa">
+                                    <a
+                                        href="./elements/mstaff/staffrAct.php?reqact=deletestaff&idstaff=<?php echo $n->ID_NV; ?>">
+                                        <ion-icon name="trash"></ion-icon>
+                                    </a>
+                                </div>
+
+                            </td>
+                        </tr>
                         <?php
                         }
                         ?>

@@ -12,8 +12,11 @@ if (isset($_GET['reqact'])) {
             $TENTK = $_POST['taikhoandangnhanship'];
             $MATKHAU = $_POST['matkhauship'];
             $LOAITK = $_POST['loaitaikhoanship'];
+            $TINH_TP = $_POST['tinhship'];
+            $PHUONG_XA = $_POST['phuongship'];
+            $DUONG_SONHA = $_POST['duongship'];
             $ship = new ship();
-            $rs = $ship->ShipAdd($TEN_SP, $SDT_SP, $TRANGTHAI, $EMAIL, $CCCD, $TENTK, $MATKHAU, $LOAITK);
+            $rs = $ship->ShipAdd($TEN_SP, $SDT_SP, $TRANGTHAI, $EMAIL, $CCCD, $TENTK, $MATKHAU, $LOAITK, $TINH_TP, $PHUONG_XA, $DUONG_SONHA);
             if ($rs) {
                 header('location:../../index.php?req=shipperview');
             } else {
@@ -39,8 +42,11 @@ if (isset($_GET['reqact'])) {
             $TENTK = $_POST['taikhoandangnhapship'];
             $MATKHAU = $_POST['matkhauship'];
             $LOAITK = $_POST['loaitaikhoanship'];
+            $TINH_TP = $_POST['tinhship'];
+            $PHUONG_XA = $_POST['phuongship'];
+            $DUONG_SONHA = $_POST['duongship'];
             $ship = new ship();
-            $rs = $ship->ShipUpdate($TEN_SP, $SDT_SP, $EMAIL, $CCCD, $TENTK, $MATKHAU, $LOAITK, $ID_SP);
+            $rs = $ship->ShipUpdate($TEN_SP, $SDT_SP, $EMAIL, $CCCD, $TENTK, $MATKHAU, $LOAITK, $TINH_TP, $PHUONG_XA, $DUONG_SONHA, $ID_SP);
             if ($rs) {
                 header('location:../../index.php?req=shipperview');
             } else {

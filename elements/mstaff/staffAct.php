@@ -12,8 +12,12 @@ if (isset($_GET['reqact'])) {
             $MATKHAU = $_POST['matkhaustaff'];
             $LOAITK = $_POST['loaitaikhoanstaff'];
             $TRANGTHAI = $_POST['trangthaistaff'];
+            $TINH_TP = $_POST['tinhstaff'];
+            $PHUONG_XA = $_POST['phuongstaff'];
+            $DUONG_SONHA = $_POST['duongstaff'];
+            $NGAYNHAP = $_POST['ngaystaff'];
             $staff = new staff();
-            $rs = $staff->staffAdd($TEN_NV, $SDT_NV, $EMAIL, $CCCD, $TENTK, $MATKHAU, $LOAITK, $TRANGTHAI);
+            $rs = $staff->staffAdd($TEN_NV, $SDT_NV, $EMAIL, $CCCD, $TENTK, $MATKHAU, $LOAITK, $TRANGTHAI, $TINH_TP, $PHUONG_XA, $DUONG_SONHA, $NGAYNHAP);
             if ($rs) {
                 header('location:../../index.php?req=staffview');
             } else {
@@ -39,8 +43,12 @@ if (isset($_GET['reqact'])) {
             $TENTK = $_POST['taikhoandangnhapstaff'];
             $MATKHAU = $_POST['matkhaustaff'];
             $LOAITK = $_POST['loaitaikhoanstaff'];
+            $TINH_TP = $_POST['tinhstaff'];
+            $PHUONG_XA = $_POST['phuongstaff'];
+            $DUONG_SONHA = $_POST['duongstaff'];
+            $NGAYNHAP = $_POST['ngaystaff'];
             $staff = new staff();
-            $rs = $staff->staffUpdate($TEN_NV, $SDT_NV, $EMAIL, $CCCD, $TENTK, $MATKHAU, $LOAITK, $TRANGTHAI, $ID_NV);
+            $rs = $staff->staffUpdate($TEN_NV, $SDT_NV, $EMAIL, $CCCD, $TENTK, $MATKHAU, $LOAITK, $TINH_TP, $PHUONG_XA, $DUONG_SONHA, $NGAYNHAP, $ID_NV);
             if ($rs) {
                 header('location:../../index.php?req=staffview');
             } else {

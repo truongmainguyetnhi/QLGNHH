@@ -22,8 +22,6 @@
                         <label for="emailstore">Email</label>
                         <span class="border"></span>
                     </div>
-
-
                     <div class="input_group type-md">
                         <input type="text" name="tinhstore" required>
                         <label for="tinhstore">Tỉnh/Thành phố</label>
@@ -39,8 +37,6 @@
                         <label for="duongstore">Số nhà, đường</label>
                         <span class="border"></span>
                     </div>
-
-
                     <div class="input_group type-md">
                         <input type="text" name="taikhoanstore" required>
                         <label for="taikhoanstore">Số dư tài khoản</label>

@@ -61,6 +61,12 @@ $getstore = $store->StoreGetById($idstore);
                         <label for=" matkhaustore">Mật khẩu</label>
                         <span class="border"></span>
                     </div>
+                    <div class="input_group type-md">
+                        <input type="date" name="ngaystaff" required placeholder="Ngày nhập"
+                            value="<?php echo date('Y-m-d'); ?>">
+                        <label for="ngaystaff" style="top: -0.5rem;">Ngày nhập</label>
+                        <span class="border"></span>
+                    </div>
                     <input type="hidden" name="loaitaikhoanstore" value="<?php echo $getstore->LOAITK; ?>">
                     <div class="contaniner">
                         <input type="submit" class="btn" value="Accept">
@@ -88,6 +94,9 @@ $getstore = $store->StoreGetById($idstore);
                         <th class="th_table">Tên cửa hàng</th>
                         <th class="th_table">Số điện thoại</th>
                         <th class="th_table">Email</th>
+                        <th class="th_table">Tỉnh/Thành phố</th>
+                        <th class="th_table">Phường/Xã</th>
+                        <th class="th_table">Đường, số nhà</th>
                         <th class="th_table">Số dư tài khoản</th>
                         <th class="th_table">Trạng thái</th>
                         <th class="th_table">Tên đăng nhập</th>
@@ -104,6 +113,9 @@ $getstore = $store->StoreGetById($idstore);
                         <td class="td_table"><?php echo $n->TEN_CH; ?></td>
                         <td class="td_table"><?php echo $n->SDT_CH; ?></td>
                         <td class="td_table"><?php echo $n->EMAIL; ?></td>
+                        <td class="td_table"><?php echo $n->TINH_TP; ?></td>
+                        <td class="td_table"><?php echo $n->PHUONG_XA; ?></td>
+                        <td class="td_table"><?php echo $n->DUONG_SONHA; ?></td>
                         <td class="td_table"><strong><?php echo $n->TAIKHOAN . "VND"; ?></strong></td>
                         <td class="td_table">
                             <?php
