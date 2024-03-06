@@ -47,12 +47,12 @@ if (isset($_GET['reqact'])) {
             $PHUONG_XA = $_POST['phuongstaff'];
             $DUONG_SONHA = $_POST['duongstaff'];
             $NGAYNHAP = $_POST['ngaystaff'];
-            $staff = new staff();
-            $rs = $staff->staffUpdate($TEN_NV, $SDT_NV, $EMAIL, $CCCD, $TENTK, $MATKHAU, $LOAITK, $TINH_TP, $PHUONG_XA, $DUONG_SONHA, $NGAYNHAP, $ID_NV);
+            $store = new staff();
+            $rs = $store->staffUpdate($TEN_NV, $SDT_NV, $EMAIL, $CCCD, $TENTK, $MATKHAU, $LOAITK, $TINH_TP, $PHUONG_XA, $DUONG_SONHA, $NGAYNHAP, $ID_NV);
             if ($rs) {
                 header('location:../../index.php?req=staffview');
             } else {
-                header('location:../../index.php?req=staffvew');
+                header('location:../../index.php?req=staffview');
             }
             break;
         case 'setlock':

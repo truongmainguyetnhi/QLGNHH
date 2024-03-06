@@ -30,6 +30,21 @@ $getstaff = $staff->staffGetById($idstaff);
                         <span class="border"></span>
                     </div>
                     <div class="input_group type-md">
+                        <input type="text" name="tinhstaff" value="<?php echo $getstaff->TINH_TP; ?>" required>
+                        <label for="tinhstaff">Tỉnh/Thành phố</label>
+                        <span class="border"></span>
+                    </div>
+                    <div class="input_group type-md">
+                        <input type="text" name="phuongstaff" value="<?php echo $getstaff->PHUONG_XA; ?>" required>
+                        <label for=" phuongstaff">Phường/Xã</label>
+                        <span class="border"></span>
+                    </div>
+                    <div class="input_group type-md">
+                        <input type="text" name="duongstaff" value="<?php echo $getstaff->DUONG_SONHA; ?>" required>
+                        <label for=" duongstaff">Đường, số nhà</label>
+                        <span class="border"></span>
+                    </div>
+                    <div class="input_group type-md">
                         <input type="text" name="cccdstaff" value="<?php echo $getstaff->CCCD; ?>" required>
                         <label for=" cccdstaff">Số căn cước</label>
                         <span class="border"></span>
@@ -46,7 +61,8 @@ $getstaff = $staff->staffGetById($idstaff);
                         <span class="border"></span>
                     </div>
                     <div class="input_group type-md">
-                        <input type="date" name="ngaystaff" required placeholder="Ngày nhập">
+                        <input type="datetime-local" name="ngaystaff" value="<?php echo $getstaff->NGAYNHAP; ?>"
+                            required>
                         <label for="ngaystaff" style="top: -0.5rem;">Ngày nhập</label>
                         <span class="border"></span>
                     </div>

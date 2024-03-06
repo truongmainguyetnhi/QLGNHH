@@ -38,7 +38,7 @@ class staff extends Database
         $ID_DC_result = $id->fetch(PDO::FETCH_ASSOC);
         $ID_DC = $ID_DC_result['ID_DC'];
 
-        $delCua3 = $this->connect->prepare("DELETE FROM cua3 WHERE ID_SP = ?");
+        $delCua3 = $this->connect->prepare("DELETE FROM cua3 WHERE ID_NV = ?");
         $delCua3->execute(array($ID_NV));
 
         $delDiachi = $this->connect->prepare("DELETE FROM diachi WHERE ID_DC = ?");
@@ -49,15 +49,19 @@ class staff extends Database
 
         return $del->rowCount();
     }
+
     public function staffUpdate($TEN_NV, $SDT_NV, $EMAIL, $CCCD, $TENTK, $MATKHAU, $LOAITK, $TINH_TP, $PHUONG_XA, $DUONG_SONHA, $NGAYNHAP, $ID_NV)
     {
-        $update = $this->connect->prepare("UPDATE nhanvien SET TEN_NV = ?, SDT_NV = ?, EMAIL = ?, CCCD = ?, TENTK = ?, MATKHAU = ?, LOAITK = ?, TRANGTHAI = ? WHERE ID_NV = ? ");
+        $update = $this->connect->prepare("UPDATE nhanvien SET TEN_NV = ?, SDT_NV = ?, EMAIL = ?, CCCD = ?, TENTK = ?, MATKHAU = ?, LOAITK = ? WHERE ID_NV = ? ");
         $update->execute(array($TEN_NV, $SDT_NV, $EMAIL, $CCCD, $TENTK, $MATKHAU, $LOAITK, $ID_NV));
 
-        $updatedc = $this->connect->prepare("UPDATE diachi SET TINH_TP = ?, PHUONG_XA = ?, DUONG_SONHA = ?, NGAYNHAP = ? WHERE ID_DC IN (SELECT ID_DC FROM cua3 WHERE ID_NV = ?)");
-        $updatedc->execute(array($TINH_TP, $PHUONG_XA, $DUONG_SONHA, $NGAYNHAP, $ID_NV));
+        $updatedc = $this->connect->prepare("UPDATE diachi SET TINH_TP = ?, PHUONG_XA = ?, DUONG_SONHA = ? WHERE ID_DC IN (SELECT ID_DC FROM cua3 WHERE ID_NV = ?)");
+        $updatedc->execute(array($TINH_TP, $PHUONG_XA, $DUONG_SONHA, $ID_NV));
 
-        return $update->rowCount() + $updatedc->rowCount();
+        $updatengay = $this->connect->prepare("UPDATE cua3 SET NGAYNHAP = ? WHERE ID_NV = ?");
+        $updatengay->execute(array($NGAYNHAP, $ID_NV));
+
+        return $update->rowCount() + $updatedc->rowCount() + $updatengay->rowCount();
     }
     public function staffGetById($ID_NV)
     {

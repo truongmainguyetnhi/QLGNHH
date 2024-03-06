@@ -588,7 +588,7 @@
  /* button*/
  
  .contaniner input:hover {
-     box-shadow: 0 0 12px #F36B2D;
+     box-shadow: 0 0 15px #F36B2D;
  }
  
  .btn {
@@ -667,7 +667,7 @@
  }
  
  input:hover+.radio_tile {
-     box-shadow: 0 0 12px #F36B2D;
+     box-shadow: 0 0 15px #F36B2D;
  }
  
  input:checked+.radio_tile ion-icon,

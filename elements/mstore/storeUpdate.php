@@ -61,12 +61,6 @@ $getstore = $store->StoreGetById($idstore);
                         <label for=" matkhaustore">Mật khẩu</label>
                         <span class="border"></span>
                     </div>
-                    <div class="input_group type-md">
-                        <input type="date" name="ngaystaff" required placeholder="Ngày nhập"
-                            value="<?php echo date('Y-m-d'); ?>">
-                        <label for="ngaystaff" style="top: -0.5rem;">Ngày nhập</label>
-                        <span class="border"></span>
-                    </div>
                     <input type="hidden" name="loaitaikhoanstore" value="<?php echo $getstore->LOAITK; ?>">
                     <div class="contaniner">
                         <input type="submit" class="btn" value="Accept">
