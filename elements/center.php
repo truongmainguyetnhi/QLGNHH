@@ -15,14 +15,11 @@
             case 'storeview':
                 require 'elements/mstore/storeview.php';
                 break;
-            case 'updatestore':
-                require 'elements/mstore/storeUpdate.php';
-                break;
             case 'shipperview':
                 require 'elements/mshipper/shipperview.php';
                 break;
-            case 'oderview':
-                require 'elements/moder/viewoder.php';
+            case 'packetview':
+                require 'elements/mpacket/packetview.php';
                 break;
             case 'staffview':
                 require 'elements/mstaff/staffview.php';

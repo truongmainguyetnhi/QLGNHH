@@ -335,6 +335,16 @@
  /*form input*/
  
  .body_them {
+     display: none;
+     min-height: 40vh;
+     height: 50vh;
+     align-items: center;
+     background-color: #ffffff;
+     border-radius: .6rem;
+     margin: 0 10px 0 10px;
+ }
+ 
+ .body_them_up {
      min-height: 40vh;
      height: 50vh;
      align-items: center;
@@ -350,6 +360,13 @@
      flex-wrap: wrap;
  }
  
+ .body_them_up form .fields {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     flex-wrap: wrap;
+ }
+ 
  .them_header {
      width: 100%;
      height: 15%;
@@ -358,6 +375,18 @@
      padding: .8rem 2rem;
      border-top-right-radius: .6rem;
      border-top-left-radius: .6rem;
+     display: flex;
+     justify-content: space-between;
+     /* Đảm bảo tiêu đề và nút được căn cách xa nhau */
+     align-items: center;
+ }
+ 
+ .btn_container {
+     margin-left: 85%;
+ }
+ 
+ .btn:hover {
+     box-shadow: 0 0 15px #F36B2D;
  }
  
  .them_body {
@@ -372,6 +401,15 @@
      position: relative;
      width: 22rem;
      margin: 1rem 0;
+ }
+ 
+ .input_group select {
+     position: relative;
+     width: 22rem;
+     margin: 1rem 0;
+     width: 95%;
+     padding: .5rem;
+     font-size: 1.1rem;
  }
  
  .phanloai {
@@ -509,6 +547,11 @@
      overflow-x: hidden;
  }
  
+ .body_them_up {
+     overflow-y: scroll;
+     overflow-x: hidden;
+ }
+ 
  .body_them::-webkit-scrollbar {
      width: 0.5rem;
      height: 0.5rem;
@@ -521,6 +564,21 @@
  }
  
  .body_them:hover::-webkit-scrollbar-thumb {
+     visibility: visible;
+ }
+ 
+ .body_them_up::-webkit-scrollbar {
+     width: 0.5rem;
+     height: 0.5rem;
+ }
+ 
+ .body_them_up::-webkit-scrollbar-thumb {
+     border-radius: .5rem;
+     background-color: #0004;
+     visibility: hidden;
+ }
+ 
+ .body_them_up:hover::-webkit-scrollbar-thumb {
      visibility: visible;
  }
  
@@ -589,6 +647,10 @@
  
  .contaniner input:hover {
      box-shadow: 0 0 15px #F36B2D;
+ }
+ 
+ #openform {
+     justify-content: right;
  }
  
  .btn {
@@ -682,13 +744,12 @@
  }
  
  .status.store {
-     background-color: #86e49d;
-     color: #006b21;
+     background-color: #F36B2D;
      width: 100px;
  }
  
  .status.ship {
-     background-color: #6fcaea;
+     background-color: #dcea92;
      width: 100px;
  }
  
@@ -703,6 +764,36 @@
      width: 100px;
      font-size: 1.1rem;
      text-align-last: center;
+ }
+ 
+ .DTD {
+     background-color: #F4B8CE;
+     width: 100px;
+     align-items: center;
+ }
+ 
+ .DVC {
+     background-color: #6fcaea;
+     width: 100px;
+     align-items: center;
+ }
+ 
+ .GTC {
+     background-color: #86e49d;
+     width: 100px;
+     align-items: center;
+ }
+ 
+ .DH {
+     background-color: #ff0000;
+     width: 100px;
+     align-items: center;
+ }
+ 
+ .HT {
+     background-color: #808080;
+     width: 100px;
+     align-items: center;
  }
  
  @media (max-width: 1000px) {

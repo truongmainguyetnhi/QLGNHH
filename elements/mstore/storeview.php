@@ -1,11 +1,13 @@
 <div>
+    <div class="btn_container">
+        <button id="btnOpenForm" class="btn">ADD NEW</button>
+    </div>
     <div class="body_them">
         <section class="them_header">
             <h1>Thêm cửa hàng mới</h1>
         </section>
         <section class="them_body">
-            <form onsubmit="alert('Thành công')" name="newstore" id="formadd_store" method="post"
-                enctype="multipart/form-data" action="./elements/mstore/storeAct.php?reqact=addnew">
+            <form onsubmit="alert('Thành công')" name="newstore" id="formadd_store" method="post" enctype="multipart/form-data" action="./elements/mstore/storeAct.php?reqact=addnew">
                 <div class="fields">
                     <div class="input_group type-md">
                         <input type="text" name="tenstore" required>
@@ -122,51 +124,50 @@
                         <?php
                         foreach ($list_store as $n) {
                         ?>
-                        <tr class="tr_table">
-                            <td class="td_table"><?php echo $n->TEN_CH; ?></td>
-                            <td class="td_table"><?php echo $n->SDT_CH; ?></td>
-                            <td class="td_table"><?php echo $n->EMAIL; ?></td>
-                            <td class="td_table"><?php echo $n->TINH_TP; ?></td>
-                            <td class="td_table"><?php echo $n->PHUONG_XA; ?></td>
-                            <td class="td_table"><?php echo $n->DUONG_SONHA; ?></td>
-                            <td class="td_table"><strong><?php echo $n->TAIKHOAN . "VND"; ?></strong></td>
-                            <td class="td_table tt">
-                                <?php
+                            <tr class="tr_table">
+                                <td class="td_table"><?php echo $n->TEN_CH; ?></td>
+                                <td class="td_table"><?php echo $n->SDT_CH; ?></td>
+                                <td class="td_table"><?php echo $n->EMAIL; ?></td>
+                                <td class="td_table"><?php echo $n->TINH_TP; ?></td>
+                                <td class="td_table"><?php echo $n->PHUONG_XA; ?></td>
+                                <td class="td_table"><?php echo $n->DUONG_SONHA; ?></td>
+                                <td class="td_table"><strong><?php echo $n->TAIKHOAN . "VND"; ?></strong></td>
+                                <td class="td_table tt">
+                                    <?php
                                     if ($n->TRANGTHAI == "on") {
                                     ?>
-                                <a href="./elements/mstore/storeAct.php?reqact=setlock&idstore=<?php echo $n->ID_CH; ?> 
+                                        <a href="./elements/mstore/storeAct.php?reqact=setlock&idstore=<?php echo $n->ID_CH; ?> 
                                     &trangthaistore=<?php echo $n->TRANGTHAI; ?>">
-                                    <ion-icon name="lock-open"></ion-icon>
+                                            <ion-icon name="lock-open"></ion-icon>
 
-                                </a>
-                                <?php
+                                        </a>
+                                    <?php
                                     } else {
                                     ?>
-                                <a href="./elements/mstore/storeAct.php?reqact=setlock&idstore=<?php echo $n->ID_CH; ?>
+                                        <a href="./elements/mstore/storeAct.php?reqact=setlock&idstore=<?php echo $n->ID_CH; ?>
                                     &trangthaistore=<?php echo $n->TRANGTHAI; ?>">
-                                    <ion-icon name="lock-closed"></ion-icon>
-                                </a>
-                                <?php
+                                            <ion-icon name="lock-closed"></ion-icon>
+                                        </a>
+                                    <?php
                                     }
                                     ?>
-                            </td>
-                            <td class="td_table"><?php echo $n->TENTK; ?></td>
-                            <td class="td_table"><?php echo $n->MATKHAU; ?></td>
-                            <td class="td_table">
-                                <p class="status store"><?php echo $n->LOAITK; ?></p>
-                            </td>
-                            <td class="td_table set">
-                                <tempstore class="btnup" value="<?php echo $n->ID_CH; ?>">
-                                    <ion-icon name="pencil"></ion-icon>
-                                </tempstore>
-                                <div class="xoa">
-                                    <a
-                                        href="./elements/mstore/storeAct.php?reqact=deletestore&idstore=<?php echo $n->ID_CH; ?>">
-                                        <ion-icon name="trash"></ion-icon>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                                <td class="td_table"><?php echo $n->TENTK; ?></td>
+                                <td class="td_table"><?php echo $n->MATKHAU; ?></td>
+                                <td class="td_table">
+                                    <p class="status store"><?php echo $n->LOAITK; ?></p>
+                                </td>
+                                <td class="td_table set">
+                                    <tempstore class="btnup" value="<?php echo $n->ID_CH; ?>">
+                                        <ion-icon name="pencil"></ion-icon>
+                                    </tempstore>
+                                    <div class="xoa">
+                                        <a href="./elements/mstore/storeAct.php?reqact=deletestore&idstore=<?php echo $n->ID_CH; ?>">
+                                            <ion-icon name="trash"></ion-icon>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
                         <?php
                         }
                         ?>

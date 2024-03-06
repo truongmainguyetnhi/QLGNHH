@@ -50,7 +50,7 @@ session_start();
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="index.php?req=oderview">
+                        <a href="index.php?req=packetview">
                             <i class='bx bx-package icon'></i>
                             <span class="text nav-text">Đơn hàng</span>
                         </a>

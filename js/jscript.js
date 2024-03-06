@@ -38,13 +38,65 @@ $("tempstaff").click(function() {
     var idstaff = $(this).attr("value");
     $("#center").load("./elements/mstaff/staffUpdate.php?&idstaff=" + idstaff);
 });
-
-/*$("form").submit(() => {
-    alert("Thành công");
-    swal("Are you sure you want to do this?", {
-        buttons: ["Oh noez!", true],
-    });
-})*/
+$("temppacket").click(function() {
+    var idpacket = $(this).attr("value");
+    $("#center").load("./elements/mpacket/packetUpdate.php?&idpacket=" + idpacket);
+});
 $(".xoa").click(() => {
     alert("ĐÃ XÓA");
 })
+
+//Mở form
+document.getElementById('btnOpenForm').addEventListener('click', function() {
+    var bodyThem = document.querySelector('.body_them');
+
+    if (bodyThem.style.display === 'none') {
+        bodyThem.style.display = 'block';
+    } else {
+        bodyThem.style.display = 'none';
+    }
+});
+
+
+//Thay dổi nhãn
+var isOpen = false;
+document.getElementById('btnOpenForm').addEventListener('click', function() {
+    var bodyThem = document.querySelector('.body_them');
+    var btnOpenForm = document.getElementById('btnOpenForm');
+
+    if (!isOpen) {
+        bodyThem.style.display = 'block';
+        btnOpenForm.innerText = 'CLOSE';
+        isOpen = true;
+    } else {
+        bodyThem.style.display = 'none';
+        btnOpenForm.innerText = 'ADD NEW';
+        isOpen = false;
+    }
+});
+
+// Hàm tạo mã đơn hàng tự động
+function generateOrderCode(orderCount) {
+    // Lấy ngày hiện tại
+    var date = new Date();
+    var year = date.getFullYear().toString().substr(-2); // Lấy hai số cuối của năm
+    var month = ('0' + (date.getMonth() + 1)).slice(-2); // Lấy tháng, có thể thêm 1 vì tháng bắt đầu từ 0
+    var day = ('0' + date.getDate()).slice(-2); // Lấy ngày
+
+    // Tạo số thứ tự với 7 chữ số
+    var paddedNumber = ('0000000' + orderCount).slice(-7); // Chèn số 0 vào phía trước để có 7 chữ số
+
+    // Kết hợp thành mã đơn hàng
+    var orderCode = 'PNL' + year + month + day + paddedNumber;
+
+    return orderCode;
+}
+
+// Số thứ tự ban đầu
+var orderCount = 1;
+
+// Gán mã đơn hàng cho input khi trang được tải
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('mapacket').value = generateOrderCode(orderCount);
+    orderCount += 1;
+});
