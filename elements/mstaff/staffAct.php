@@ -1,4 +1,5 @@
 <?php
+session_start();
 require '../../elements/mod/staffCls.php';
 if (isset($_GET['reqact'])) {
     $requsetAction = $_GET['reqact'];
@@ -70,8 +71,30 @@ if (isset($_GET['reqact'])) {
                 header('location:../../index.php?req=staffview');
             }
             break;
+        case 'checklogin':
+            $TENTK = $_POST['username'];
+            $MATKHAU = $_POST['password'];
+            $LOAITK = $_POST['loaitk'];
+            $staff = new staff();
+            $rs = $staff->CheckLogin($TENTK, $MATKHAU, $LOAITK);
+            if ($rs) {
+                if ($loaitk == "Quản lý") {
+                    $_SESSION['Quản lý'] = $LOAITK;
+                } else {
+                    $_SESSION['Nhân viên'] = $LOAITK;
+                }
+                header('location:../../index.php');
+            } else {
+                header('location:../../login.php');
+            }
+            break;
+        case 'logout':
+            session_destroy();
+            header('location: ../../login.php');
+            break;
         default:
             header('location:../../index.php?req=staffview');
+            break;
     }
 } else {
     header('location:../../index.php?req=staffrview');

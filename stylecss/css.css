@@ -84,7 +84,7 @@
  
  .sidebar .image-text img {
      width: 40px;
-     border-radius: 10px;
+     border-radius: 50%;
  }
  
  .sidebar header .image-text {
@@ -666,6 +666,21 @@
      border-radius: .6rem;
  }
  
+ .btn_login {
+     font-size: 18px;
+     padding: 10px;
+     font-weight: 500;
+     font-size: 18px;
+     margin-top: 30px;
+     width: 150px;
+     background: #F36B2D;
+     cursor: pointer;
+     border: none;
+     border-radius: .6rem;
+     margin: .5rem;
+     margin-top: 3rem;
+ }
+ 
  #refresh {
      background-color: #ffffff;
      color: #F36B2D;
@@ -800,4 +815,53 @@
      .td_table.th_table:not(:first-of-type) {
          min-width: 15rem;
      }
+ }
+ /*login*/
+ 
+ .loginbody {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     width: 75%;
+     height: 550px;
+     background: url(../img_TMNN/nen2.png) no-repeat;
+     background-size: cover;
+     margin: auto;
+     background-color: #000;
+ }
+ 
+ #logincenter {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 30%;
+     height: auto;
+     background-color: #ffffff;
+     border-radius: 10px;
+     box-shadow: 0 0 0 10px violet, 0 0 0 20px indigo, 0 0 0 30px blue, 0 0 0 40px green, 0 0 0 50px yellow, 0 0 0 60px orange, 0 0 0 70px red;
+ }
+ 
+ #logincenter .form_box {
+     justify-content: center;
+     align-items: center;
+     width: 100%;
+     height: 100%;
+     background: transparent;
+     border-top-right-radius: 10px;
+     border-bottom-right-radius: 10px;
+     color: #000;
+     margin: .3rem;
+ }
+ 
+ .form_box h1 {
+     font-size: 32px;
+     text-align: center;
+ }
+ 
+ .login_radio {
+     display: flex;
+     font-size: 1.1rem;
+     justify-content: space-between;
+     margin-top: 3rem;
  }

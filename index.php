@@ -13,6 +13,11 @@ session_start();
 </head>
 
 <body>
+    <?php
+    if (!isset($_SESSION['Quản lý']) and !isset($_SESSION['Nhân viên'])) {
+        header('location: login.php');
+    }
+    ?>
     <div id="top">
         <?php require "elements/top.php" ?>
     </div>
@@ -77,7 +82,7 @@ session_start();
             </div>
             <div class="bottom-content">
                 <li class="logout">
-                    <a href="#">
+                    <a href="elements/mstaff/staffAct.php?reqact=logout">
                         <i class='bx bx-log-out icon'></i>
                         <span class="text nav-text">Logout</span>
                     </a>
