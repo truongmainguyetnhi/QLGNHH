@@ -80,24 +80,16 @@ class staff extends Database
         $update->execute(array($TRANGTHAI, $ID_NV));
         return $update->rowCount();
     }
-
-
-    public function StaffSetPasswword($ID_NV, $MATKHAU)
+    public function UserChangePassword($TENTK, $MATKHAU, $LOAITK, $MATKHAUNEW)
     {
-        $update = $this->connect->prepare(" UPDATE nhanvien SET password = ? WHERE ID_NV = ? ");
-        $update->execute(array($MATKHAU, $ID_NV));
-        return $update->rowCount();
-    }
-    public function UserChangePassword($username, $passwordold, $passwordnew)
-    {
-        $selectMK = $this->connect->prepare(" SELECT password FROM user WHERE username = ? ");
+        $selectMK = $this->connect->prepare(" SELECT password FROM nhanvien WHERE TENTK = ? and LOAITK = ? and TRANGTHAI = 'on' ");
         $selectMK->setFetchMode(PDO::FETCH_OBJ);
-        $selectMK->execute(array($username));
+        $selectMK->execute(array($TENTK, $LOAITK));
         if (count($selectMK->fetch()) == 1) {
             $temp = $selectMK->fetch();
-            if ($passwordold == $temp->password) {
-                $update = $this->connect->prepare(" UPDATE user SET password = ? WHERE username = ? ");
-                $update->execute(array($passwordnew, $username));
+            if ($MATKHAU == $temp->MATKHAU) {
+                $update = $this->connect->prepare(" UPDATE nhanvien SET MATKHAU = ? WHERE TENTK = ? and LOAITK = ? ");
+                $update->execute(array($MATKHAUNEW, $TENTK, $LOAITK));
                 return $update->rowCount();
             } else {
                 return false;
@@ -111,18 +103,6 @@ class staff extends Database
         $select = $this->connect->prepare(" SELECT * FROM nhanvien WHERE TENTK = ? and MATKHAU = ? and LOAITK = ? and TRANGTHAI = 'on' ");
         $select->setFetchMode(PDO::FETCH_OBJ);
         $select->execute(array($TENTK, $MATKHAU, $LOAITK));
-        if (count($select->fetchAll()) == 1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function UserCheckUsername($username)
-    {
-        $select = $this->connect->prepare(" SELECT * FROM user WHERE username = ? ");
-        $select->setFetchMode(PDO::FETCH_OBJ);
-        $select->execute(array($username));
         if (count($select->fetchAll()) == 1) {
             return true;
         } else {

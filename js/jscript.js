@@ -100,3 +100,30 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('mapacket').value = generateOrderCode(orderCount);
     orderCount += 1;
 });
+
+//login
+
+document.getElementById('nhilogin').addEventListener('submit', function(e) {
+    // Ngăn chặn hành vi mặc định của form
+    e.preventDefault();
+
+    // Kiểm tra logic đăng nhập ở đây
+    // Nếu đăng nhập đúng, hiển thị thông báo
+    var isLoginSuccessful = true; // Thay bằng logic kiểm tra đăng nhập của bạn
+
+    if (isLoginSuccessful) {
+        alert('Đăng nhập thành công!');
+        var radioValue = document.querySelector('input[name="loaitk"]:checked').value;
+        if (radioValue === 'Nhân viên' || radioValue === 'Quản lý') {
+            this.action = 'elements/mstaff/staffAct.php?reqact=checklogin';
+        } else if (radioValue === 'Cửa hàng') {
+            this.action = 'elements/mstore/storeAct.php?reqact=checklogin';
+        } else if (radioValue === 'Shipper') {
+            this.action = 'elements/mshipper/shipperAct.php?reqact=checklogin';
+        }
+    } else {
+        alert('Đăng nhập không thành công!');
+
+    }
+    this.submit();
+});

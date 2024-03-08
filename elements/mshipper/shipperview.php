@@ -55,17 +55,7 @@
                         <span class="border"></span>
                     </div>
                     <div class="radio_group">
-                        <label for="loaitaikhoanship">Loại tài khoản</label><br>
-                        <div class="input_container loai">
-                            <input type="radio" name="loaitaikhoanship" value="Shipper" checked>
-                            <div class="radio_tile">
-                                <ion-icon name="bicycle"></ion-icon>
-                                <label for="Shipper">Shipper</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="radio_group">
-                        <label for="trangthaistore">Trạng thái</label><br>
+                        <label for="trangthaistore">Status</label><br>
                         <div class="input_container">
                             <input type="radio" name="trangthaiship" value="on" checked>
                             <div class="radio_tile">
@@ -78,6 +68,16 @@
                             <div class="radio_tile">
                                 <ion-icon name="flash-off-outline"></ion-icon>
                                 <label for="off">off</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="radio_group">
+                        <label for="loaitaikhoanship">Loại tài khoản</label><br>
+                        <div class="input_container loai">
+                            <input type="radio" name="loaitaikhoanship" value="Shipper" checked>
+                            <div class="radio_tile">
+                                <ion-icon name="bicycle"></ion-icon>
+                                <label for="Shipper">Shipper</label>
                             </div>
                         </div>
                     </div>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -7,12 +8,11 @@
     <link rel="stylesheet" href="stylecss/css.css" type="text/css" />
     <link rel="shortcut icon" href="img/logo.png" type="image/png">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
 </head>
 
 <body class="loginbody">
     <div id="logincenter">
-        <form class="form_box" name="frmLogin" method="post" action="elements/mstaff/staffAct.php?reqact=checklogin">
+        <form id="nhilogin" class="form_box" name="frmLogin" method="post">
             <h1>Sign in</h1>
             <div class="input_group type-md">
                 <input type="text" name="username" id="username" required>
@@ -25,7 +25,7 @@
                 <span class="border"></span>
             </div>
             <div class="login_radio">
-                <label for="loaitk">Quyền</label><br>
+                <label for="loaitk"> Chọn loại tài khoản đăng nhập</label><br>
                 <div class="input_container">
                     <input type="radio" name="loaitk" value="Nhân viên" checked required>
                     <div class="radio_tile">
@@ -37,7 +37,21 @@
                     <input type="radio" name="loaitk" value="Quản lý">
                     <div class="radio_tile">
                         <ion-icon name="sad"></ion-icon>
-                        <label for="Quản lý">Quản lý</label>
+                        <label for="Quản lý">manager</label>
+                    </div>
+                </div>
+                <div class="input_container">
+                    <input type="radio" name="loaitk" value="Shipper" required>
+                    <div class="radio_tile">
+                        <ion-icon name="bicycle"></ion-icon>
+                        <label for="Shipper">Shipper</label>
+                    </div>
+                </div>
+                <div class="input_container">
+                    <input type="radio" name="loaitk" value="Cửa hàng">
+                    <div class="radio_tile">
+                        <ion-icon name="storefront"></ion-icon>
+                        <label for="Cửa hàng">Store</label>
                     </div>
                 </div>
             </div>
@@ -48,8 +62,10 @@
         </form>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.4.js" type="text/javascript"></script>
-    <script src="js/jscript.js" type="text/javascript"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <!--tách script ko chạy :))) -->
+    <script src="js/jscript.js" type="text/javascript"></script>
+
 </body>
 
 </html>

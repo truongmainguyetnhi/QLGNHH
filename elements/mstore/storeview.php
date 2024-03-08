@@ -54,18 +54,8 @@
                         <label for="matkhaustore">Mật khẩu</label>
                         <span class="border"></span>
                     </div>
-                    <div class="radio_group loai">
-                        <label for="loaitaikhoanstore">Loại tài khoản</label>
-                        <div class="input_container">
-                            <input type="radio" name="loaitaikhoanstore" value="Cửa hàng" checked>
-                            <div class="radio_tile">
-                                <ion-icon name="storefront"></ion-icon>
-                                <label for="Cửa hàng">store</label>
-                            </div>
-                        </div>
-                    </div>
                     <div class="radio_group">
-                        <label for="trangthaistore">Trạng thái</label>
+                        <label for="trangthaistore">Status</label>
                         <div class="input_container">
                             <input type="radio" name="trangthaistore" value="on" checked>
                             <div class="radio_tile">
@@ -78,6 +68,16 @@
                             <div class="radio_tile">
                                 <ion-icon name="flash-off-outline"></ion-icon>
                                 <label for="off">off</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="radio_group loai">
+                        <label for="loaitaikhoanstore">Loại tài khoản</label>
+                        <div class="input_container">
+                            <input type="radio" name="loaitaikhoanstore" value="Cửa hàng" checked>
+                            <div class="radio_tile">
+                                <ion-icon name="storefront"></ion-icon>
+                                <label for="Cửa hàng">store</label>
                             </div>
                         </div>
                     </div>

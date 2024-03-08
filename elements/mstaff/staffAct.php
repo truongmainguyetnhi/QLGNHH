@@ -83,8 +83,11 @@ if (isset($_GET['reqact'])) {
                 } else {
                     $_SESSION['Nhân viên'] = $LOAITK;
                 }
+                $_SESSION['success_message'] = "Đăng nhập thành công!";
+
                 header('location:../../index.php');
             } else {
+                $_SESSION['error_message'] = "Tên tài khoản hoặc mật khẩu không đúng!";
                 header('location:../../login.php');
             }
             break;
@@ -98,4 +101,5 @@ if (isset($_GET['reqact'])) {
     }
 } else {
     header('location:../../index.php?req=staffrview');
-}
+} ?>
+<script src="js/jscript.js" type="text/javascript"></script>
