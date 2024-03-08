@@ -14,6 +14,12 @@ session_start();
 
 <body>
     <?php
+
+    if (isset($_GET['login_message'])) {
+        echo "<script>alert('" . $_GET['login_message'] . "');</script>";
+    }
+
+
     if (!isset($_SESSION['Quản lý']) and !isset($_SESSION['Nhân viên'])) {
         header('location: login.php');
     }

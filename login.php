@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <html lang="en">
@@ -12,7 +15,7 @@
 
 <body class="loginbody">
     <div id="logincenter">
-        <form id="nhilogin" class="form_box" name="frmLogin" method="post">
+        <form id="loginForm" class="form_box" name="frmLogin" method="post">
             <h1>Sign in</h1>
             <div class="input_group type-md">
                 <input type="text" name="username" id="username" required>
@@ -64,8 +67,22 @@
     <script src="https://code.jquery.com/jquery-3.6.4.js" type="text/javascript"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <!--tách script ko chạy :))) -->
-    <script src="js/jscript.js" type="text/javascript"></script>
-
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            var radioValue = document.querySelector('input[name="loaitk"]:checked').value;
+            if (radioValue === 'Nhân viên' || radioValue === 'Quản lý') {
+                this.action = 'elements/mstaff/staffAct.php?reqact=checklogin';
+            } else if (radioValue === 'Cửa hàng') {
+                this.action = 'elements/mstore/storeAct.php?reqact=checklogin';
+            } else if (radioValue === 'Shipper') {
+                this.action = 'elements/mshipper/shipperAct.php?reqact=checklogin';
+            }
+        });
+    </script>
 </body>
 
 </html>
+<?php
+if (isset($_GET['login_message'])) {
+    echo "<script>alert('" . $_GET['login_message'] . "');</script>";
+} ?>

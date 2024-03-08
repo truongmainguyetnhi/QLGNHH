@@ -78,17 +78,14 @@ if (isset($_GET['reqact'])) {
             $staff = new staff();
             $rs = $staff->CheckLogin($TENTK, $MATKHAU, $LOAITK);
             if ($rs) {
-                if ($loaitk == "Quản lý") {
+                if ($LOAITK == "Quản lý") {
                     $_SESSION['Quản lý'] = $LOAITK;
                 } else {
                     $_SESSION['Nhân viên'] = $LOAITK;
                 }
-                $_SESSION['success_message'] = "Đăng nhập thành công!";
-
-                header('location:../../index.php');
+                header('location:../../index.php?login_message=Đăng nhập thành công!');
             } else {
-                $_SESSION['error_message'] = "Tên tài khoản hoặc mật khẩu không đúng!";
-                header('location:../../login.php');
+                header('location:../../login.php?login_message=Đăng nhập không thành công!');
             }
             break;
         case 'logout':
