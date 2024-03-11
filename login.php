@@ -69,15 +69,15 @@ session_start();
     <!--tách script ko chạy :))) -->
     <script>
         document.getElementById('loginForm').addEventListener('submit', function(e) {
-            var radioValue = document.querySelector('input[name="loaitk"]').value;
-
-            if (radioValue === 'Cửa hàng') {
-                this.action = 'elements/mstore/storeAct.php?reqact=checklogin';
+            var radioValue = document.querySelector('input[name="loaitk"]:checked').value;
+            if (radioValue === 'Shipper') {
+                this.action = 'elements/mshipper/shipperAct.php?reqact=checklogin';
             } else if (radioValue === 'Nhân viên' || radioValue === 'Quản lý') {
                 this.action = 'elements/mstaff/staffAct.php?reqact=checklogin';
-            } else if (radioValue === 'Shipper') {
-                this.action = 'elements/mshipper/shipperAct.php?reqact=checklogin';
+            } else if (radioValue === 'Cửa hàng') {
+                this.action = 'elements/mstore/storeAct.php?reqact=checklogin';
             }
+
         });
     </script>
 </body>

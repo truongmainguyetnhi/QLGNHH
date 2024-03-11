@@ -78,4 +78,33 @@ class store extends Database
         $update->execute(array($TRANGTHAI, $ID_CH));
         return $update->rowCount();
     }
+    public function UserChangePassword($TENTK, $MATKHAU, $LOAITK, $MATKHAUNEW)
+    {
+        $selectMK = $this->connect->prepare(" SELECT password FROM nhancuahangvien WHERE TENTK = ? and LOAITK = ? and TRANGTHAI = 'on' ");
+        $selectMK->setFetchMode(PDO::FETCH_OBJ);
+        $selectMK->execute(array($TENTK, $LOAITK));
+        if (count($selectMK->fetch()) == 1) {
+            $temp = $selectMK->fetch();
+            if ($MATKHAU == $temp->MATKHAU) {
+                $update = $this->connect->prepare(" UPDATE cuahang SET MATKHAU = ? WHERE TENTK = ? and LOAITK = ? ");
+                $update->execute(array($MATKHAUNEW, $TENTK, $LOAITK));
+                return $update->rowCount();
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    public function CheckLogin($TENTK, $MATKHAU, $LOAITK)
+    {
+        $select = $this->connect->prepare(" SELECT * FROM cuahang WHERE TENTK = ? and MATKHAU = ? and LOAITK = ? and TRANGTHAI = 'on' ");
+        $select->setFetchMode(PDO::FETCH_OBJ);
+        $select->execute(array($TENTK, $MATKHAU, $LOAITK));
+        if (count($select->fetchAll()) == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

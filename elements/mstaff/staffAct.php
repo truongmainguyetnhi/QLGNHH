@@ -78,7 +78,7 @@ if (isset($_GET['reqact'])) {
             $staff = new staff();
             $rs = $staff->CheckLogin($TENTK, $MATKHAU, $LOAITK);
             if ($rs) {
-                if ($LOAITK == "Quản lý") {
+                if ($LOAITK === "Quản lý") {
                     $_SESSION['Quản lý'] = $LOAITK;
                 } else {
                     $_SESSION['Nhân viên'] = $LOAITK;

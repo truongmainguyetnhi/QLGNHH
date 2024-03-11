@@ -1,4 +1,5 @@
 <?php
+session_start();
 require '../../elements/mod/storeCls.php';
 if (isset($_GET['reqact'])) {
     $requsetAction = $_GET['reqact'];
@@ -67,6 +68,25 @@ if (isset($_GET['reqact'])) {
             } else {
                 header('location:../../index.php?req=storeview');
             }
+            break;
+        case 'checklogin':
+            $TENTK = $_REQUEST['username'];
+            $MATKHAU = $_REQUEST['password'];
+            $LOAITK = $_REQUEST['loaitk'];
+            $store = new store();
+            $rs = $store->CheckLogin($TENTK, $MATKHAU, $LOAITK);
+            if ($rs) {
+                if ($LOAITK === "Cửa hàng") {
+                    $_SESSION['Cửa hàng'] = $LOAITK;
+                    header('location:../../facesto.php?login_message=Đăng nhập thành công!');
+                } else {
+                    header('location:../../login.php?login_message=Đăng nhập không thành công!');
+                }
+            }
+            break;
+        case 'logout':
+            session_destroy();
+            header('location: ../../login.php');
             break;
         default:
             header('location:../../index.php?req=storeview');

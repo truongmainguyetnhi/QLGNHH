@@ -10,7 +10,7 @@ class packet extends Database
 {
     public function packetGetAll()
     {
-        $getAll = $this->connect->prepare("SELECT * FROM nhanvien INNER JOIN cua3 ON nhanvien.ID_NV = cua3.ID_NV INNER JOIN diachi ON cua3.ID_DC = diachi.ID_DC");
+        $getAll = $this->connect->prepare("SELECT * FROM donhang INNER JOIN cua3 ON nhanvien.ID_NV = cua3.ID_NV INNER JOIN diachi ON cua3.ID_DC = diachi.ID_DC");
         $getAll->setFetchMode(PDO::FETCH_OBJ);
         $getAll->execute();
         return $getAll->fetchAll();
