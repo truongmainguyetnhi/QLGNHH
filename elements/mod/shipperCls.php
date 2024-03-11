@@ -77,4 +77,33 @@ class ship extends Database
         $update->execute(array($TRANGTHAI, $ID_SP));
         return $update->rowCount();
     }
+    public function UserChangePassword($TENTK, $MATKHAU, $LOAITK, $MATKHAUNEW)
+    {
+        $selectMK = $this->connect->prepare(" SELECT password FROM shipper WHERE TENTK = ? and LOAITK = ? and TRANGTHAI = 'on' ");
+        $selectMK->setFetchMode(PDO::FETCH_OBJ);
+        $selectMK->execute(array($TENTK, $LOAITK));
+        if (count($selectMK->fetch()) == 1) {
+            $temp = $selectMK->fetch();
+            if ($MATKHAU == $temp->MATKHAU) {
+                $update = $this->connect->prepare(" UPDATE shipper SET MATKHAU = ? WHERE TENTK = ? and LOAITK = ? ");
+                $update->execute(array($MATKHAUNEW, $TENTK, $LOAITK));
+                return $update->rowCount();
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    public function CheckLogin($TENTK, $MATKHAU, $LOAITK)
+    {
+        $select = $this->connect->prepare(" SELECT * FROM shipper WHERE TENTK = ? and MATKHAU = ? and LOAITK = ? and TRANGTHAI = 'on' ");
+        $select->setFetchMode(PDO::FETCH_OBJ);
+        $select->execute(array($TENTK, $MATKHAU, $LOAITK));
+        if (count($select->fetchAll()) == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

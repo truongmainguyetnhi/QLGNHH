@@ -864,3 +864,7 @@
      margin-top: 3rem;
      flex-wrap: wrap;
  }
+ 
+ .login_radio .input_container {
+     width: 9.7rem;
+ }

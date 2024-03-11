@@ -1,4 +1,5 @@
 <?php
+session_start();
 require '../../elements/mod/shipperCls.php';
 if (isset($_GET['reqact'])) {
     $requsetAction = $_GET['reqact'];
@@ -67,6 +68,25 @@ if (isset($_GET['reqact'])) {
             } else {
                 header('location:../../index.php?req=shipperview');
             }
+            break;
+        case 'checklogin':
+            $TENTK = $_POST['username'];
+            $MATKHAU = $_POST['password'];
+            $LOAITK = $_POST['loaitk'];
+            $ship = new ship();
+            $rs = $ship->CheckLogin($TENTK, $MATKHAU, $LOAITK);
+            if ($rs) {
+                if ($LOAITK == "Shipper") {
+                    $_SESSION['Shipper'] = $LOAITK;
+                    header('location:../../faceship.php?login_message=Đăng nhập thành công!');
+                } else {
+                    header('location:../../login.php?login_message=Đăng nhập không thành công!');
+                }
+            }
+            break;
+        case 'logout':
+            session_destroy();
+            header('location: ../../login.php');
             break;
         default:
             header('location:../../index.php?req=shipperview');

@@ -20,7 +20,7 @@ session_start();
     }
 
 
-    if (!isset($_SESSION['Quản lý']) and !isset($_SESSION['Nhân viên'])) {
+    if (!isset($_SESSION['Quản lý']) and !isset($_SESSION['Nhân viên']) and !isset($_SESSION['Shipper'])) {
         header('location: login.php');
     }
     ?>
