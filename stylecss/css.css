@@ -360,6 +360,15 @@
      flex-wrap: wrap;
  }
  
+ .body_them .title {
+     margin-top: 30px;
+     font-size: 16px;
+     font-weight: 500;
+     display: block;
+     text-transform: uppercase;
+     color: var(--primary-color)
+ }
+ 
  .body_them_up form .fields {
      display: flex;
      align-items: center;
@@ -867,4 +876,33 @@
  
  .login_radio .input_container {
      width: 9.7rem;
+ }
+ /*form tạo đơn*/
+ 
+ .taodon .input_container {
+     width: 9rem;
+ }
+ 
+ #phiship .input_container {
+     width: 7rem;
+ }
+ 
+ #phiship .input_container .radio_tile label {
+     display: flex;
+     padding-top: .5rem;
+     font-size: 1.5rem;
+ }
+ 
+ .body_them .fields .ma label {
+     position: absolute;
+     top: 5%;
+     transition: translateY(-5%);
+     font-size: .8rem;
+ }
+ 
+ .creatdon {
+     width: 80%;
+     display: flex;
+     justify-content: center;
+     margin-left: 10%;
  }

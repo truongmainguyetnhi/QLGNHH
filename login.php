@@ -66,19 +66,20 @@ session_start();
     </div>
     <script src="https://code.jquery.com/jquery-3.6.4.js" type="text/javascript"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <!--tách script ko chạy :))) -->
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            var radioValue = document.querySelector('input[name="loaitk"]:checked').value;
-            if (radioValue === 'Shipper') {
-                this.action = 'elements/mshipper/shipperAct.php?reqact=checklogin';
-            } else if (radioValue === 'Nhân viên' || radioValue === 'Quản lý') {
-                this.action = 'elements/mstaff/staffAct.php?reqact=checklogin';
-            } else if (radioValue === 'Cửa hàng') {
-                this.action = 'elements/mstore/storeAct.php?reqact=checklogin';
-            }
+    <script src="js/jsstore.js" type="text/javascript"></script>
 
-        });
+    <!--tách script cũ ko chạy :))) -->
+    <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        var radioValue = document.querySelector('input[name="loaitk"]:checked').value;
+        if (radioValue === 'Shipper') {
+            this.action = 'elements/mshipper/shipperAct.php?reqact=checklogin';
+        } else if (radioValue === 'Nhân viên' || radioValue === 'Quản lý') {
+            this.action = 'elements/mstaff/staffAct.php?reqact=checklogin';
+        } else if (radioValue === 'Cửa hàng') {
+            this.action = 'elements/mstore/storeAct.php?reqact=checklogin';
+        }
+    });
     </script>
 </body>
 
