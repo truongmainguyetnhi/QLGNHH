@@ -13,16 +13,24 @@ session_start();
 </head>
 
 <body>
-
     <?php
-
-
     if (!isset($_SESSION['Quản lý']) and !isset($_SESSION['Nhân viên']) and !isset($_SESSION['Shipper']) and !isset($_SESSION['Cửa hàng'])) {
         header('location: login.php');
     }
     ?>
-    <div class="btn_container">
-        <button id="btnOpenForm" class="btn">ADD NEW</button>
+    <div class="chaomung">
+        <?php
+        if (isset($_SESSION['username'])) {
+            $namelogin = $_SESSION['username'];
+        }
+        if (isset($_COOKIE[$namelogin])) {
+            echo "Chào mừng cửa hàng " . $namelogin . "<br><br>";
+            echo "Lần đăng nhập gần nhất: " . $_COOKIE[$namelogin];
+        }
+        ?>
+    </div>
+    <div class="btn_container khoidau">
+        <button id="btnOpenForm" class="btn">Tạo đơn hàng mới</button>
     </div>
     <div class="creatdon">
         <div class="body_them">
@@ -30,11 +38,6 @@ session_start();
                 <form onsubmit="alert('Thành công')" name="newpacket" id="formadd_packet" method="post" enctype="multipart/form-data" action="./elements/mpacket/packetAct.php?reqact=addnew">
                     <span class="title">Thông tin đơn hàng</span>
                     <div class="fields">
-                        <div class="input_group type-md ma">
-                            <input type="text" name="mapacket" id="mapacket" required readonly>
-                            <label for="mapacket">Mã hàng hóa</label>
-                            <span class="border"></span>
-                        </div>
                         <div class="input_group type-md">
                             <input type="text" name="tenpacket" required>
                             <label for="tenpacket">Tên hàng hóa</label>
@@ -70,7 +73,7 @@ session_start();
                     <span class="title">Thông tin người nhận</span>
                     <div class="fields">
                         <div class="input_group type-md">
-                            <input type="text" name="tennn" required readonly>
+                            <input type="text" name="tennn" required>
                             <label for="tennn">Tên người nhận</label>
                             <span class="border"></span>
                         </div>
@@ -135,14 +138,17 @@ session_start();
                             <span class="border"></span>
                         </div>
                         <div class="input_group type-md ma" id="csstong">
-                            <input type="text" name="tongtien" id="tongtien" value=0 readonly>
+                            <input type="text" name="tongtien" id="tongtien" readonly>
                             <label for="tongtien">Tổng tiền hàng</label>
                             <span class="border"></span>
                         </div>
-
+                        <div class="input_group type-md ma">
+                            <input type="text" name="tencuahangtao" value="<?php echo $_SESSION['username']; ?>" required readonly>
+                            <label for="tencuahangtao">Tên cửa hàng</label>
+                            <span class="border"></span>
+                        </div>
+                        <input type="hidden" name="trangthaipacket" value="Đã tạo đơn" required>
                     </div>
-                    <input type="hidden" name="trangthaipacket" value="Đã tạo đơn" required>
-                    <input type="hidden" name="tencuahangtao" value="<?php echo $_SESSION['username']; ?>" required>
                     <div class=" contaniner">
                         <input type="reset" class="btn" id="refresh" value="Refresh">
                         <input type="submit" class="btn" value="Accept">
@@ -152,7 +158,7 @@ session_start();
         </div>
     </div>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.js" type="text/javascript"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="js/jsstore.js" type="text/javascript"></script>
     <!-- js khác thì đc cũ thì ko -->
 

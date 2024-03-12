@@ -277,6 +277,12 @@
      height: 100vh;
      background-color: var(--body-color);
      transition: var(--tran-05);
+     background-image: url("../img/nen.png");
+     background-repeat: no-repeat;
+     background-size: 20%;
+     background-attachment: scroll;
+     background-position-x: center;
+     background-position-y: center;
  }
  
  #top {
@@ -834,10 +840,14 @@
      transform: translate(-50%, -50%);
      width: 75%;
      height: 550px;
-     background: url(../img_TMNN/nen2.png) no-repeat;
-     background-size: cover;
      margin: auto;
+     background-image: url("../img/nenlogin.png");
      background-color: #000;
+     background-repeat: no-repeat;
+     background-size: 35%;
+     background-attachment: scroll;
+     background-position-x: 70%;
+     background-position-y: -15%;
  }
  
  #logincenter {
@@ -905,4 +915,31 @@
      display: flex;
      justify-content: center;
      margin-left: 10%;
+ }
+ 
+ .khoidau {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin: 0;
+ }
+ 
+ .khoidau button {
+     width: 15rem;
+ }
+ 
+ .ketthuc {
+     margin-left: 95%;
+     margin-top: 0;
+ }
+ 
+ .ketthuc button {
+     display: block;
+     width: 6rem;
+     height: 3rem;
+     font-size: .9rem;
+ }
+ 
+ .ketthuc ion-icon {
+     font-size: 1.2rem;
  }

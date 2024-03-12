@@ -14,20 +14,20 @@ document.getElementById('btnOpenForm').addEventListener('click', function() {
 
     if (!isOpen) {
         bodyThem.style.display = 'block';
-        btnOpenForm.innerText = 'CLOSE';
+        btnOpenForm.innerText = 'Đóng form';
         isOpen = true;
     } else {
         bodyThem.style.display = 'none';
-        btnOpenForm.innerText = 'ADD NEW';
+        btnOpenForm.innerText = 'Tạo đơn hàng mới';
         isOpen = false;
     }
 });
-// Hàm tạo mã đơn hàng tự động
+/* Hàm tạo mã đơn hàng tự động
 function generateOrderCode(orderCount) {
     // Lấy ngày hiện tại
     var date = new Date();
     var year = date.getFullYear().toString().substr(-2); // Lấy hai số cuối của năm
-    var month = ('0' + (date.getMonth() + 1)).slice(-2); // Lấy tháng, có thể thêm 1 vì tháng bắt đầu từ 0
+    var month = ('0' + (date.getMonth() + 1)).slice(-2); // Lấy tháng
     var day = ('0' + date.getDate()).slice(-2); // Lấy ngày
 
     // Tạo số thứ tự với 7 chữ số
@@ -46,7 +46,7 @@ var orderCount = 1;
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('mapacket').value = generateOrderCode(orderCount);
     orderCount += 1;
-});
+});*/
 //tính tổng tiền hàng
 document.addEventListener('DOMContentLoaded', () => {
     var phishipInputs = document.querySelectorAll('input[name="loaiphiship"]');
@@ -73,7 +73,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         var phithuho = parseFloat(phithuhoInput.value);
         var tongtien = phiship + phithuho;
-        tongtienInput.value = tongtien;
+        if (isNaN(tongtien)) {
+            tongtienInput.value = 'Chưa điền số tiền';
+        } else {
+            tongtienInput.value = tongtien;
+        }
     }
     //online
     thanhtoanInputs.forEach((radio) => {
@@ -96,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     input.disabled = false;
                     phithuhoInput.disabled = false;
                 })
+                calculateTotal();
             }
         });
     });

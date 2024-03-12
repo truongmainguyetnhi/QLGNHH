@@ -78,6 +78,7 @@ if (isset($_GET['reqact'])) {
             if ($rs) {
                 if ($LOAITK === "Cửa hàng") {
                     $_SESSION['Cửa hàng'] = $LOAITK;
+                    $_SESSION['username'] = $TENTK;
                     header('location:../../facesto.php?login_message=Đăng nhập thành công!');
                 } else {
                     header('location:../../login.php?login_message=Đăng nhập không thành công!');
