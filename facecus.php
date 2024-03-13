@@ -1,5 +1,4 @@
 <?php
-// Kết nối đến cơ sở dữ liệu
 require_once 'elements/mod/database.php';
 ?>
 
@@ -12,11 +11,17 @@ require_once 'elements/mod/database.php';
     <link rel="stylesheet" href="stylecss/css.css" type="text/css" />
     <link rel="shortcut icon" href="img/logo.png" type="image/png">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+
 </head>
 
 <body>
+
+    <div class="contaniner">
+        <button class="btn nutdn">Đăng nhập</button>
+    </div>
     <div class="box">
-        <h1>Tra cứu mã đơn hàng</h1>
+        <h1>Tra cứu đơn hàng</h1>
         <form method="post">
             <div class="khung">
                 <input type="text" class="search" name="noidung" placeholder="Nhập mã đơn hàng...">
@@ -32,7 +37,6 @@ require_once 'elements/mod/database.php';
     if (isset($_POST['btn'])) {
         $noidung = '%' . $_POST['noidung'] . '%';
         if (!empty($_POST['noidung'])) {
-
             class tradon extends Database
             {
                 public function donGetAll($noidung)
@@ -52,30 +56,64 @@ require_once 'elements/mod/database.php';
                     return $getOrders->fetchAll();
                 }
             }
-
             $obj = new tradon();
             $list_packet = $obj->donGetAll($noidung);
-            if (empty($list_packet)) {
-                echo "Đơn hàng bạn tra cứu không tồn tại!!!";
-            } else {
-                foreach ($list_packet as $n) {
-                    echo $n->MA_DH;
-                    echo $n->TEN_HH;
-                    echo $n->TEN_SP;
-                    echo $n->TRANGTHAI;
-                    echo $n->TEN_CH;
-                    echo $n->TEN_NN;
-                    echo $n->SDT_NN;
-                    echo $n->TONGTIENHANG;
+    ?>
+    <div class="baoinfo">
+        <?php
+                if (empty($list_packet)) {
+                ?>
+        <div class="info">
+            <strong>
+                <?php
+                            echo "Đơn hàng bạn tra cứu không tồn tại!!!";
+                            ?>
+            </strong>
+            <?php
+                    } else {
+                        foreach ($list_packet as $n) {
+                        ?>
+            <div class="info">
+                <ul>
+                    <li>Mã đơn hàng: <strong><?php echo $n->MA_DH; ?></strong></li>
+                    <li>Tên hàng hóa: <strong><?php echo $n->TEN_HH; ?></strong></li>
+                    <li>Tên shipper: <strong><?php echo $n->TEN_SP; ?></strong></li>
+                    <li>Trạng thái: <strong><?php echo $n->TRANGTHAI; ?></strong></li>
+                    <li>Tên cửa hàng: <strong><?php echo $n->TEN_CH; ?></strong></li>
+                    <li>Tên người nhận: <strong><?php echo $n->TEN_NN; ?></strong></li>
+                    <li>Số điện thoại: <strong><?php echo $n->SDT_NN; ?></strong></li>
+                    <li>Tổng tiền hàng: <strong><?php echo $n->TONGTIENHANG . ' VND'; ?></strong>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <?php
+                        }
+                    }
+                } else {
+            ?>
+        <div class="baoinfo">
+            <div class="info"><strong>
+                    <?php
+                        echo "Vui lòng nhập mã đơn hàng"; ?></strong>
+            </div>
+        </div>
+        <?php
                 }
             }
-        } else {
-            echo "Vui lòng nhập mã đơn hàng";
-        }
-    }
     ?>
+    </div>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelector('.nutdn').addEventListener('click', function() {
+
+            window.location.href = 'login.php';
+        });
+    });
+    </script>
+
 </body>
 
 </html>

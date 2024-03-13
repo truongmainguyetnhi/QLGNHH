@@ -15,13 +15,11 @@ session_start();
 <body>
     <?php
 
+    if (!isset($_SESSION['Quản lý']) and !isset($_SESSION['Nhân viên']) and !isset($_SESSION['Shipper']) and !isset($_SESSION['Cửa hàng'])) {
+        header('location: facecus.php');
+    }
     if (isset($_GET['login_message'])) {
         echo "<script>alert('" . $_GET['login_message'] . "');</script>";
-    }
-
-
-    if (!isset($_SESSION['Quản lý']) and !isset($_SESSION['Nhân viên']) and !isset($_SESSION['Shipper']) and !isset($_SESSION['Cửa hàng'])) {
-        header('location: login.php');
     }
     ?>
     <div id="top">

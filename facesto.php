@@ -18,16 +18,10 @@ session_start();
         header('location: login.php');
     }
     ?>
-    <div class="chaomung">
-        <?php
-        if (isset($_SESSION['username'])) {
-            $namelogin = $_SESSION['username'];
-        }
-        if (isset($_COOKIE[$namelogin])) {
-            echo "Chào mừng cửa hàng " . $namelogin . "<br><br>";
-            echo "Lần đăng nhập gần nhất: " . $_COOKIE[$namelogin];
-        }
-        ?>
+    <div class="contaniner">
+        <button class="btn nutdx">
+            <ion-icon name="log-out-outline"></ion-icon>
+        </button>
     </div>
     <div class="btn_container khoidau">
         <button id="btnOpenForm" class="btn">Tạo đơn hàng mới</button>

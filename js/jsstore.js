@@ -22,32 +22,7 @@ document.getElementById('btnOpenForm').addEventListener('click', function() {
         isOpen = false;
     }
 });
-/* Hàm tạo mã đơn hàng tự động
-function generateOrderCode(orderCount) {
-    // Lấy ngày hiện tại
-    var date = new Date();
-    var year = date.getFullYear().toString().substr(-2); // Lấy hai số cuối của năm
-    var month = ('0' + (date.getMonth() + 1)).slice(-2); // Lấy tháng
-    var day = ('0' + date.getDate()).slice(-2); // Lấy ngày
-
-    // Tạo số thứ tự với 7 chữ số
-    var paddedNumber = ('0000000' + orderCount).slice(-7); // Chèn số 0 vào phía trước để có 7 chữ số
-
-    // Kết hợp thành mã đơn hàng
-    var orderCode = 'PNL' + year + month + day + paddedNumber;
-
-    return orderCode;
-}
-
-// Số thứ tự ban đầu
-var orderCount = 1;
-
-// Gán mã đơn hàng cho input khi trang được tải
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('mapacket').value = generateOrderCode(orderCount);
-    orderCount += 1;
-});*/
-//tính tổng tiền hàng
+//chọn thanh toán
 document.addEventListener('DOMContentLoaded', () => {
     var phishipInputs = document.querySelectorAll('input[name="loaiphiship"]');
     var phithuhoInput = document.getElementById('phithuho');
@@ -111,4 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Ví dụ: gửi yêu cầu AJAX hoặc gọi hàm xử lý trên server
         console.log('Trừ ' + soTien + ' từ tài khoản của cửa hàng');
     }
+});
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelector('.nutdx').addEventListener('click', function() {
+        window.location.href = 'login.php';
+    });
 });
