@@ -157,19 +157,89 @@ session_start();
             </section>
         </div>
     </div>
+    <div>
+        <?php
+        require './elements/mod/packetCls.php';
+        ?>
+        <div class="table_khu">
+            <main class="vung_table">
+                <section class="table_header">
+                    <h1>Danh sách đơn hàng</h1>
+                </section>
+                <section class="table_body">
+                    <?php
+                    $obj = new packet();
+                    $list_packet = $obj->packetGetAll();
+                    ?>
+                    <table class="table_view">
+                        <thead class="thead_table">
+                            <tr align="left" class="tr_table">
+                                <th class="th_table">Mã đơn hàng</th>
+                                <th class="th_table">Tên hàng hóa</th>
+                                <th class="th_table">Tên shipper</th>
+                                <th class="th_table">Trạng thái</th>
+                                <th class="th_table">Thời gian tạo</th>
+                                <th class="th_table">Ghi chú</th>
+                                <th class="th_table">Tên người nhận</th>
+                                <th class="th_table">Số điện thoại</th>
+                                <th class="th_table">Tổng tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody_table">
+                            <?php
+                            foreach ($list_packet as $n) {
+                            ?>
+                                <tr class="tr_table">
+                                    <td class="td_table"><?php echo $n->MA_DH; ?></td>
+                                    <td class="td_table"><?php echo $n->TEN_HH; ?></td>
+                                    <td class="td_table"><strong><?php echo $n->TEN_SP; ?></strong></td>
+                                    <td class="td_table">
+                                        <?php
+                                        $nhi = $n->TRANGTHAI_DH;
+                                        if ('Đã tạo đơn' === $nhi) {
+                                        ?>
+                                            <p class="status DTD"><?php echo $n->TRANGTHAI_DH; ?></p>
+                                        <?php
+                                        } elseif ('Đang vận chuyển' === $nhi) {
+                                        ?>
+                                            <p class="status DVC"><?php echo $n->TRANGTHAI_DH; ?></p>
+                                        <?php } elseif ('Giao thành công' === $nhi) {
+                                        ?>
+                                            <p class="status GTC"><?php echo $n->TRANGTHAI_DH; ?></p>
+                                        <?php } elseif ('Đã hủy' === $nhi) {
+                                        ?>
+                                            <p class="status DH"><?php echo $n->TRANGTHAI_DH; ?></p>
+                                        <?php } elseif ('Hoàn trả' === $nhi) {
+                                        ?>
+                                            <p class="status HT"><?php echo $n->TRANGTHAI_DH; ?></p>
+                                        <?php } ?>
+                                    </td>
+                                    <td class="td_table"><?php echo $n->THOIGIANTAO; ?></td>
+                                    <td class="td_table"><?php echo $n->GHICHU; ?></td>
+                                    <td class="td_table"><?php echo $n->TEN_NN; ?></td>
+                                    <td class="td_table"><?php echo $n->SDT_NN; ?></td>
+                                    <td class="td_table"><?php echo $n->TONGTIENHANG; ?></td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </section>
+            </main>
+        </div>
+    </div>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="js/jsstore.js" type="text/javascript"></script>
-    <!-- js khác thì đc cũ thì ko -->
-
 </body>
 
 
 
-<!-- php
-    if (isset($_GET['login_message'])) {
+<?php
+if (isset($_GET['login_message'])) {
     echo "<script>alert('" . $_GET['login_message'] . "');</script>";
 }
--->
+?>
 
 </html>

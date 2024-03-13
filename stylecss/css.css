@@ -800,6 +800,7 @@
      background-color: #F4B8CE;
      width: 100px;
      align-items: center;
+     font-size: .9rem;
  }
  
  .DVC {
@@ -942,4 +943,70 @@
  
  .ketthuc ion-icon {
      font-size: 1.2rem;
+ }
+ /*search*/
+ 
+ .box {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     height: 60vh;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+ 
+ .box h1 {
+     position: absolute;
+     top: 10%;
+     font-size: 60px;
+     color: var(--primary-color);
+ }
+ 
+ .khung {
+     width: 500px;
+     height: 50px;
+     background-color: #fff;
+     border-radius: 30px;
+     display: flex;
+     align-items: center;
+     padding: 30px;
+     position: relative;
+ }
+ 
+ .box ion-icon {
+     font-size: 20px;
+     color: #777;
+ }
+ 
+ .box input {
+     flex: 1;
+     height: 40px;
+     width: 400px;
+     border: none;
+     outline: none;
+     font-size: 18px;
+     padding-left: 10px;
+ }
+ 
+ .khung button {
+     width: 45px;
+     height: 45px;
+     position: absolute;
+     right: 2px;
+     margin: 2px 2px 2px 0;
+     border-radius: 50%;
+     border: none;
+ }
+ 
+ #check {
+     display: block;
+     margin-left: 6px;
+     font-weight: 500;
+     font-size: 30px;
+     color: #000;
+ }
+ 
+ #check:hover {
+     color: var(--primary-color);
  }

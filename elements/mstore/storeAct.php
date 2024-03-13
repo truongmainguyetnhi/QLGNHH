@@ -70,19 +70,18 @@ if (isset($_GET['reqact'])) {
             }
             break;
         case 'checklogin':
-            $TENTK = $_REQUEST['username'];
-            $MATKHAU = $_REQUEST['password'];
-            $LOAITK = $_REQUEST['loaitk'];
+            $TENTK = $_POST['username'];
+            $MATKHAU = $_POST['password'];
+            $LOAITK = $_POST['loaitk'];
             $store = new store();
             $rs = $store->CheckLogin($TENTK, $MATKHAU, $LOAITK);
             if ($rs) {
                 if ($LOAITK === "Cửa hàng") {
                     $_SESSION['Cửa hàng'] = $LOAITK;
-                    $_SESSION['username'] = $TENTK;
-                    header('location:../../facesto.php?login_message=Đăng nhập thành công!');
-                } else {
-                    header('location:../../login.php?login_message=Đăng nhập không thành công!');
                 }
+                header('location:../../facesto.php?login_message=Đăng nhập thành công!');
+            } else {
+                header('location:../../login.php?login_message=Đăng nhập không thành công!');
             }
             break;
         case 'logout':
