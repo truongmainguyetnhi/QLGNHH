@@ -15,13 +15,49 @@ class packet extends Database
         INNER JOIN thanhtoan ON phai.ID_TT = thanhtoan.ID_TT 
         INNER JOIN co ON thanhtoan.ID_TT = co.ID_TT 
         INNER JOIN nguoinhan ON co.ID_NN = nguoinhan.ID_NN 
-        LEFT JOIN giao ON donhang.ID_DH = giao.ID_DH 
-        LEFT JOIN shipper ON giao.ID_SP = shipper.ID_SP");
+        INNER JOIN cua1 ON nguoinhan.ID_NN = cua1.ID_NN
+        INNER JOIN diachi ON cua1.ID_DC = diachi.ID_DC
+        INNER JOIN cuahang ON donhang.ID_CH = cuahang.ID_CH;");
         $getAll->setFetchMode(PDO::FETCH_OBJ);
         $getAll->execute();
         return $getAll->fetchAll();
     }
-    public function packetAdd($TRANGTHAI, $TRONGLUONG, $MOTA, $TEN_HH, $THOIGIANTAO, $GHICHU, $TEN_NN, $SDT_NN, $TINH_TP, $PHUONG_XA, $DUONG_SONHA, $HINHTHUC_TT, $PHISHIP, $THUHO, $TONGTIENHANG, $TENTK)
+    public function packetGetAll2()
+    {
+        $getAll = $this->connect->prepare("SELECT donhang.*, phai.*, thanhtoan.*, co.*, nguoinhan.*, cua1.*, diachi.*, cuahang.*, shipper.*
+        FROM donhang 
+        INNER JOIN phai ON donhang.ID_DH = phai.ID_DH 
+        INNER JOIN thanhtoan ON phai.ID_TT = thanhtoan.ID_TT 
+        INNER JOIN co ON thanhtoan.ID_TT = co.ID_TT 
+        INNER JOIN nguoinhan ON co.ID_NN = nguoinhan.ID_NN 
+        INNER JOIN cua1 ON nguoinhan.ID_NN = cua1.ID_NN
+        INNER JOIN diachi ON cua1.ID_DC = diachi.ID_DC
+        INNER JOIN cuahang ON donhang.ID_CH = cuahang.ID_CH 
+        LEFT JOIN giao ON donhang.ID_DH = giao.ID_DH
+        LEFT JOIN shipper ON giao.ID_SP = shipper.ID_SP;");
+        $getAll->setFetchMode(PDO::FETCH_OBJ);
+        $getAll->execute();
+        return $getAll->fetchAll();
+    }
+    public function packetGetforStore($TENTK)
+    {
+        $getAll = $this->connect->prepare("SELECT * FROM donhang 
+        INNER JOIN phai ON donhang.ID_DH = phai.ID_DH 
+        INNER JOIN thanhtoan ON phai.ID_TT = thanhtoan.ID_TT 
+        INNER JOIN co ON thanhtoan.ID_TT = co.ID_TT 
+        INNER JOIN nguoinhan ON co.ID_NN = nguoinhan.ID_NN 
+        INNER JOIN cua1 ON nguoinhan.ID_NN = cua1.ID_NN
+        INNER JOIN diachi ON cua1.ID_DC = diachi.ID_DC
+        INNER JOIN cuahang ON donhang.ID_CH = cuahang.ID_CH
+        LEFT JOIN giao ON donhang.ID_DH = giao.ID_DH 
+        LEFT JOIN shipper ON giao.ID_SP = shipper.ID_SP
+        WHERE cuahang.TENTK = ?");
+        $getAll->setFetchMode(PDO::FETCH_OBJ);
+        $getAll->execute([$TENTK]);
+        return $getAll->fetchAll();
+    }
+
+    public function packetAdd($TRANGTHAI_DH, $TRONGLUONG, $MOTA, $TEN_HH, $THOIGIANTAO, $GHICHU, $TEN_NN, $SDT_NN, $TINH_TP, $PHUONG_XA, $DUONG_SONHA, $HINHTHUC_TT, $PHISHIP, $THUHO, $TONGTIENHANG, $TENTK)
     {
         $addKH = $this->connect->prepare("INSERT INTO nguoinhan (TEN_NN, SDT_NN) VALUES (?, ?)");
         $addKH->execute(array($TEN_NN, $SDT_NN));
@@ -65,8 +101,8 @@ class packet extends Database
         // Gọi hàm tăng giá trị của mã đơn hàng
         $MA_DH = tangmadh($last_order_code);
 
-        $add = $this->connect->prepare("INSERT INTO donhang (MA_DH, TRANGTHAI, TRONGLUONG, MOTA, TEN_HH, THOIGIANTAO, GHICHU, ID_CH) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $add->execute(array($MA_DH, $TRANGTHAI, $TRONGLUONG, $MOTA, $TEN_HH, $THOIGIANTAO, $GHICHU, $idCH));
+        $add = $this->connect->prepare("INSERT INTO donhang (MA_DH, TRANGTHAI_DH, TRONGLUONG, MOTA, TEN_HH, THOIGIANTAO, GHICHU, ID_CH) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $add->execute(array($MA_DH, $TRANGTHAI_DH, $TRONGLUONG, $MOTA, $TEN_HH, $THOIGIANTAO, $GHICHU, $idCH));
         $idDH = $this->connect->lastInsertId();
 
         $addphai = $this->connect->prepare("INSERT INTO phai (ID_DH, ID_TT) VALUES (?, ?)");
@@ -75,54 +111,39 @@ class packet extends Database
         return $addKH->rowCount() + $addDC->rowCount() + $addTT->rowCount() + $addco->rowCount() + $addcua1->rowCount() + $add->rowCount() + $addphai->rowCount();
     }
 
-
-    public function packetDel($ID_NV)
+    public function packetUpdate($TEN_SP, $ID_DH)
     {
-        $id = $this->connect->prepare("SELECT ID_DC FROM cua3 WHERE ID_NV = ?");
-        $id->execute(array($ID_NV));
-        $ID_DC_result = $id->fetch(PDO::FETCH_ASSOC);
-        $ID_DC = $ID_DC_result['ID_DC'];
+        $getSP = $this->connect->prepare("SELECT ID_SP FROM shipper WHERE TEN_SP = ?");
+        $getSP->execute([$TEN_SP]);
+        $idSP = $getSP->fetchColumn();
 
-        $delCua3 = $this->connect->prepare("DELETE FROM cua3 WHERE ID_NV = ?");
-        $delCua3->execute(array($ID_NV));
+        $insert = $this->connect->prepare("INSERT INTO giao (ID_DH, ID_SP) VALUES (?, ?)");
+        $insert->execute([$ID_DH, $idSP]);
 
-        $delDiachi = $this->connect->prepare("DELETE FROM diachi WHERE ID_DC = ?");
-        $delDiachi->execute(array($ID_DC));
-
-        $del = $this->connect->prepare("DELETE FROM nhanvien WHERE ID_NV = ? ");
-        $del->execute(array($ID_NV));
-
-        return $del->rowCount();
+        return $insert->rowCount();
     }
 
-    public function packetUpdate($TEN_NV, $SDT_NV, $EMAIL, $CCCD, $TENTK, $MATKHAU, $LOAITK, $TINH_TP, $PHUONG_XA, $DUONG_SONHA, $NGAYNHAP, $ID_NV)
+    public function packetGetById($ID_DH)
     {
-        $update = $this->connect->prepare("UPDATE nhanvien SET TEN_NV = ?, SDT_NV = ?, EMAIL = ?, CCCD = ?, TENTK = ?, MATKHAU = ?, LOAITK = ? WHERE ID_NV = ? ");
-        $update->execute(array($TEN_NV, $SDT_NV, $EMAIL, $CCCD, $TENTK, $MATKHAU, $LOAITK, $ID_NV));
-
-        $updatedc = $this->connect->prepare("UPDATE diachi SET TINH_TP = ?, PHUONG_XA = ?, DUONG_SONHA = ? WHERE ID_DC IN (SELECT ID_DC FROM cua3 WHERE ID_NV = ?)");
-        $updatedc->execute(array($TINH_TP, $PHUONG_XA, $DUONG_SONHA, $ID_NV));
-
-        $updatengay = $this->connect->prepare("UPDATE cua3 SET NGAYNHAP = ? WHERE ID_NV = ?");
-        $updatengay->execute(array($NGAYNHAP, $ID_NV));
-
-        return $update->rowCount() + $updatedc->rowCount() + $updatengay->rowCount();
-    }
-    public function packetGetById($ID_NV)
-    {
-        $getId = $this->connect->prepare("SELECT nhanvien.*, diachi.*
-        FROM nhanvien
-        INNER JOIN cua3 ON nhanvien.ID_NV = cua3.ID_NV
-        INNER JOIN diachi ON cua3.ID_DC = diachi.ID_DC
-        WHERE nhanvien.ID_NV = ?");
+        $getId = $this->connect->prepare("SELECT * FROM donhang
+        INNER JOIN phai ON donhang.ID_DH = phai.ID_DH 
+        INNER JOIN thanhtoan ON phai.ID_TT = thanhtoan.ID_TT 
+        INNER JOIN co ON thanhtoan.ID_TT = co.ID_TT 
+        INNER JOIN nguoinhan ON co.ID_NN = nguoinhan.ID_NN 
+        INNER JOIN cua1 ON nguoinhan.ID_NN = cua1.ID_NN
+        INNER JOIN diachi ON cua1.ID_DC = diachi.ID_DC
+        LEFT JOIN giao ON donhang.ID_DH = giao.ID_DH
+        LEFT JOIN shipper ON giao.ID_SP = shipper.ID_SP
+        WHERE donhang.ID_DH = ?");
         $getId->setFetchMode(PDO::FETCH_OBJ);
-        $getId->execute(array($ID_NV));
+        $getId->execute(array($ID_DH));
         return $getId->fetch();
     }
-    public function packetSetActive($ID_NV, $TRANGTHAI)
+
+    public function checkShipperExist($TEN_SP)
     {
-        $update = $this->connect->prepare("UPDATE nhanvien SET TRANGTHAI = ? WHERE ID_NV = ? ");
-        $update->execute(array($TRANGTHAI, $ID_NV));
-        return $update->rowCount();
+        $getSP = $this->connect->prepare("SELECT ID_SP FROM shipper WHERE TEN_SP = ?");
+        $getSP->execute([$TEN_SP]);
+        return $getSP->fetchColumn();
     }
 }

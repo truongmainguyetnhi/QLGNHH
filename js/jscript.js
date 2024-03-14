@@ -46,6 +46,7 @@ $(".xoa").click(() => {
     alert("ĐÃ XÓA");
 })
 
+
 //Mở form
 document.getElementById('btnOpenForm').addEventListener('click', function() {
     var bodyThem = document.querySelector('.body_them');
@@ -62,15 +63,40 @@ document.getElementById('btnOpenForm').addEventListener('click', function() {
 var isOpen = false;
 document.getElementById('btnOpenForm').addEventListener('click', function() {
     var bodyThem = document.querySelector('.body_them');
-    var btnOpenForm = document.getElementById('btnOpenForm');
+    var ionIcon = document.querySelector('#btnOpenForm ion-icon');
 
     if (!isOpen) {
         bodyThem.style.display = 'block';
-        btnOpenForm.innerText = 'CLOSE';
+        ionIcon.setAttribute('name', 'close');
         isOpen = true;
     } else {
         bodyThem.style.display = 'none';
-        btnOpenForm.innerText = 'ADD NEW';
+        ionIcon.setAttribute('name', 'add');
         isOpen = false;
     }
+});
+//kiểm tra tồn tại shipper
+
+$(document).ready(function() {
+    $('#tenship').on('change', function() {
+        var tenship = $(this).val();
+        // Gửi yêu cầu Ajax để kiểm tra tên shipper
+        $.ajax({
+            url: 'packetAct.php',
+            type: 'GET',
+            data: { action: 'check_shipper', tenship: tenship },
+            dataType: 'json',
+            success: function(response) {
+                if (response.exists) {
+                    alert('Tên shipper đã tồn tại trong cơ sở dữ liệu.');
+                    // Reset giá trị về trạng thái ban đầu hoặc thực hiện các hành động khác tùy thuộc vào yêu cầu của bạn
+                } else {
+                    // Tên shipper không tồn tại, có thể thực hiện các hành động khác tùy thuộc vào yêu cầu của bạn
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Lỗi khi gửi yêu cầu Ajax: ' + error);
+            }
+        });
+    });
 });

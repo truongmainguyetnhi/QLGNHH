@@ -1,13 +1,13 @@
 <div>
     <div class="btn_container">
-        <button id="btnOpenForm" class="btn">ADD NEW</button>
+        <button id="btnOpenForm" class="btn add">
+            <ion-icon name="add"></ion-icon>
+        </button>
     </div>
     <div class="body_them">
-        <section class="them_header">
-            <h1>Thêm Shipper mới</h1>
-        </section>
         <section class="them_body">
             <form onsubmit="alert('Thành công')" name="newship" id="formadd_ship" method="post" enctype="multipart/form-data" action="./elements/mshipper/shipperAct.php?reqact=addnew">
+                <span class="title">Thông tin shipper</span>
                 <div class="fields">
                     <div class="input_group type-md">
                         <input type="text" name="tenship" required>
@@ -81,10 +81,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="contaniner">
-                        <input type="reset" class="btn" id="refresh" value="Refresh">
-                        <input type="submit" class="btn" value="Accept">
-                    </div>
+                </div>
+                <div class="contaniner">
+                    <input type="reset" class="btn" id="refresh" value="Refresh">
+                    <input type="submit" class="btn" value="Accept">
                 </div>
             </form>
         </section>
@@ -165,7 +165,6 @@
                                             <ion-icon name="trash"></ion-icon>
                                         </a>
                                     </div>
-
                                 </td>
                             </tr>
                         <?php

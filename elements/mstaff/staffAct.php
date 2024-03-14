@@ -80,8 +80,10 @@ if (isset($_GET['reqact'])) {
             if ($rs) {
                 if ($LOAITK === "Quản lý") {
                     $_SESSION['Quản lý'] = $LOAITK;
+                    $_SESSION['username'] = $TENTK;
                 } else {
                     $_SESSION['Nhân viên'] = $LOAITK;
+                    $_SESSION['username'] = $TENTK;
                 }
                 header('location:../../index.php?login_message=Đăng nhập thành công!');
             } else {

@@ -163,7 +163,8 @@ session_start();
                 <section class="table_body">
                     <?php
                     $obj = new packet();
-                    $list_packet = $obj->packetGetAll();
+                    $tentk = $_SESSION['username'];
+                    $list_packet = $obj->packetGetforStore($tentk);
                     ?>
                     <table class="table_view">
                         <thead class="thead_table">

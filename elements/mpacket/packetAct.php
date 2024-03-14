@@ -29,6 +29,23 @@ if (isset($_GET['reqact'])) {
             }
             break;
 
+        case 'updatepacket':
+            // Xử lý cập nhật thông tin gói hàng
+            $ID_DH = $_POST['idpacket'];
+            $TEN_SP = $_POST['tenship'];
+            $idSP = $packet->checkShipperExist($TEN_SP);
+            if ($idSP !== false) {
+                $rs = $packet->packetUpdate($TEN_SP, $ID_DH);
+                if ($rs) {
+                    header('location:../../index.php?req=packetview');
+                } else {
+                    header('location:../../index.php?req=packetview');
+                }
+            } else {
+                // Hiển thị thông báo lỗi về sự không tồn tại của shipper
+                echo "Shipper không tồn tại.";
+            }
+            break;
         default:
             header('location:../../index.php?req=shipperview');
     }

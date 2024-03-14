@@ -7,11 +7,9 @@ $getstore = $store->StoreGetById($idstore);
 
 <div class="body_update">
     <div class="body_them_up">
-        <section class="them_header">
-            <h1>Cập nhật thông tin</h1>
-        </section>
         <section class="them_body">
             <form name="updatestore" id="update_store" class="test" onsubmit="alert('Thành công')" method="post" enctype="multipart/form-data" action="./elements/mstore/storeAct.php?reqact=updatestore">
+                <span class="title">Cập nhật thông tin cửa hàng</span>
                 <div class="fields">
                     <input type="hidden" name="idstore" value="<?php echo $idstore; ?>">
                     <div class="input_group type-md">
@@ -59,10 +57,10 @@ $getstore = $store->StoreGetById($idstore);
                         <label for=" matkhaustore">Mật khẩu</label>
                         <span class="border"></span>
                     </div>
-                    <input type="hidden" name="loaitaikhoanstore" value="<?php echo $getstore->LOAITK; ?>">
-                    <div class="contaniner">
-                        <input type="submit" class="btn" value="Accept">
-                    </div>
+                </div>
+                <input type="hidden" name="loaitaikhoanstore" value="<?php echo $getstore->LOAITK; ?>">
+                <div class="contaniner">
+                    <input type="submit" class="btn" value="Accept">
                 </div>
             </form>
         </section>

@@ -10,7 +10,7 @@
             <section class="table_body">
                 <?php
                 $obj = new packet();
-                $list_packet = $obj->packetGetAll();
+                $list_packet = $obj->packetGetAll2();
                 ?>
                 <table class="table_view">
                     <thead class="thead_table">
@@ -19,59 +19,63 @@
                             <th class="th_table">Tên đơn hàng</th>
                             <th class="th_table">Trạng thái</th>
                             <th class="th_table">Tên Shipper</th>
+                            <th class="th_table">Chỉ định</th>
                             <th class="th_table">Tên cửa hàng</th>
                             <th class="th_table">Thời gian tạo</th>
                             <th class="th_table">Trọng lượng</th>
                             <th class="th_table">Mô tả</th>
                             <th class="th_table">Ghi chú</th>
+                            <th class="th_table">Tên người nhận</th>
+                            <th class="th_table">Số điện thoại</th>
+                            <th class="th_table">Địa chỉ</th>
+                            <th class="th_table">Tổng tiền</th>
                         </tr>
                     </thead>
                     <tbody class="tbody_table">
                         <?php
                         foreach ($list_packet as $n) {
                         ?>
-                            <tr class="tr_table">
-                                <td class="td_table"><?php echo $n->MA_DH; ?></td>
-                                <td class="td_table"><?php echo $n->TEN_DH; ?></td>
-                                <td class="td_table">
-                                    <?php
-                                    $nhi = $n->TRANGTHAI;
+                        <tr class="tr_table">
+                            <td class="td_table"><?php echo $n->MA_DH; ?></td>
+                            <td class="td_table"><?php echo $n->TEN_HH; ?></td>
+                            <td class="td_table">
+                                <?php
+                                    $nhi = $n->TRANGTHAI_DH;
                                     if ('Đã tạo đơn' === $nhi) {
                                     ?>
-                                        <p class="status DTD"><?php echo $n->TRANGTHAI; ?></p>
-                                    <?php
+                                <p class="status DTD"><?php echo $n->TRANGTHAI_DH; ?></p>
+                                <?php
                                     } elseif ('Đang vận chuyển' === $nhi) {
                                     ?>
-                                        <p class="status DVC"><?php echo $n->TRANGTHAI; ?></p>
-                                    <?php } elseif ('Giao thành công' === $nhi) {
+                                <p class="status DVC"><?php echo $n->TRANGTHAI_DH; ?></p>
+                                <?php } elseif ('Giao thành công' === $nhi) {
                                     ?>
-                                        <p class="status GTC"><?php echo $n->TRANGTHAI; ?></p>
-                                    <?php } elseif ('Đã hủy' === $nhi) {
+                                <p class="status GTC"><?php echo $n->TRANGTHAI_DH; ?></p>
+                                <?php } elseif ('Đã hủy' === $nhi) {
                                     ?>
-                                        <p class="status DH"><?php echo $n->TRANGTHAI; ?></p>
-                                    <?php } elseif ('Hoàn trả' === $nhi) {
+                                <p class="status DH"><?php echo $n->TRANGTHAI_DH; ?></p>
+                                <?php } elseif ('Hoàn trả' === $nhi) {
                                     ?>
-                                        <p class="status HT"><?php echo $n->TRANGTHAI; ?></p>
-                                    <?php } ?>
-                                </td>
-                                <td class="td_table"><strong><?php echo $n->TEN_SP; ?></strong></td>
-                                <td class="td_table"><?php echo $n->TEN_CH; ?></td>
-                                <td class="td_table"><?php echo $n->THOIGIANTAO; ?></td>
-                                <td class="td_table"><?php echo $n->TRONGLUONG; ?></td>
-                                <td class="td_table"><?php echo $n->MOTA; ?></td>
-                                <td class="td_table"><?php echo $n->GHICHU; ?></td>
-                                <td class="td_table set">
-                                    <temppacket class="btnup" value="<?php echo $n->ID_DH; ?>">
-                                        <ion-icon name="pencil"></ion-icon>
-                                    </temppacket>
-                                    <div class="xoa">
-                                        <a href="./elements/mpacket/packetaffAct.php?reqact=deletepacket&idpacket=<?php echo $n->ID_DH; ?>">
-                                            <ion-icon name="trash"></ion-icon>
-                                        </a>
-                                    </div>
+                                <p class="status HT"><?php echo $n->TRANGTHAI_DH; ?></p>
+                                <?php } ?>
+                            </td>
+                            <td class="td_table"><strong><?php echo $n->TEN_SP ?? 'Chưa có'; ?></strong></td>
+                            <td class="td_table set">
+                                <temppacket class="btnup" value="<?php echo $n->ID_DH; ?>">
+                                    <ion-icon name="pencil"></ion-icon>
+                                </temppacket>
+                            </td>
+                            <td class="td_table"><?php echo $n->TEN_CH; ?></td>
+                            <td class="td_table"><?php echo $n->THOIGIANTAO; ?></td>
+                            <td class="td_table"><?php echo $n->TRONGLUONG; ?></td>
+                            <td class="td_table"><?php echo $n->MOTA; ?></td>
+                            <td class="td_table"><?php echo $n->GHICHU; ?></td>
+                            <td class="td_table"><?php echo $n->TEN_NN; ?></td>
+                            <td class="td_table"><?php echo $n->SDT_NN; ?></td>
+                            <td class="td_table"><?php echo $n->TINH_TP; ?></td>
+                            <td class="td_table"><strong><?php echo $n->TONGTIENHANG; ?></strong></td>
 
-                                </td>
-                            </tr>
+                        </tr>
                         <?php
                         }
                         ?>

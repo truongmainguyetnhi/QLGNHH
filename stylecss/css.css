@@ -287,7 +287,7 @@
  
  #top {
      width: 100%;
-     height: 100px;
+     height: 50px;
      background-color: #E4E9F7;
  }
  
@@ -343,11 +343,14 @@
  .body_them {
      display: none;
      min-height: 40vh;
-     height: 80vh;
+     height: 75vh;
      align-items: center;
      background-color: #ffffff;
      border-radius: .6rem;
      margin: 0 10px 0 10px;
+     width: 80%;
+     justify-content: center;
+     margin-left: 10%;
  }
  
  .body_them_up {
@@ -369,6 +372,15 @@
  .body_them .title {
      margin-top: 30px;
      font-size: 16px;
+     font-weight: 500;
+     display: block;
+     text-transform: uppercase;
+     color: var(--primary-color)
+ }
+ 
+ .body_them_up .title {
+     margin-top: 30px;
+     font-size: 20px;
      font-weight: 500;
      display: block;
      text-transform: uppercase;
@@ -533,6 +545,11 @@
      padding: 1rem;
  }
  
+ .table_view .th_table {
+     padding: 1rem;
+     width: 200px;
+ }
+ 
  .set {
      flex-wrap: wrap;
      display: flex;
@@ -600,14 +617,15 @@
  .table_header {
      width: 100%;
      height: 8%;
-     background-color: #F36B2D;
+     border-bottom: solid 1px #F2F2F2;
+     box-shadow: 0px 4px 8px #f2f2f2;
      padding: .8rem 2rem;
+     color: var(--primary-color);
  }
  
  .table_body {
      width: 98%;
      max-height: calc(89% - .8rem);
-     background-color: rgba(230, 219, 219, 0.733);
      margin: .8rem auto;
      border-radius: .6rem;
      overflow: auto;
@@ -640,17 +658,16 @@
      position: sticky;
      top: 0;
      left: 0;
-     background-color: #d5d1defe;
+     background-color: #000;
+     color: var(--sidebar-color)
  }
  
- .tbody_table,
- .tr_table:nth-child(even) {
-     background: #0000000b;
- }
- 
- .tbody_table,
  .tr_table:hover {
-     background: #fff6;
+     background: #E5E5E5;
+ }
+ 
+ .tr_table {
+     border-bottom: solid 2px #F2F2F2;
  }
  
  @media(max-width: 1000px) {
@@ -722,7 +739,7 @@
  .input_container {
      position: relative;
      height: 3.5rem;
-     width: 10rem;
+     width: 8rem;
      margin: 0.4rem;
      margin-bottom: 1.6rem;
  }
@@ -774,12 +791,12 @@
  }
  
  .status.store {
-     background-color: #F36B2D;
+     background-color: rgb(255, 190, 139);
      width: 100px;
  }
  
  .status.ship {
-     background-color: #dcea92;
+     background-color: #D2B48C;
      width: 100px;
  }
  
@@ -816,7 +833,7 @@
  }
  
  .DH {
-     background-color: #ff0000;
+     background-color: #FF3333;
      width: 100px;
      align-items: center;
  }
@@ -909,13 +926,6 @@
      top: 5%;
      transition: translateY(-5%);
      font-size: .8rem;
- }
- 
- .creatdon {
-     width: 80%;
-     display: flex;
-     justify-content: center;
-     margin-left: 10%;
  }
  
  .khoidau {
@@ -1042,6 +1052,28 @@
      position: absolute;
      z-index: 9;
      right: 10px;
+     top: -15px;
+ }
+ 
+ .btn_container .add {
+     position: absolute;
+     z-index: 9;
+     right: 100px;
+     top: -15px;
+ }
+ 
+ .add {
+     width: 50px;
+     height: 50px;
+     border-radius: 50%;
+     background-color: #000;
+     color: var(--sidebar-color);
+     right: 30px;
+ }
+ 
+ .add:hover {
+     color: var(--primary-color);
+     box-shadow: 0 0 20px var(--primary-color-light);
  }
  
  .nutdx {
