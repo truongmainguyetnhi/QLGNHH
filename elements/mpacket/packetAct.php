@@ -33,6 +33,7 @@ if (isset($_GET['reqact'])) {
             // Xử lý cập nhật thông tin gói hàng
             $ID_DH = $_POST['idpacket'];
             $TEN_SP = $_POST['tenship'];
+            $packet = new packet();
             $idSP = $packet->checkShipperExist($TEN_SP);
             if ($idSP !== false) {
                 $rs = $packet->packetUpdate($TEN_SP, $ID_DH);

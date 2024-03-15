@@ -353,6 +353,14 @@
      margin-left: 10%;
  }
  
+ #loc {
+     display: none;
+ }
+ 
+ #chuacoship {
+     color: #000;
+ }
+ 
  .body_them_up {
      min-height: 40vh;
      height: 80vh;
@@ -360,6 +368,47 @@
      background-color: #ffffff;
      border-radius: .6rem;
      margin: 0 10px 0 10px;
+ }
+ 
+ .phanchi {
+     height: 40vh;
+     align-items: center;
+     background-color: #ffffff;
+     border-radius: .6rem;
+     margin: 0 10px 0 10px;
+     overflow-y: scroll;
+     overflow-x: hidden;
+ }
+ 
+ .phanchi::-webkit-scrollbar-thumb {
+     border-radius: .5rem;
+     background-color: #0004;
+     visibility: hidden;
+ }
+ 
+ .phanchi:hover::-webkit-scrollbar-thumb {
+     visibility: visible;
+ }
+ 
+ .phanchi::-webkit-scrollbar {
+     width: 0.5rem;
+     height: 0.5rem;
+ }
+ 
+ .phanchi form .fields {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     flex-wrap: wrap;
+ }
+ 
+ .phanchi .title {
+     margin-top: 30px;
+     font-size: 20px;
+     font-weight: 500;
+     display: block;
+     text-transform: uppercase;
+     color: var(--primary-color)
  }
  
  .body_them form .fields {
@@ -521,9 +570,12 @@
  /* bảng dữ liệu*/
  
  .table_khu {
-     display: flex;
      margin: 10px;
      min-height: 40vh;
+ }
+ 
+ #dsdh {
+     display: block;
  }
  
  .table_view {
@@ -928,6 +980,13 @@
      font-size: .8rem;
  }
  
+ .phanchi .read label {
+     position: absolute;
+     top: 5%;
+     transition: translateY(-5%);
+     font-size: .8rem;
+ }
+ 
  .khoidau {
      display: flex;
      justify-content: center;
@@ -1069,6 +1128,27 @@
      background-color: #000;
      color: var(--sidebar-color);
      right: 30px;
+ }
+ 
+ .share {
+     width: 150px;
+     height: 50px;
+     border-radius: 5px;
+     background-color: var(--primary-color);
+     color: var(--primary-color-light);
+     right: 20px;
+ }
+ 
+ .share:hover {
+     color: #000;
+     box-shadow: 0 0 20px var(--primary-color-light);
+ }
+ 
+ .btn_container .share {
+     position: absolute;
+     z-index: 9;
+     right: 100px;
+     top: -15px;
  }
  
  .add:hover {

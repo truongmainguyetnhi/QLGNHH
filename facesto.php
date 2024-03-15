@@ -29,7 +29,8 @@ session_start();
     <div class="creatdon">
         <div class="body_them">
             <section class="them_body">
-                <form onsubmit="alert('Thành công')" name="newpacket" id="formadd_packet" method="post" enctype="multipart/form-data" action="./elements/mpacket/packetAct.php?reqact=addnew">
+                <form onsubmit="alert('Thành công')" name="newpacket" id="formadd_packet" method="post"
+                    enctype="multipart/form-data" action="./elements/mpacket/packetAct.php?reqact=addnew">
                     <span class="title">Thông tin đơn hàng</span>
                     <div class="fields">
                         <div class="input_group type-md">
@@ -54,7 +55,8 @@ session_start();
                         $currentDateTime = date('Y-m-d\TH:i');
                         ?>
                         <div class="input_group type-md">
-                            <input type="datetime-local" name="ngaytaopacket" required placeholder="Ngày tạo đơn" value="<?php echo $currentDateTime; ?>">
+                            <input type="datetime-local" name="ngaytaopacket" required placeholder="Ngày tạo đơn"
+                                value="<?php echo $currentDateTime; ?>">
                             <label for="ngaytaopacket" style="top: -0.5rem;">Ngày tạo đơn</label>
                             <span class="border"></span>
                         </div>
@@ -137,7 +139,8 @@ session_start();
                             <span class="border"></span>
                         </div>
                         <div class="input_group type-md ma">
-                            <input type="text" name="tencuahangtao" value="<?php echo $_SESSION['username']; ?>" required readonly>
+                            <input type="text" name="tencuahangtao" value="<?php echo $_SESSION['username']; ?>"
+                                required readonly>
                             <label for="tencuahangtao">Tên cửa hàng</label>
                             <span class="border"></span>
                         </div>
@@ -184,37 +187,37 @@ session_start();
                             <?php
                             foreach ($list_packet as $n) {
                             ?>
-                                <tr class="tr_table">
-                                    <td class="td_table"><?php echo $n->MA_DH; ?></td>
-                                    <td class="td_table"><?php echo $n->TEN_HH; ?></td>
-                                    <td class="td_table"><strong><?php echo $n->TEN_SP; ?></strong></td>
-                                    <td class="td_table">
-                                        <?php
+                            <tr class="tr_table">
+                                <td class="td_table"><?php echo $n->MA_DH; ?></td>
+                                <td class="td_table"><?php echo $n->TEN_HH; ?></td>
+                                <td class="td_table"><strong><?php echo $n->TEN_SP; ?></strong></td>
+                                <td class="td_table">
+                                    <?php
                                         $nhi = $n->TRANGTHAI_DH;
                                         if ('Đã tạo đơn' === $nhi) {
                                         ?>
-                                            <p class="status DTD"><?php echo $n->TRANGTHAI_DH; ?></p>
-                                        <?php
+                                    <p class="status DTD"><?php echo $n->TRANGTHAI_DH; ?></p>
+                                    <?php
                                         } elseif ('Đang vận chuyển' === $nhi) {
                                         ?>
-                                            <p class="status DVC"><?php echo $n->TRANGTHAI_DH; ?></p>
-                                        <?php } elseif ('Giao thành công' === $nhi) {
+                                    <p class="status DVC"><?php echo $n->TRANGTHAI_DH; ?></p>
+                                    <?php } elseif ('Giao thành công' === $nhi) {
                                         ?>
-                                            <p class="status GTC"><?php echo $n->TRANGTHAI_DH; ?></p>
-                                        <?php } elseif ('Đã hủy' === $nhi) {
+                                    <p class="status GTC"><?php echo $n->TRANGTHAI_DH; ?></p>
+                                    <?php } elseif ('Đã hủy' === $nhi) {
                                         ?>
-                                            <p class="status DH"><?php echo $n->TRANGTHAI_DH; ?></p>
-                                        <?php } elseif ('Hoàn trả' === $nhi) {
+                                    <p class="status DH"><?php echo $n->TRANGTHAI_DH; ?></p>
+                                    <?php } elseif ('Hoàn trả' === $nhi) {
                                         ?>
-                                            <p class="status HT"><?php echo $n->TRANGTHAI_DH; ?></p>
-                                        <?php } ?>
-                                    </td>
-                                    <td class="td_table"><?php echo $n->THOIGIANTAO; ?></td>
-                                    <td class="td_table"><?php echo $n->GHICHU; ?></td>
-                                    <td class="td_table"><?php echo $n->TEN_NN; ?></td>
-                                    <td class="td_table"><?php echo $n->SDT_NN; ?></td>
-                                    <td class="td_table"><?php echo $n->TONGTIENHANG; ?></td>
-                                </tr>
+                                    <p class="status HT"><?php echo $n->TRANGTHAI_DH; ?></p>
+                                    <?php } ?>
+                                </td>
+                                <td class="td_table"><?php echo $n->THOIGIANTAO; ?></td>
+                                <td class="td_table"><?php echo $n->GHICHU; ?></td>
+                                <td class="td_table"><?php echo $n->TEN_NN; ?></td>
+                                <td class="td_table"><?php echo $n->SDT_NN; ?></td>
+                                <td class="td_table"><?php echo $n->TONGTIENHANG; ?></td>
+                            </tr>
                             <?php
                             }
                             ?>

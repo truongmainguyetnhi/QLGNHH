@@ -75,28 +75,3 @@ document.getElementById('btnOpenForm').addEventListener('click', function() {
         isOpen = false;
     }
 });
-//kiểm tra tồn tại shipper
-
-$(document).ready(function() {
-    $('#tenship').on('change', function() {
-        var tenship = $(this).val();
-        // Gửi yêu cầu Ajax để kiểm tra tên shipper
-        $.ajax({
-            url: 'packetAct.php',
-            type: 'GET',
-            data: { action: 'check_shipper', tenship: tenship },
-            dataType: 'json',
-            success: function(response) {
-                if (response.exists) {
-                    alert('Tên shipper đã tồn tại trong cơ sở dữ liệu.');
-                    // Reset giá trị về trạng thái ban đầu hoặc thực hiện các hành động khác tùy thuộc vào yêu cầu của bạn
-                } else {
-                    // Tên shipper không tồn tại, có thể thực hiện các hành động khác tùy thuộc vào yêu cầu của bạn
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error('Lỗi khi gửi yêu cầu Ajax: ' + error);
-            }
-        });
-    });
-});

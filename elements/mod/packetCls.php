@@ -10,14 +10,18 @@ class packet extends Database
 {
     public function packetGetAll()
     {
-        $getAll = $this->connect->prepare("SELECT * FROM donhang 
+        $getAll = $this->connect->prepare("SELECT donhang.*, phai.*, thanhtoan.*, co.*, nguoinhan.*, cua1.*, diachi.*, cuahang.*, shipper.*
+        FROM donhang 
         INNER JOIN phai ON donhang.ID_DH = phai.ID_DH 
         INNER JOIN thanhtoan ON phai.ID_TT = thanhtoan.ID_TT 
         INNER JOIN co ON thanhtoan.ID_TT = co.ID_TT 
         INNER JOIN nguoinhan ON co.ID_NN = nguoinhan.ID_NN 
         INNER JOIN cua1 ON nguoinhan.ID_NN = cua1.ID_NN
         INNER JOIN diachi ON cua1.ID_DC = diachi.ID_DC
-        INNER JOIN cuahang ON donhang.ID_CH = cuahang.ID_CH;");
+        INNER JOIN cuahang ON donhang.ID_CH = cuahang.ID_CH 
+        LEFT JOIN giao ON donhang.ID_DH = giao.ID_DH
+        LEFT JOIN shipper ON giao.ID_SP = shipper.ID_SP
+        WHERE giao.ID_SP IS NULL;");
         $getAll->setFetchMode(PDO::FETCH_OBJ);
         $getAll->execute();
         return $getAll->fetchAll();
@@ -145,5 +149,15 @@ class packet extends Database
         $getSP = $this->connect->prepare("SELECT ID_SP FROM shipper WHERE TEN_SP = ?");
         $getSP->execute([$TEN_SP]);
         return $getSP->fetchColumn();
+    }
+}
+class shipper extends Database
+{
+    public function ShipGetAll()
+    {
+        $getAll = $this->connect->prepare("SELECT * FROM shipper INNER JOIN cua6 ON shipper.ID_SP = cua6.ID_SP INNER JOIN diachi ON cua6.ID_DC = diachi.ID_DC");
+        $getAll->setFetchMode(PDO::FETCH_OBJ);
+        $getAll->execute();
+        return $getAll->fetchAll();
     }
 }
