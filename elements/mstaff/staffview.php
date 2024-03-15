@@ -127,6 +127,8 @@
                 <table class="table_view">
                     <thead class="thead_table">
                         <tr align="left" class="tr_table">
+                            <th class="th_table">Loại tài khoản</th>
+                            <th class="th_table">Tùy chọn</th>
                             <th class="th_table">Tên nhân viên</th>
                             <th class="th_table">Số điện thoại</th>
                             <th class="th_table">Email</th>
@@ -138,8 +140,6 @@
                             <th class="th_table">Ngày nhập</th>
                             <th class="th_table">Tên đăng nhập</th>
                             <th class="th_table">Mật khẩu</th>
-                            <th class="th_table">Loại tài khoản</th>
-                            <th class="th_table">Tùy chọn</th>
                         </tr>
                     </thead>
                     <tbody class="tbody_table">
@@ -147,35 +147,6 @@
                         foreach ($list_staff as $n) {
                         ?>
                         <tr class="tr_table">
-                            <td class="td_table"><?php echo $n->TEN_NV; ?></td>
-                            <td class="td_table"><?php echo $n->SDT_NV; ?></td>
-                            <td class="td_table"><?php echo $n->EMAIL; ?></td>
-                            <td class="td_table"><?php echo $n->TINH_TP; ?></td>
-                            <td class="td_table"><?php echo $n->PHUONG_XA; ?></td>
-                            <td class="td_table"><?php echo $n->DUONG_SONHA; ?></td>
-                            <td class="td_table"><strong><?php echo $n->CCCD; ?></strong></td>
-                            <td class="td_table tt">
-                                <?php
-                                    if ($n->TRANGTHAI == "on") {
-                                    ?>
-                                <a href="./elements/mstaff/staffAct.php?reqact=setlock&idstaff=<?php echo $n->ID_NV; ?> 
-                                    &trangthaistaff=<?php echo $n->TRANGTHAI; ?>">
-                                    <ion-icon name="lock-open"></ion-icon>
-                                </a>
-                                <?php
-                                    } else {
-                                    ?>
-                                <a href="./elements/mstaff/staffAct.php?reqact=setlock&idstaff=<?php echo $n->ID_NV; ?>
-                                    &trangthaistaff=<?php echo $n->TRANGTHAI; ?>">
-                                    <ion-icon name="lock-closed"></ion-icon>
-                                </a>
-                                <?php
-                                    }
-                                    ?>
-                            </td>
-                            <td class="td_table"><?php echo $n->NGAYNHAP; ?></td>
-                            <td class="td_table"><?php echo $n->TENTK; ?></td>
-                            <td class="td_table"><?php echo $n->MATKHAU; ?></td>
                             <td class="td_table">
                                 <?php
                                     $nhi = $n->LOAITK;
@@ -188,20 +159,78 @@
                                 <p class="status qly"><?php echo $n->LOAITK; ?></p>
                                 <?php } ?>
                             </td>
-
-
                             <td class="td_table set">
-                                <tempstaff class="btnup" value="<?php echo $n->ID_NV; ?>">
-                                    <ion-icon name="pencil"></ion-icon>
-                                </tempstaff>
+                                <?php
+                                    //tài khoản admin ko được xóa tk admin
+                                    if (isset($_SESSION['Quản lý']) and $n->LOAITK == 'Quản lý') {
+                                    ?>
+                                <div class="koxoa">
+                                    <ion-icon name="trash"></ion-icon>
+                                </div>
+
+                                <?php
+                                    } else if (isset($_SESSION['Quản lý'])) {
+                                    ?>
                                 <div class="xoa">
                                     <a
                                         href="./elements/mstaff/staffAct.php?reqact=deletestaff&idstaff=<?php echo $n->ID_NV; ?>">
                                         <ion-icon name="trash"></ion-icon>
                                     </a>
                                 </div>
-
+                                <?php
+                                    } else {
+                                    ?>
+                                <div class="koxoa">
+                                    <ion-icon name="trash"></ion-icon>
+                                </div>
+                                <?php
+                                    }
+                                    ?>
+                                <?php
+                                    //admin khong duoc update acc admin
+                                    if (isset($_SESSION['Quản lý']) and $n->LOAITK == 'Quản lý') {
+                                    ?>
+                                <ion-icon class="koup" name="pencil"></ion-icon>
+                                <?php
+                                    } else if (isset($_SESSION['Quản lý'])) {
+                                    ?>
+                                <tempstaff class="btnup" value="<?php echo $n->ID_NV; ?>">
+                                    <ion-icon name="pencil"></ion-icon>
+                                </tempstaff>
                             </td>
+                            <?php
+                                    }
+                            ?>
+                            <td class="td_table"><?php echo $n->TEN_NV; ?></td>
+                            <td class="td_table"><?php echo $n->SDT_NV; ?></td>
+                            <td class="td_table"><?php echo $n->EMAIL; ?></td>
+                            <td class="td_table"><?php echo $n->TINH_TP; ?></td>
+                            <td class="td_table"><?php echo $n->PHUONG_XA; ?></td>
+                            <td class="td_table"><?php echo $n->DUONG_SONHA; ?></td>
+                            <td class="td_table"><strong><?php echo $n->CCCD; ?></strong></td>
+                            <td class="td_table tt">
+                                <?php
+                                if ($n->TRANGTHAI == "on") {
+                                ?>
+                                <a href="./elements/mstaff/staffAct.php?reqact=setlock&idstaff=<?php echo $n->ID_NV; ?> 
+                                    &trangthaistaff=<?php echo $n->TRANGTHAI; ?>">
+                                    <ion-icon name="lock-open"></ion-icon>
+                                </a>
+                                <?php
+                                } else {
+                                ?>
+                                <a href="./elements/mstaff/staffAct.php?reqact=setlock&idstaff=<?php echo $n->ID_NV; ?>
+                                    &trangthaistaff=<?php echo $n->TRANGTHAI; ?>">
+                                    <ion-icon name="lock-closed"></ion-icon>
+                                </a>
+                                <?php
+                                }
+                                ?>
+                            </td>
+                            <td class="td_table"><?php echo $n->NGAYNHAP; ?></td>
+                            <td class="td_table"><?php echo $n->TENTK; ?></td>
+                            <td class="td_table"><?php echo $n->MATKHAU; ?></td>
+
                         </tr>
                         <?php
                         }

@@ -45,6 +45,12 @@ $("temppacket").click(function() {
 $(".xoa").click(() => {
     alert("ĐÃ XÓA");
 })
+$(".koxoa").click(() => {
+    alert("KHÔNG THỂ XÓA bằng tài khoản Quản lý");
+})
+$(".koup").click(() => {
+    alert("KHÔNG THỂ UPDATE bằng tài khoản Quản lý");
+})
 
 
 //Mở form

@@ -106,6 +106,7 @@
                 <table class="table_view">
                     <thead class="thead_table">
                         <tr align="left" class="tr_table">
+                            <th class="th_table">Tùy chọn</th>
                             <th class="th_table">Tên Shipper</th>
                             <th class="th_table">Số điện thoại</th>
                             <th class="th_table">Email</th>
@@ -117,7 +118,6 @@
                             <th class="th_table">Tên đăng nhập</th>
                             <th class="th_table">Mật khẩu</th>
                             <th class="th_table">Loại tài khoản</th>
-                            <th class="th_table">Tùy chọn</th>
                         </tr>
                     </thead>
                     <tbody class="tbody_table">
@@ -125,6 +125,16 @@
                         foreach ($list_ship as $n) {
                         ?>
                             <tr class="tr_table">
+                                <td class="td_table set">
+                                    <tempship class="btnup" value="<?php echo $n->ID_SP; ?>">
+                                        <ion-icon name="pencil"></ion-icon>
+                                    </tempship>
+                                    <div class="xoa">
+                                        <a href="./elements/mshipper/shipperAct.php?reqact=deleteship&idship=<?php echo $n->ID_SP; ?>">
+                                            <ion-icon name="trash"></ion-icon>
+                                        </a>
+                                    </div>
+                                </td>
                                 <td class="td_table"><?php echo $n->TEN_SP; ?></td>
                                 <td class="td_table"><?php echo $n->SDT_SP; ?></td>
                                 <td class="td_table"><?php echo $n->EMAIL; ?></td>
@@ -156,16 +166,7 @@
                                 <td class="td_table">
                                     <p class="status ship"><?php echo $n->LOAITK; ?></p>
                                 </td>
-                                <td class="td_table set">
-                                    <tempship class="btnup" value="<?php echo $n->ID_SP; ?>">
-                                        <ion-icon name="pencil"></ion-icon>
-                                    </tempship>
-                                    <div class="xoa">
-                                        <a href="./elements/mshipper/shipperAct.php?reqact=deleteship&idship=<?php echo $n->ID_SP; ?>">
-                                            <ion-icon name="trash"></ion-icon>
-                                        </a>
-                                    </div>
-                                </td>
+
                             </tr>
                         <?php
                         }
