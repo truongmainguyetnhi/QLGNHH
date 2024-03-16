@@ -46,10 +46,13 @@ $(".xoa").click(() => {
     alert("ĐÃ XÓA");
 })
 $(".koxoa").click(() => {
-    alert("KHÔNG THỂ XÓA bằng tài khoản Quản lý");
+    alert("KHÔNG THỂ XÓA bằng tài khoản này");
 })
 $(".koup").click(() => {
-    alert("KHÔNG THỂ UPDATE bằng tài khoản Quản lý");
+    alert("KHÔNG THỂ UPDATE bằng tài khoản này");
+})
+$(".kolock").click(() => {
+    alert("KHÔNG THỂ THAY ĐỔI bằng tài khoản này");
 })
 
 

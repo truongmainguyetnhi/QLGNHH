@@ -208,24 +208,37 @@
                             <td class="td_table"><?php echo $n->PHUONG_XA; ?></td>
                             <td class="td_table"><?php echo $n->DUONG_SONHA; ?></td>
                             <td class="td_table"><strong><?php echo $n->CCCD; ?></strong></td>
-                            <td class="td_table tt">
+                            <td class="td_table">
                                 <?php
                                 if ($n->TRANGTHAI == "on") {
+                                    if (isset($_SESSION['Quản lý'])) {
                                 ?>
-                                <a href="./elements/mstaff/staffAct.php?reqact=setlock&idstaff=<?php echo $n->ID_NV; ?> 
+                                <div>
+                                    <a href="./elements/mstaff/staffAct.php?reqact=setlock&idstaff=<?php echo $n->ID_NV; ?>
                                     &trangthaistaff=<?php echo $n->TRANGTHAI; ?>">
+                                        <ion-icon name="lock-open"></ion-icon>
+                                    </a>
+                                </div>
+                                <?php
+                                    } else { ?>
+                                <div class="kolock">
                                     <ion-icon name="lock-open"></ion-icon>
-                                </a>
-                                <?php
-                                } else {
-                                ?>
-                                <a href="./elements/mstaff/staffAct.php?reqact=setlock&idstaff=<?php echo $n->ID_NV; ?>
+                                </div>
+                                <?php }
+                                } else if ($n->TRANGTHAI == "off") {
+                                    if (isset($_SESSION['Quản lý'])) { ?>
+                                <div>
+                                    <a href="./elements/mstaff/staffAct.php?reqact=setlock&idstaff=<?php echo $n->ID_NV; ?>
                                     &trangthaistaff=<?php echo $n->TRANGTHAI; ?>">
+                                        <ion-icon name="lock-closed"></ion-icon>
+                                    </a>
+                                </div>
+                                <?php } else { ?>
+                                <div class="kolock">
                                     <ion-icon name="lock-closed"></ion-icon>
-                                </a>
-                                <?php
-                                }
-                                ?>
+                                </div>
+                                <?php }
+                                } ?>
                             </td>
                             <td class="td_table"><?php echo $n->NGAYNHAP; ?></td>
                             <td class="td_table"><?php echo $n->TENTK; ?></td>
