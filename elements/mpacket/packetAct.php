@@ -47,8 +47,19 @@ if (isset($_GET['reqact'])) {
                 echo "Shipper không tồn tại.";
             }
             break;
+        case 'search':
+            $MA_DH = $_POST['noidung'];
+            $packet = new packet();
+            $rs = $packet->donGetAll($MA_DH);
+            if ($rs) {
+                header('location:../../faceship.php');
+            } else {
+                header('location:../../faceship.php');
+            }
+            break;
         default:
             header('location:../../index.php?req=shipperview');
+            break;
     }
 } else {
     header('location:../../index.php?req=staffrview');

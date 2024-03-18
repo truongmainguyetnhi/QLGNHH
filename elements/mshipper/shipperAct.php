@@ -76,13 +76,16 @@ if (isset($_GET['reqact'])) {
             $ship = new ship();
             $rs = $ship->CheckLogin($TENTK, $MATKHAU, $LOAITK);
             if ($rs) {
-                if ($LOAITK == "Shipper") {
+                if ($LOAITK === "Shipper") {
                     $_SESSION['Shipper'] = $LOAITK;
                     $_SESSION['username'] = $TENTK;
                     header('location:../../faceship.php?login_message=Đăng nhập thành công!');
                 } else {
                     header('location:../../login.php?login_message=Đăng nhập không thành công!');
                 }
+            }
+            else {
+                header('location:../../login.php?login_message=Đăng nhập không thành công!');
             }
             break;
         case 'logout':

@@ -111,12 +111,13 @@ require_once 'elements/mod/database.php';
 
         </div>
         <?php
-            if (!isset($_POST['btn']) || empty($_POST['noidung'])) {
-                echo "<div class='baoinfo'><div class='info'><strong>Vui lòng nhập mã đơn hàng</strong></div></div>";
-            }
         }
+       else {
+             echo "<div class='baoinfo'><div class='info'><strong>Vui lòng nhập mã đơn hàng</strong></div></div>";
+         } 
     }
         ?>
+    </div>
 
 
 </body>
