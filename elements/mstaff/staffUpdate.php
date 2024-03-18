@@ -89,9 +89,9 @@ $getstaff = $staff->staffGetById($idstaff);
                 <thead class="thead_table">
                     <tr align="left" class="tr_table">
                         <th class="th_table">Loại tài khoản</th>
-                        <th class="th_table">Tùy chọn</th>
                         <th class="th_table">Tên nhân viên</th>
                         <th class="th_table">Số điện thoại</th>
+                        <th class="th_table">Tùy chọn</th>
                         <th class="th_table">Email</th>
                         <th class="th_table">Tỉnh/Thành phố</th>
                         <th class="th_table">Phường/Xã</th>
@@ -110,45 +110,31 @@ $getstaff = $staff->staffGetById($idstaff);
                     <tr class="tr_table">
                         <td class="td_table">
                             <?php
-                                if ($n->LOAITK === 'Nhân viên') { ?>
+                                $nhi = $n->LOAITK;
+                                if ('Nhân viên' === $nhi) {
+                                ?>
                             <p class="status staff"><?php echo $n->LOAITK; ?></p>
                             <?php
-                                } else if (similar_text($n->LOAITK, 'Quản lý')) { ?>
+                                } elseif ('Quản lý' === $nhi) {
+                                ?>
                             <p class="status qly"><?php echo $n->LOAITK; ?></p>
-                            <?php
-                                }
-                                ?>
-                        </td>
-                        <td class="td_table">
-                            <?php
-                                //tài khoản admin ko được xóa tk admin
-                                if (isset($_SESSION['Quản lý']) and $n->LOAITK == 'Quản lý') {
-                                ?>
-                            <div class="koxoa">
-                                <ion-icon name="trash"></ion-icon>
-                            </div>
-
-                            <?php
-                                } else if (isset($_SESSION['Quản lý'])) {
-                                ?>
-                            <div class="xoa">
-                                <a
-                                    href="./elements/mstaff/staffAct.php?reqact=deletestaff&idstaff=<?php echo $n->ID_NV; ?>">
-                                    <ion-icon name="trash"></ion-icon>
-                                </a>
-                            </div>
-                            <?php
-                                } else {
-                                ?>
-                            <div class="koxoa">
-                                <ion-icon name="trash"></ion-icon>
-                            </div>
-                            <?php
-                                }
-                                ?>
+                            <?php } ?>
                         </td>
                         <td class="td_table"><?php echo $n->TEN_NV; ?></td>
                         <td class="td_table"><?php echo $n->SDT_NV; ?></td>
+                        <td class="td_table set">
+                            <?php
+                                //tài khoản admin ko được xóa tk admin
+                                if ($n->LOAITK === 'Quản lý') {
+                                ?>
+                            <ion-icon class="koup" name="pencil"></ion-icon>
+                            <?php
+                                } else { ?>
+                            <tempstaff1 class="btnup" value="<?php echo $n->ID_NV; ?>">
+                                <ion-icon name="pencil"></ion-icon>
+                            </tempstaff1>
+                            <?php } ?>
+                        </td>
                         <td class="td_table"><?php echo $n->EMAIL; ?></td>
                         <td class="td_table"><?php echo $n->TINH_TP; ?></td>
                         <td class="td_table"><?php echo $n->PHUONG_XA; ?></td>
@@ -197,4 +183,22 @@ $getstaff = $staff->staffGetById($idstaff);
             </table>
         </section>
     </main>
+    <script>
+    $(".xoa").click(() => {
+        alert("ĐÃ XÓA");
+    })
+    $(".koxoa").click(() => {
+        alert("KHÔNG THỂ XÓA bằng tài khoản này");
+    })
+    $(".koup").click(() => {
+        alert("KHÔNG THỂ UPDATE bằng tài khoản này");
+    })
+    $(".kolock").click(() => {
+        alert("KHÔNG THỂ THAY ĐỔI bằng tài khoản này");
+    })
+    $("tempstaff1").click(function() {
+        var idstaff = $(this).attr("value");
+        $("#center").load("./elements/mstaff/staffUpdate.php?&idstaff=" + idstaff);
+    });
+    </script>
 </div>

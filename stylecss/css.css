@@ -896,6 +896,37 @@
      align-items: center;
  }
  
+ .DTD1 {
+     background-color: #F4B8CE;
+     width: 150px;
+     align-items: center;
+     font-size: .9rem;
+ }
+ 
+ .DVC1 {
+     background-color: #6fcaea;
+     width: 150px;
+     align-items: center;
+ }
+ 
+ .GTC1 {
+     background-color: #86e49d;
+     width: 150px;
+     align-items: center;
+ }
+ 
+ .DH1 {
+     background-color: #FF3333;
+     width: 150px;
+     align-items: center;
+ }
+ 
+ .HT1 {
+     background-color: #808080;
+     width: 150px;
+     align-items: center;
+ }
+ 
  @media (max-width: 1000px) {
      .td_table.th_table:not(:first-of-type) {
          min-width: 15rem;
@@ -1083,8 +1114,8 @@
  }
  
  .info {
-     width: 500px;
-     height: 250px;
+     width: 800px;
+     height: 220px;
      background-color: #fff;
      box-sizing: border-box;
      border-radius: 20px;
@@ -1094,6 +1125,25 @@
      position: relative;
      text-transform: uppercase;
      line-height: 27px;
+ }
+ 
+ .info li {
+     margin-bottom: 10px;
+ }
+ 
+ #mot {
+     align-items: left;
+ }
+ 
+ #hai {
+     align-items: right;
+     margin-left: 100px;
+ }
+ 
+ .info-container {
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-between;
  }
  
  .baoinfo {

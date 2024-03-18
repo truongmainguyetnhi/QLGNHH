@@ -6,7 +6,8 @@
     </div>
     <div class="body_them">
         <section class="them_body">
-            <form onsubmit="alert('Thành công')" name="newship" id="formadd_ship" method="post" enctype="multipart/form-data" action="./elements/mshipper/shipperAct.php?reqact=addnew">
+            <form onsubmit="alert('Thành công')" name="newship" id="formadd_ship" method="post"
+                enctype="multipart/form-data" action="./elements/mshipper/shipperAct.php?reqact=addnew">
                 <span class="title">Thông tin shipper</span>
                 <div class="fields">
                     <div class="input_group type-md">
@@ -106,9 +107,10 @@
                 <table class="table_view">
                     <thead class="thead_table">
                         <tr align="left" class="tr_table">
-                            <th class="th_table">Tùy chọn</th>
+                            <th class="th_table">Loại tài khoản</th>
                             <th class="th_table">Tên Shipper</th>
                             <th class="th_table">Số điện thoại</th>
+                            <th class="th_table">Tùy chọn</th>
                             <th class="th_table">Email</th>
                             <th class="th_table">Tỉnh/Thành phố</th>
                             <th class="th_table">Phường/Xã</th>
@@ -117,57 +119,58 @@
                             <th class="th_table">Trạng thái</th>
                             <th class="th_table">Tên đăng nhập</th>
                             <th class="th_table">Mật khẩu</th>
-                            <th class="th_table">Loại tài khoản</th>
                         </tr>
                     </thead>
                     <tbody class="tbody_table">
                         <?php
                         foreach ($list_ship as $n) {
                         ?>
-                            <tr class="tr_table">
-                                <td class="td_table set">
-                                    <tempship class="btnup" value="<?php echo $n->ID_SP; ?>">
-                                        <ion-icon name="pencil"></ion-icon>
-                                    </tempship>
-                                    <div class="xoa">
-                                        <a href="./elements/mshipper/shipperAct.php?reqact=deleteship&idship=<?php echo $n->ID_SP; ?>">
-                                            <ion-icon name="trash"></ion-icon>
-                                        </a>
-                                    </div>
-                                </td>
-                                <td class="td_table"><?php echo $n->TEN_SP; ?></td>
-                                <td class="td_table"><?php echo $n->SDT_SP; ?></td>
-                                <td class="td_table"><?php echo $n->EMAIL; ?></td>
-                                <td class="td_table"><?php echo $n->TINH_TP; ?></td>
-                                <td class="td_table"><?php echo $n->PHUONG_XA; ?></td>
-                                <td class="td_table"><?php echo $n->DUONG_SONHA; ?></td>
-                                <td class="td_table"><strong><?php echo $n->CCCD; ?></strong></td>
-                                <td class="td_table tt">
-                                    <?php
+                        <tr class="tr_table">
+
+                            <td class="td_table">
+                                <p class="status ship"><?php echo $n->LOAITK; ?></p>
+                            </td>
+                            <td class="td_table"><?php echo $n->TEN_SP; ?></td>
+                            <td class="td_table"><?php echo $n->SDT_SP; ?></td>
+                            <td class="td_table set">
+                                <tempship class="btnup" value="<?php echo $n->ID_SP; ?>">
+                                    <ion-icon name="pencil"></ion-icon>
+                                </tempship>
+                                <!--<div class="xoa">
+                                    <a
+                                        href="./elements/mshipper/shipperAct.php?reqact=deleteship&idship=<?php echo $n->ID_SP; ?>">
+                                        <ion-icon name="trash"></ion-icon>
+                                    </a>
+                                </div>-->
+                            </td>
+                            <td class="td_table"><?php echo $n->EMAIL; ?></td>
+                            <td class="td_table"><?php echo $n->TINH_TP; ?></td>
+                            <td class="td_table"><?php echo $n->PHUONG_XA; ?></td>
+                            <td class="td_table"><?php echo $n->DUONG_SONHA; ?></td>
+                            <td class="td_table"><strong><?php echo $n->CCCD; ?></strong></td>
+                            <td class="td_table tt">
+                                <?php
                                     if ($n->TRANGTHAI == "on") {
                                     ?>
-                                        <a href="./elements/mshipper/shipperAct.php?reqact=setlock&idship=<?php echo $n->ID_SP; ?> 
+                                <a href="./elements/mshipper/shipperAct.php?reqact=setlock&idship=<?php echo $n->ID_SP; ?> 
                                     &trangthaiship=<?php echo $n->TRANGTHAI; ?>">
-                                            <ion-icon name="lock-open"></ion-icon>
-                                        </a>
-                                    <?php
+                                    <ion-icon name="lock-open"></ion-icon>
+                                </a>
+                                <?php
                                     } else {
                                     ?>
-                                        <a href="./elements/mshipper/shipperAct.php?reqact=setlock&idship=<?php echo $n->ID_SP; ?>
+                                <a href="./elements/mshipper/shipperAct.php?reqact=setlock&idship=<?php echo $n->ID_SP; ?>
                                     &trangthaiship=<?php echo $n->TRANGTHAI; ?>">
-                                            <ion-icon name="lock-closed"></ion-icon>
-                                        </a>
-                                    <?php
+                                    <ion-icon name="lock-closed"></ion-icon>
+                                </a>
+                                <?php
                                     }
                                     ?>
-                                </td>
-                                <td class="td_table"><?php echo $n->TENTK; ?></td>
-                                <td class="td_table"><?php echo $n->MATKHAU; ?></td>
-                                <td class="td_table">
-                                    <p class="status ship"><?php echo $n->LOAITK; ?></p>
-                                </td>
+                            </td>
+                            <td class="td_table"><?php echo $n->TENTK; ?></td>
+                            <td class="td_table"><?php echo $n->MATKHAU; ?></td>
 
-                            </tr>
+                        </tr>
                         <?php
                         }
                         ?>
