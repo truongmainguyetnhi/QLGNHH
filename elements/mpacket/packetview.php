@@ -168,8 +168,10 @@
             </section>
         </main>
     </div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script>
-    var isOpen = true; // Ban đầu chualoc mở
+    //dongmopacket
+    var isOpenP = true; // Ban đầu chualoc mở
 
     document.getElementById('btnphandon').addEventListener('click', function() {
         var bodychualoc = document.getElementById('chualoc');
@@ -177,21 +179,20 @@
         var ionIcon = document.querySelector('#btnphandon ion-icon');
         var span = document.querySelector('#btnphandon span');
 
-        if (isOpen) {
+        if (isOpenP) {
             bodyloc.style.display = 'block';
             bodychualoc.style.display = 'none';
 
             ionIcon.setAttribute('name', 'layers-outline');
             span.innerHTML = 'Tổng quát';
-            isOpen = false;
+            isOpenP = false;
         } else {
             bodyloc.style.display = 'none';
             bodychualoc.style.display = 'block';
             ionIcon.setAttribute('name', 'funnel-outline');
             span.innerHTML = 'Phân đơn';
-            isOpen = true;
+            isOpenP = true;
         }
     });
     </script>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 </div>

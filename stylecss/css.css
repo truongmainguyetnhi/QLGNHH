@@ -343,7 +343,6 @@
  .body_them {
      display: none;
      min-height: 40vh;
-     height: 75vh;
      align-items: center;
      background-color: #ffffff;
      border-radius: .6rem;
@@ -371,7 +370,7 @@
  }
  
  .phanchi {
-     height: 40vh;
+     height: 50vh;
      align-items: center;
      background-color: #ffffff;
      border-radius: .6rem;
@@ -527,6 +526,25 @@
  .input_group.type-md input {
      padding-left: 0;
      border-bottom: .05rem solid #000;
+ }
+ 
+ .ship_gr input,
+ .ship_gr select {
+     width: 100%;
+     padding: .5rem;
+     font-size: 1rem;
+     border: none;
+     outline: none;
+     padding-left: 0;
+     border-bottom: .05rem solid #000;
+ }
+ 
+ #titleshipper {
+     margin-bottom: 30px;
+     font-size: 20px;
+     font-weight: 500;
+     display: block;
+     color: var(--primary-color)
  }
  
  .input_group label {
@@ -1146,7 +1164,7 @@
  
  .info {
      width: 800px;
-     height: 220px;
+     height: 250px;
      background-color: #fff;
      box-sizing: border-box;
      border-radius: 20px;
@@ -1247,4 +1265,17 @@
      display: flex;
      z-index: 9;
      right: 10px;
+ }
+ 
+ .upload {
+     width: 50px;
+     height: 50px;
+     border-radius: 50%;
+     position: absolute;
+     justify-content: center;
+     align-items: center;
+     display: flex;
+     z-index: 9;
+     top: 65%;
+     left: 30%;
  }

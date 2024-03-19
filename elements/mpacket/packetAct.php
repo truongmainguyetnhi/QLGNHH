@@ -29,7 +29,7 @@ if (isset($_GET['reqact'])) {
             }
             break;
 
-        case 'updatepacket':
+        case 'updatepacket_shipper':
             // Xử lý cập nhật thông tin gói hàng
             $ID_DH = $_POST['idpacket'];
             $TEN_SP = $_POST['tenship'];
@@ -47,6 +47,21 @@ if (isset($_GET['reqact'])) {
                 echo "Shipper không tồn tại.";
             }
             break;
+
+        case 'updatepacket_diachi':
+            // Xử lý cập nhật thông tin địa chỉ và trạng thái gói hàng
+            $ID_DH = $_POST['idpacket'];
+            $TRANGTHAI_DH = $_POST['ttdh'];
+            $TEN_KHO = $_POST['tenkho'];
+            $packet = new packet();
+            $rs = $packet->packetUpdate_dc_tt($TRANGTHAI_DH, $TEN_KHO, $ID_DH);
+            if ($rs) {
+                header('location:../../faceship.php?xacnhan_message=Cập nhật thành công!');
+            } else {
+                header('location:../../index.php??xacnhan_message=Cập nhật thất bại!');
+            }
+            break;
+
         case 'search':
             $MA_DH = $_POST['noidung'];
             $packet = new packet();

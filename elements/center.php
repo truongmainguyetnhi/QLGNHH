@@ -24,6 +24,9 @@
             case 'staffview':
                 require 'elements/mstaff/staffview.php';
                 break;
+            case 'khoview':
+                require 'elements/mkho/khoview.php';
+                break;
             case 'login':
                 require '';
                 break;

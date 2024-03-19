@@ -80,20 +80,35 @@ class packet extends Database
     public function donGetAll($noidung)
     {
         $getOrders = $this->connect->prepare("SELECT * FROM donhang 
-INNER JOIN phai ON donhang.ID_DH = phai.ID_DH 
-INNER JOIN thanhtoan ON phai.ID_TT = thanhtoan.ID_TT 
-INNER JOIN co ON thanhtoan.ID_TT = co.ID_TT 
-INNER JOIN nguoinhan ON co.ID_NN = nguoinhan.ID_NN 
-INNER JOIN cuahang ON donhang.ID_CH = cuahang.ID_CH
-LEFT JOIN giao ON donhang.ID_DH = giao.ID_DH 
-LEFT JOIN shipper ON giao.ID_SP = shipper.ID_SP 
-WHERE MA_DH LIKE :noidung");
+        INNER JOIN phai ON donhang.ID_DH = phai.ID_DH 
+        INNER JOIN thanhtoan ON phai.ID_TT = thanhtoan.ID_TT 
+        INNER JOIN co ON thanhtoan.ID_TT = co.ID_TT 
+        INNER JOIN nguoinhan ON co.ID_NN = nguoinhan.ID_NN 
+        INNER JOIN cuahang ON donhang.ID_CH = cuahang.ID_CH
+        LEFT JOIN giao ON donhang.ID_DH = giao.ID_DH 
+        LEFT JOIN shipper ON giao.ID_SP = shipper.ID_SP 
+        WHERE MA_DH LIKE :noidung");
         $getOrders->bindParam(':noidung', $noidung, PDO::PARAM_STR);
         $getOrders->setFetchMode(PDO::FETCH_OBJ);
         $getOrders->execute();
         return $getOrders->fetchAll();
     }
-
+    public function packetGetById($ID_DH)
+    {
+        $getId = $this->connect->prepare("SELECT * FROM donhang
+        INNER JOIN phai ON donhang.ID_DH = phai.ID_DH 
+        INNER JOIN thanhtoan ON phai.ID_TT = thanhtoan.ID_TT 
+        INNER JOIN co ON thanhtoan.ID_TT = co.ID_TT 
+        INNER JOIN nguoinhan ON co.ID_NN = nguoinhan.ID_NN 
+        INNER JOIN cua1 ON nguoinhan.ID_NN = cua1.ID_NN
+        INNER JOIN diachi ON cua1.ID_DC = diachi.ID_DC
+        LEFT JOIN giao ON donhang.ID_DH = giao.ID_DH
+        LEFT JOIN shipper ON giao.ID_SP = shipper.ID_SP
+        WHERE donhang.ID_DH = ?");
+        $getId->setFetchMode(PDO::FETCH_OBJ);
+        $getId->execute(array($ID_DH));
+        return $getId->fetch();
+    }
 
     public function packetAdd($TRANGTHAI_DH, $TRONGLUONG, $MOTA, $TEN_HH, $THOIGIANTAO, $GHICHU, $TEN_NN, $SDT_NN, $TINH_TP, $PHUONG_XA, $DUONG_SONHA, $HINHTHUC_TT, $PHISHIP, $THUHO, $TONGTIENHANG, $TENTK)
     {
@@ -160,23 +175,21 @@ WHERE MA_DH LIKE :noidung");
 
         return $insert->rowCount();
     }
-
-    public function packetGetById($ID_DH)
+    //chỉnh sửa trạng thái và tên kho hiện tại
+    public function packetUpdate_dc_tt($TRANGTHAI_DH, $TEN_KHO, $ID_DH)
     {
-        $getId = $this->connect->prepare("SELECT * FROM donhang
-        INNER JOIN phai ON donhang.ID_DH = phai.ID_DH 
-        INNER JOIN thanhtoan ON phai.ID_TT = thanhtoan.ID_TT 
-        INNER JOIN co ON thanhtoan.ID_TT = co.ID_TT 
-        INNER JOIN nguoinhan ON co.ID_NN = nguoinhan.ID_NN 
-        INNER JOIN cua1 ON nguoinhan.ID_NN = cua1.ID_NN
-        INNER JOIN diachi ON cua1.ID_DC = diachi.ID_DC
-        LEFT JOIN giao ON donhang.ID_DH = giao.ID_DH
-        LEFT JOIN shipper ON giao.ID_SP = shipper.ID_SP
-        WHERE donhang.ID_DH = ?");
-        $getId->setFetchMode(PDO::FETCH_OBJ);
-        $getId->execute(array($ID_DH));
-        return $getId->fetch();
+        $update = $this->connect->prepare("UPDATE donhang SET TRANGTHAI_DH = ? WHERE ID_DH = ?");
+        $update->execute(array($TRANGTHAI_DH, $ID_DH));
+
+        $adddckho = $this->connect->prepare("INSERT INTO diachi (TEN_KHO) VALUES (?)");
+        $adddckho->execute(array($TEN_KHO));
+        $iddckho = $this->connect->lastInsertId();
+
+        $addkho = $this->connect->prepare("INSERT INTO kho (TEN_KHO) VALUES (?)");
+        $addkho->execute(array($TEN_KHO));
+        $idkho = $this->connect->lastInsertId();
     }
+
 
     public function checkShipperExist($TEN_SP)
     {

@@ -8,12 +8,14 @@
     <div class="body_update">
         <div class=" phanchi ">
             <section class="them_body">
-                <form name="updatepacket" id="update_packet" class="test" onsubmit="alert('Thành công')" method="post" enctype="multipart/form-data" action="./elements/mpacket/packetAct.php?reqact=updatepacket">
+                <form name="updatepacket" id="update_packet" class="test" onsubmit="alert('Thành công')" method="post"
+                    enctype="multipart/form-data" action="./elements/mpacket/packetAct.php?reqact=updatepacket_shipper">
                     <span class="title">Chỉ định shipper giao hàng: <?php echo $getpacket->MA_DH; ?></span>
                     <div class="fields">
                         <input type="hidden" name="idpacket" value="<?php echo $idpacket; ?>">
                         <div class="input_group type-md">
-                            <input type="text" name="tenship" value="<?php echo $getpacket->TEN_SP ?? 'Chưa có'; ?>" required>
+                            <input type="text" name="tenship" value="<?php echo $getpacket->TEN_SP ?? 'Chưa có'; ?>"
+                                required>
                             <label for="tenship">Tên Shipper</label>
                             <span class="border"></span>
                         </div>
@@ -51,10 +53,10 @@
                             <?php
                             foreach ($list_ship as $n) {
                             ?>
-                                <tr class="tr_table">
-                                    <td class="td_table"><?php echo $n->TEN_SP; ?></td>
-                                    <td class="td_table"><?php echo $n->TINH_TP; ?></td>
-                                </tr>
+                            <tr class="tr_table">
+                                <td class="td_table"><?php echo $n->TEN_SP; ?></td>
+                                <td class="td_table"><?php echo $n->TINH_TP; ?></td>
+                            </tr>
                             <?php
                             }
                             ?>
@@ -69,14 +71,14 @@
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script>
-    document.getElementById('btnOpenForm1').addEventListener('click', function() {
-        var bodyds = document.getElementById('dsdh');
-        if (bodyds.style.display === 'none') {
-            bodyds.style.display = 'block';
-        } else {
-            bodyds.style.display = 'none';
-        }
-    });
+document.getElementById('btnOpenForm1').addEventListener('click', function() {
+    var bodyds = document.getElementById('dsdh');
+    if (bodyds.style.display === 'none') {
+        bodyds.style.display = 'block';
+    } else {
+        bodyds.style.display = 'none';
+    }
+});
 </script>
 
 </div>

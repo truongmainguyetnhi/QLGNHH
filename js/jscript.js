@@ -42,6 +42,7 @@ $("temppacket").click(function() {
     var idpacket = $(this).attr("value");
     $("#center").load("./elements/mpacket/packetUpdate.php?&idpacket=" + idpacket);
 });
+
 $(".xoa").click(() => {
     alert("ĐÃ XÓA");
 })

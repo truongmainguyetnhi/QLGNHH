@@ -82,6 +82,12 @@ session_start();
                             <span class="text nav-text">Nhân viên</span>
                         </a>
                     </li>
+                    <li class="nav-link">
+                        <a href="index.php?req=khoview">
+                            <i class='bx bx-building-house icon'></i>
+                            <span class="text nav-text">Kho hàng</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="bottom-content">

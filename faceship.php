@@ -35,6 +35,12 @@ require './elements/mod/packetCls.php';
             </div>
         </form>
     </div>
+
+
+
+
+
+
     <div class="changedh">
         <?php
         if (isset($_POST['btn'])) {
@@ -42,96 +48,140 @@ require './elements/mod/packetCls.php';
             if (!empty($_POST['noidung'])) {
                 $obj = new packet();
                 $list_packet = $obj->donGetAll($noidung);
-        ?>
-        <div class="baoinfo">
-            <div class="info">
-                <?php
-                        if (empty($list_packet)) {
-                            echo "<strong>Đơn hàng bạn tra cứu không tồn tại!!!</strong>";
-                        } else { ?>
-                <div class='info-container'>
-                    <?php
-                                foreach ($list_packet as $n) {
-                                    $status = '';
-                                    switch ($n->TRANGTHAI_DH) {
-                                        case 'Đã tạo đơn':
-                                            $status = "<span class='status DTD1'>$n->TRANGTHAI_DH</span>";
-                                            break;
-                                        case 'Đang vận chuyển':
-                                            $status = "<span class='status DVC1'>$n->TRANGTHAI_DH</span>";
-                                            break;
-                                        case 'Giao thành công':
-                                            $status = "<span class='status GTC1'>$n->TRANGTHAI_DH</span>";
-                                            break;
-                                        case 'Đã hủy':
-                                            $status = "<span class='status DH1'>$n->TRANGTHAI_DH</span>";
-                                            break;
-                                        case 'Hoàn trả':
-                                            $status = "<span class='status HT1'>$n->TRANGTHAI_DH</span>";
-                                            break;
-                                        default:
-                                            $status = "<span class='status'>$n->TRANGTHAI_DH</span>";
-                                    }; ?>
 
-                    <ul id="mot">
-                        <li>Mã đơn hàng: <strong><?php echo " $n->MA_DH"; ?></strong></li>
-                        <li>Trạng thái: <strong><?php echo " $status"; ?></strong></li>
-                        <li>Địa chỉ hiện tại: <strong><?php echo " "; ?></strong></li>
-                        <li>Tên hàng hóa: <strong><?php echo " $n->TEN_HH"; ?></strong></li>
-                        <li>Tổng tiền hàng: <strong><?php echo " $n->TONGTIENHANG VND"; ?></strong></li>
-                    </ul>
 
-                    <ul id="hai">
-                        <li>Tên shipper: <strong><?php echo " $n->TEN_SP"; ?></strong></li>
-                        <li>Tên cửa hàng: <strong><?php echo " $n->TEN_CH"; ?></strong></li>
-                        <li>Tên người nhận: <strong><?php echo " $n->TEN_NN"; ?></strong></li>
-                        <li>Số điện thoại: <strong><?php echo " $n->SDT_NN"; ?></strong></li>
-                    </ul>
-                    <?php
-                                }
-                            }
-                            ?>
-                </div>
+                if (empty($list_packet)) {
+                    echo "<strong>Đơn hàng bạn tra cứu không tồn tại!!!</strong>";
+                } else { ?>
 
-            </div>
-            <?php
+
+
+
+
+                    <div class="body_update">
+                        <div class=" phanchi ">
+                            <section class="them_body">
+                                <form name="updatepacket" id="update_packet" class="test" onsubmit="alert('Thành công')" method="post" enctype="multipart/form-data" action="./elements/mpacket/packetAct.php?reqact=updatepacket_diachi">
+                                    <?php
+                                    foreach ($list_packet as $n) {
+                                    ?>
+                                        <span class="title">Cập nhật địa chỉ giao hàng:
+                                            <?php echo $n->MA_DH; ?></span>
+                                        <div class="fields">
+                                            <input type="hidden" name="idpacket" value="<?php echo $n->ID_DH; ?>">
+                                            <div class="input_group type-md">
+                                                <select name="ttdh">
+                                                    <option value="Đã tạo đơn" <?php echo ($n->TRANGTHAI_DH == 'Đã tạo đơn') ? 'selected' : ''; ?>>Đã tạo
+                                                        đơn
+                                                    </option>
+                                                    <option value="Đang vận chuyển" <?php echo ($n->TRANGTHAI_DH == 'Đang vận chuyển') ? 'selected' : ''; ?>>
+                                                        Đang
+                                                        vận chuyển</option>
+                                                    <option value="Giao thành công" <?php echo ($n->TRANGTHAI_DH == 'Giao thành công') ? 'selected' : ''; ?>>
+                                                        Giao
+                                                        thành công</option>
+                                                    <option value="Đã hủy" <?php echo ($n->TRANGTHAI_DH == 'Đã hủy') ? 'selected' : ''; ?>>Đã hủy
+                                                    </option>
+                                                    <option value="Hoàn trả" <?php echo ($n->TRANGTHAI_DH == 'Hoàn trả') ? 'selected' : ''; ?>>Hoàn trả
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="input_group type-md">
+                                                <input type="text" name="tenkho" required>
+                                                <label for="tenkho">Tên kho hiện tại...</label>
+                                                <span class="border"></span>
+                                            </div>
+                                        </div>
+
+
+                                        <span class="title">Thông tin đơn hàng</span>
+                                        <div class="fields">
+                                            <div class="input_group type-md read">
+                                                <input type="text" name="tenhang" value="<?php echo $n->TEN_HH; ?>" required readonly>
+                                                <label for=" tenhang">Tên hàng hóa</label>
+                                                <span class="border"></span>
+                                            </div>
+                                            <div class="input_group type-md read">
+                                                <input type="text" name="tenngn" value="<?php echo $n->TEN_NN; ?>" required readonly>
+                                                <label for=" tenngn">Tên người nhận</label>
+                                                <span class="border"></span>
+                                            </div>
+                                            <div class="input_group type-md read">
+                                                <input type="text" name="sdt" value="<?php echo $n->SDT_NN; ?>" required readonly>
+                                                <label for="sdt">Số điện thoại</label>
+                                                <span class="border"></span>
+                                            </div>
+                                            <div class="input_group type-md read">
+                                                <input type="text" name="tongtien" value="<?php echo $n->TONGTIENHANG; ?>" required readonly>
+                                                <label for=" tongtien">Tổng tiền hàng</label>
+                                                <span class="border"></span>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
+                                    <div class="contaniner">
+                                        <input type="submit" class="btn" value="Accept">
+                                    </div>
+                                </form>
+                            </section>
+                        </div>
+                    </div>
+    </div>
+<?php
+                }
             } else {
                 echo "<div class='baoinfo'><div class='info'><strong>Vui lòng nhập mã đơn hàng</strong></div></div>";
             }
         }
-            ?>
-        </div>
+?>
+</div>
 
-    </div>
-    <div class="khuvucbang">
-        <div class="table_khu">
-            <main class="vung_table">
-                <section class="table_header">
-                    <h1>Danh sách đơn hàng</h1>
-                </section>
-                <section class="table_body">
-                    <?php
-                    $obj = new packet();
-                    $tentk = $_SESSION['username'];
-                    $list_packet = $obj->packetGetforShipper($tentk);
-                    ?>
-                    <table class="table_view">
-                        <thead class="thead_table">
-                            <tr align="left" class="tr_table">
-                                <th class="th_table">Mã đơn hàng</th>
-                                <th class="th_table">Tên hàng hóa</th>
-                                <th class="th_table">Tên người nhận</th>
-                                <th class="th_table">Số điện thoại</th>
-                                <th class="th_table">Tổng tiền</th>
-                                <th class="th_table">Trạng thái</th>
-                                <th class="th_table">Thời gian tạo</th>
-                                <th class="th_table">Ghi chú</th>
-                            </tr>
-                        </thead>
-                        <tbody class="tbody_table">
-                            <?php
-                            foreach ($list_packet as $n) {
-                            ?>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="khuvucbang">
+    <div class="table_khu">
+        <main class="vung_table">
+            <section class="table_header">
+                <h1>Danh sách đơn hàng</h1>
+            </section>
+            <section class="table_body">
+                <?php
+                $obj = new packet();
+                $tentk = $_SESSION['username'];
+                $list_packet = $obj->packetGetforShipper($tentk);
+                ?>
+                <table class="table_view">
+                    <thead class="thead_table">
+                        <tr align="left" class="tr_table">
+                            <th class="th_table">Mã đơn hàng</th>
+                            <th class="th_table">Tên hàng hóa</th>
+                            <th class="th_table">Tên người nhận</th>
+                            <th class="th_table">Số điện thoại</th>
+                            <th class="th_table">Tổng tiền</th>
+                            <th class="th_table">Trạng thái</th>
+                            <th class="th_table">Thời gian tạo</th>
+                            <th class="th_table">Ghi chú</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody_table">
+                        <?php
+                        foreach ($list_packet as $n) {
+                        ?>
                             <tr class="tr_table">
                                 <td class="td_table"><strong><?php echo $n->MA_DH; ?></strong></td>
                                 <td class="td_table"><?php echo $n->TEN_HH; ?></td>
@@ -140,38 +190,38 @@ require './elements/mod/packetCls.php';
                                 <td class="td_table"><strong><?php echo $n->TONGTIENHANG; ?></strong></td>
                                 <td class="td_table">
                                     <?php
-                                        $nhi = $n->TRANGTHAI_DH;
-                                        if ('Đã tạo đơn' === $nhi) {
-                                        ?>
-                                    <p class="status DTD"><?php echo $n->TRANGTHAI_DH; ?></p>
+                                    $nhi = $n->TRANGTHAI_DH;
+                                    if ('Đã tạo đơn' === $nhi) {
+                                    ?>
+                                        <p class="status DTD"><?php echo $n->TRANGTHAI_DH; ?></p>
                                     <?php
-                                        } elseif ('Đang vận chuyển' === $nhi) {
-                                        ?>
-                                    <p class="status DVC"><?php echo $n->TRANGTHAI_DH; ?></p>
+                                    } elseif ('Đang vận chuyển' === $nhi) {
+                                    ?>
+                                        <p class="status DVC"><?php echo $n->TRANGTHAI_DH; ?></p>
                                     <?php } elseif ('Giao thành công' === $nhi) {
-                                        ?>
-                                    <p class="status GTC"><?php echo $n->TRANGTHAI_DH; ?></p>
+                                    ?>
+                                        <p class="status GTC"><?php echo $n->TRANGTHAI_DH; ?></p>
                                     <?php } elseif ('Đã hủy' === $nhi) {
-                                        ?>
-                                    <p class="status DH"><?php echo $n->TRANGTHAI_DH; ?></p>
+                                    ?>
+                                        <p class="status DH"><?php echo $n->TRANGTHAI_DH; ?></p>
                                     <?php } elseif ('Hoàn trả' === $nhi) {
-                                        ?>
-                                    <p class="status HT"><?php echo $n->TRANGTHAI_DH; ?></p>
+                                    ?>
+                                        <p class="status HT"><?php echo $n->TRANGTHAI_DH; ?></p>
                                     <?php } ?>
                                 </td>
                                 <td class="td_table"><?php echo $n->THOIGIANTAO; ?></td>
                                 <td class="td_table"><?php echo $n->GHICHU; ?></td>
 
                             </tr>
-                            <?php
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                </section>
-            </main>
-        </div>
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </section>
+        </main>
     </div>
+</div>
 
 </body>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -179,11 +229,16 @@ require './elements/mod/packetCls.php';
 
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    document.querySelector('.nutdx').addEventListener('click', function() {
-        window.location.href = 'login.php';
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelector('.nutdx').addEventListener('click', function() {
+            window.location.href = 'login.php';
+        });
     });
-});
 </script>
+<?php
+if (isset($_GET['xacnhan_message'])) {
+    echo "<script>alert('" . $_GET['xacnhan_message'] . "');</script>";
+}
+?>
 
 </html>
