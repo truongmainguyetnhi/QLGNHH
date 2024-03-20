@@ -17,6 +17,16 @@ class ship extends Database
     }
     public function ShipAdd($TEN_SP, $SDT_SP, $TRANGTHAI, $EMAIL, $CCCD, $TENTK, $MATKHAU, $LOAITK, $TINH_TP, $PHUONG_XA, $DUONG_SONHA)
     {
+        // Kiểm tra xem TENTK đã tồn tại trong cơ sở dữ liệu chưa
+        $checkExist = $this->connect->prepare("SELECT COUNT(*) FROM shipper WHERE TENTK = ?");
+        $checkExist->execute(array($TENTK));
+        $count = $checkExist->fetchColumn();
+
+        // Nếu TENTK đã tồn tại, hiển thị thông báo lỗi và ngăn thêm mới
+        if ($count > 0) {
+            return false;
+        }
+
         $add = $this->connect->prepare("INSERT INTO shipper (TEN_SP, SDT_SP, TRANGTHAI, EMAIL, CCCD, TENTK, MATKHAU, LOAITK)
         VALUES(?, ?, ?, ?, ?, ?, ?, ?) ");
         $add->execute(array($TEN_SP, $SDT_SP, $TRANGTHAI, $EMAIL, $CCCD, $TENTK, $MATKHAU, $LOAITK));

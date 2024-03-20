@@ -19,9 +19,9 @@ if (isset($_GET['reqact'])) {
             $ship = new ship();
             $rs = $ship->ShipAdd($TEN_SP, $SDT_SP, $TRANGTHAI, $EMAIL, $CCCD, $TENTK, $MATKHAU, $LOAITK, $TINH_TP, $PHUONG_XA, $DUONG_SONHA);
             if ($rs) {
-                header('location:../../index.php?req=shipperview');
+                echo "<script>alert('Thành công!'); window.location.href='../../index.php?req=shipperview';</script>";
             } else {
-                header('location:../../index.php?req=shipperview');
+                echo "<script>alert('Tên đăng nhập đã tồn tại!'); window.location.href='../../index.php?req=shipperview';</script>";
             }
             break;
         case 'deleteship':
@@ -83,8 +83,7 @@ if (isset($_GET['reqact'])) {
                 } else {
                     header('location:../../login.php?login_message=Đăng nhập không thành công!');
                 }
-            }
-            else {
+            } else {
                 header('location:../../login.php?login_message=Đăng nhập không thành công!');
             }
             break;

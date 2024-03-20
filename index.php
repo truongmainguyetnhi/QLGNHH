@@ -97,7 +97,6 @@ session_start();
                         <span class="text nav-text">Logout</span>
                     </a>
                 </li>
-
                 <li class="mode">
                     <div class="moon-sun">
                         <i class='bx bx-moon icon moon'></i>

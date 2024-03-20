@@ -20,9 +20,9 @@ if (isset($_GET['reqact'])) {
             $staff = new staff();
             $rs = $staff->staffAdd($TEN_NV, $SDT_NV, $EMAIL, $CCCD, $TENTK, $MATKHAU, $LOAITK, $TRANGTHAI, $TINH_TP, $PHUONG_XA, $DUONG_SONHA, $NGAYNHAP);
             if ($rs) {
-                header('location:../../index.php?req=staffview');
+                echo "<script>alert('Thành công!'); window.location.href='../../index.php?req=staffview';</script>";
             } else {
-                header('location:../../index.php?req=staffview');
+                echo "<script>alert('Tên đăng nhập đã tồn tại!'); window.location.href='../../index.php?req=staffview';</script>";
             }
             break;
         case 'deletestaff':

@@ -80,12 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Hàm để trừ tiền từ tài khoản của cửa hàng
-    function truTienKhoiTaiKhoan(soTien) {
-        // Thực hiện logic để trừ tiền từ tài khoản của cửa hàng ở đây
-        // Ví dụ: gửi yêu cầu AJAX hoặc gọi hàm xử lý trên server
-        console.log('Trừ ' + soTien + ' từ tài khoản của cửa hàng');
-    }
 });
 document.addEventListener("DOMContentLoaded", function() {
     document.querySelector('.nutdx').addEventListener('click', function() {

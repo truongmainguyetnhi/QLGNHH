@@ -6,8 +6,7 @@
     </div>
     <div class="body_them">
         <section class="them_body">
-            <form onsubmit="alert('Thành công')" name="newstore" id="formadd_store" method="post"
-                enctype="multipart/form-data" action="./elements/mstore/storeAct.php?reqact=addnew">
+            <form name="newstore" id="formadd_store" method="post" enctype="multipart/form-data" action="./elements/mstore/storeAct.php?reqact=addnew">
                 <span class="title">Thông tin cửa hàng</span>
                 <div class="fields">
                     <div class="input_group type-md">
@@ -125,47 +124,47 @@
                         <?php
                         foreach ($list_store as $n) {
                         ?>
-                        <tr class="tr_table">
-                            <td class="td_table">
-                                <p class="status store"><?php echo $n->LOAITK; ?></p>
-                            </td>
-                            <td class="td_table"><?php echo $n->TEN_CH; ?></td>
-                            <td class="td_table"><?php echo $n->SDT_CH; ?></td>
-                            <td class="td_table set">
-                                <tempstore class="btnup" value="<?php echo $n->ID_CH; ?>">
-                                    <ion-icon name="pencil"></ion-icon>
-                                </tempstore>
-                            </td>
-                            <td class="td_table"><?php echo $n->EMAIL; ?></td>
-                            <td class="td_table"><?php echo $n->TINH_TP; ?></td>
-                            <td class="td_table"><?php echo $n->PHUONG_XA; ?></td>
-                            <td class="td_table"><?php echo $n->DUONG_SONHA; ?></td>
-                            <td class="td_table"><strong><?php echo $n->TAIKHOAN . "VND"; ?></strong></td>
-                            <td class="td_table tt">
-                                <?php
+                            <tr class="tr_table">
+                                <td class="td_table">
+                                    <p class="status store"><?php echo $n->LOAITK; ?></p>
+                                </td>
+                                <td class="td_table"><?php echo $n->TEN_CH; ?></td>
+                                <td class="td_table"><?php echo $n->SDT_CH; ?></td>
+                                <td class="td_table set">
+                                    <tempstore class="btnup" value="<?php echo $n->ID_CH; ?>">
+                                        <ion-icon name="pencil"></ion-icon>
+                                    </tempstore>
+                                </td>
+                                <td class="td_table"><?php echo $n->EMAIL; ?></td>
+                                <td class="td_table"><?php echo $n->TINH_TP; ?></td>
+                                <td class="td_table"><?php echo $n->PHUONG_XA; ?></td>
+                                <td class="td_table"><?php echo $n->DUONG_SONHA; ?></td>
+                                <td class="td_table"><strong><?php echo $n->TAIKHOAN . "VND"; ?></strong></td>
+                                <td class="td_table tt">
+                                    <?php
                                     if ($n->TRANGTHAI == "on") {
                                     ?>
-                                <a href="./elements/mstore/storeAct.php?reqact=setlock&idstore=<?php echo $n->ID_CH; ?> 
+                                        <a href="./elements/mstore/storeAct.php?reqact=setlock&idstore=<?php echo $n->ID_CH; ?> 
                                     &trangthaistore=<?php echo $n->TRANGTHAI; ?>">
-                                    <ion-icon name="lock-open"></ion-icon>
+                                            <ion-icon name="lock-open"></ion-icon>
 
-                                </a>
-                                <?php
+                                        </a>
+                                    <?php
                                     } else {
                                     ?>
-                                <a href="./elements/mstore/storeAct.php?reqact=setlock&idstore=<?php echo $n->ID_CH; ?>
+                                        <a href="./elements/mstore/storeAct.php?reqact=setlock&idstore=<?php echo $n->ID_CH; ?>
                                     &trangthaistore=<?php echo $n->TRANGTHAI; ?>">
-                                    <ion-icon name="lock-closed"></ion-icon>
-                                </a>
-                                <?php
+                                            <ion-icon name="lock-closed"></ion-icon>
+                                        </a>
+                                    <?php
                                     }
                                     ?>
-                            </td>
-                            <td class="td_table"><?php echo $n->TENTK; ?></td>
-                            <td class="td_table"><?php echo $n->MATKHAU; ?></td>
+                                </td>
+                                <td class="td_table"><?php echo $n->TENTK; ?></td>
+                                <td class="td_table"><?php echo $n->MATKHAU; ?></td>
 
 
-                        </tr>
+                            </tr>
                         <?php
                         }
                         ?>
@@ -174,5 +173,9 @@
             </section>
         </main>
     </div>
+    <?php
+    if (isset($_GET['tb_message'])) {
+        echo "<script>alert('" . $_GET['tb_message'] . "');</script>";
+    } ?>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 </div>

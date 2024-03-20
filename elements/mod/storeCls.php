@@ -17,6 +17,16 @@ class store extends Database
     }
     public function StoreAdd($TEN_CH, $SDT_CH, $TRANGTHAI, $EMAIL, $TAIKHOAN, $TENTK, $MATKHAU, $LOAITK, $TINH_TP, $PHUONG_XA, $DUONG_SONHA)
     {
+        // Kiểm tra xem TENTK đã tồn tại trong cơ sở dữ liệu chưa
+        $checkExist = $this->connect->prepare("SELECT COUNT(*) FROM cuahang WHERE TENTK = ?");
+        $checkExist->execute(array($TENTK));
+        $count = $checkExist->fetchColumn();
+
+        // Nếu TENTK đã tồn tại, hiển thị thông báo lỗi và ngăn thêm mới
+        if ($count > 0) {
+            return false;
+        }
+
         $addCuahang = $this->connect->prepare("INSERT INTO cuahang (TEN_CH, SDT_CH, TRANGTHAI, EMAIL, TAIKHOAN, TENTK, MATKHAU, LOAITK) 
         VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
         $addCuahang->execute(array($TEN_CH, $SDT_CH, $TRANGTHAI, $EMAIL, $TAIKHOAN, $TENTK, $MATKHAU, $LOAITK));

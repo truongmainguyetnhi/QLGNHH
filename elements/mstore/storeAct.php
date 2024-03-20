@@ -19,9 +19,9 @@ if (isset($_GET['reqact'])) {
             $store = new store();
             $rs = $store->StoreAdd($TEN_CH, $SDT_CH, $TRANGTHAI, $EMAIL, $TAIKHOAN, $TENTK, $MATKHAU, $LOAITK, $TINH_TP, $PHUONG_XA, $DUONG_SONHA);
             if ($rs) {
-                header('location:../../index.php?req=storeview');
+                echo "<script>alert('Thành công!'); window.location.href='../../index.php?req=storeview';</script>";
             } else {
-                header('location:../../index.php?req=storeview');
+                echo "<script>alert('Tên đăng nhập đã tồn tại!'); window.location.href='../../index.php?req=storeview';</script>";
             }
             break;
         case 'deletestore':

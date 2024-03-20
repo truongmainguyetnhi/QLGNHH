@@ -17,6 +17,16 @@ class staff extends Database
     }
     public function staffAdd($TEN_NV, $SDT_NV, $EMAIL, $CCCD, $TENTK, $MATKHAU, $LOAITK, $TRANGTHAI, $TINH_TP, $PHUONG_XA, $DUONG_SONHA, $NGAYNHAP)
     {
+        // Kiểm tra xem TENTK đã tồn tại trong cơ sở dữ liệu chưa
+        $checkExist = $this->connect->prepare("SELECT COUNT(*) FROM nhanvien WHERE TENTK = ?");
+        $checkExist->execute(array($TENTK));
+        $count = $checkExist->fetchColumn();
+
+        // Nếu TENTK đã tồn tại, hiển thị thông báo lỗi và ngăn thêm mới
+        if ($count > 0) {
+            return false;
+        }
+
         $add = $this->connect->prepare("INSERT INTO nhanvien (TEN_NV, SDT_NV, EMAIL, CCCD, TENTK, MATKHAU, LOAITK, TRANGTHAI) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         $add->execute(array($TEN_NV, $SDT_NV, $EMAIL, $CCCD, $TENTK, $MATKHAU, $LOAITK, $TRANGTHAI));
         $idnhanvien = $this->connect->lastInsertId();

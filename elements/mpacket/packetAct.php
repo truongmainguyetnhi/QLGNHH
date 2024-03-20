@@ -53,12 +53,14 @@ if (isset($_GET['reqact'])) {
             $ID_DH = $_POST['idpacket'];
             $TRANGTHAI_DH = $_POST['ttdh'];
             $TEN_KHO = $_POST['tenkho'];
+            $GHICHU = $_POST['ghichu'];
+            $TEN_CH = $_POST['tench'];
             $packet = new packet();
-            $rs = $packet->packetUpdate_dc_tt($TRANGTHAI_DH, $TEN_KHO, $ID_DH);
+            $rs = $packet->packetUpdate_dc_tt($TRANGTHAI_DH, $TEN_KHO, $GHICHU, $TEN_CH, $ID_DH);
             if ($rs) {
-                header('location:../../faceship.php?xacnhan_message=Cập nhật thành công!');
+                header('location:../../faceship.php');
             } else {
-                header('location:../../index.php??xacnhan_message=Cập nhật thất bại!');
+                header('location:../../faceship.php');
             }
             break;
 

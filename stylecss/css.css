@@ -132,6 +132,7 @@
  }
  
  .sidebar .menu {
+     color: #006b21;
      margin-top: 35px;
  }
  
@@ -179,7 +180,7 @@
  }
  
  .sidebar .menu-bar {
-     height: calc(100%-50px);
+     height: 90%;
      display: flex;
      flex-direction: column;
      justify-content: space-between;
@@ -369,8 +370,56 @@
      margin: 0 10px 0 10px;
  }
  
+ .giao {
+     height: 60vh;
+     align-items: center;
+     background-color: #ffffff;
+     border-radius: .6rem;
+     margin: 0 10px 0 10px;
+     overflow-y: scroll;
+     overflow-x: hidden;
+ }
+ 
+ .giao .read label {
+     position: absolute;
+     top: 5%;
+     transition: translateY(-5%);
+     font-size: .8rem;
+ }
+ 
+ .giao::-webkit-scrollbar-thumb {
+     border-radius: .5rem;
+     background-color: #0004;
+     visibility: hidden;
+ }
+ 
+ .giao:hover::-webkit-scrollbar-thumb {
+     visibility: visible;
+ }
+ 
+ .giao::-webkit-scrollbar {
+     width: 0.5rem;
+     height: 0.5rem;
+ }
+ 
+ .giao form .fields {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     flex-wrap: wrap;
+ }
+ 
+ .giao .title {
+     margin-top: 30px;
+     font-size: 20px;
+     font-weight: 500;
+     display: block;
+     text-transform: uppercase;
+     color: var(--primary-color)
+ }
+ 
  .phanchi {
-     height: 50vh;
+     height: 40vh;
      align-items: center;
      background-color: #ffffff;
      border-radius: .6rem;
@@ -885,32 +934,35 @@
  
  .DTD {
      background-color: #F4B8CE;
-     width: 100px;
+     width: 150px;
      align-items: center;
-     font-size: .9rem;
+     font-size: 1rem;
  }
  
  .DVC {
      background-color: #6fcaea;
-     width: 100px;
+     width: 150px;
+     font-size: .9rem;
      align-items: center;
  }
  
  .GTC {
      background-color: #86e49d;
-     width: 100px;
+     color: #006b21;
+     font-size: .9rem;
+     width: 150px;
      align-items: center;
  }
  
  .DH {
      background-color: #FF3333;
-     width: 100px;
+     width: 150px;
      align-items: center;
  }
  
  .HT {
      background-color: #808080;
-     width: 100px;
+     width: 150px;
      align-items: center;
  }
  

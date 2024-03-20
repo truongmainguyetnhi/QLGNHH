@@ -62,7 +62,8 @@ class packet extends Database
     }
     public function packetGetforShipper($TENTK)
     {
-        $getAll = $this->connect->prepare("SELECT * FROM donhang 
+        $getAll = $this->connect->prepare("SELECT donhang.*, kho.*, phai.*, thanhtoan.*, co.*, nguoinhan.*, cua1.*, diachi.*, cuahang.*, shipper.*
+        FROM donhang 
         INNER JOIN phai ON donhang.ID_DH = phai.ID_DH 
         INNER JOIN thanhtoan ON phai.ID_TT = thanhtoan.ID_TT 
         INNER JOIN co ON thanhtoan.ID_TT = co.ID_TT 
@@ -70,6 +71,8 @@ class packet extends Database
         INNER JOIN cua1 ON nguoinhan.ID_NN = cua1.ID_NN
         INNER JOIN diachi ON cua1.ID_DC = diachi.ID_DC
         INNER JOIN cuahang ON donhang.ID_CH = cuahang.ID_CH
+        LEFT JOIN thuoc ON donhang.ID_DH = thuoc.ID_DH
+        LEFT JOIN kho ON thuoc.ID_KHO = kho.ID_KHO
         LEFT JOIN giao ON donhang.ID_DH = giao.ID_DH 
         LEFT JOIN shipper ON giao.ID_SP = shipper.ID_SP
         WHERE shipper.TENTK = ?");
@@ -85,6 +88,8 @@ class packet extends Database
         INNER JOIN co ON thanhtoan.ID_TT = co.ID_TT 
         INNER JOIN nguoinhan ON co.ID_NN = nguoinhan.ID_NN 
         INNER JOIN cuahang ON donhang.ID_CH = cuahang.ID_CH
+        LEFT JOIN thuoc ON donhang.ID_DH = thuoc.ID_DH 
+        LEFT JOIN kho ON thuoc.ID_KHO = kho.ID_KHO 
         LEFT JOIN giao ON donhang.ID_DH = giao.ID_DH 
         LEFT JOIN shipper ON giao.ID_SP = shipper.ID_SP 
         WHERE MA_DH LIKE :noidung");
@@ -93,6 +98,25 @@ class packet extends Database
         $getOrders->execute();
         return $getOrders->fetchAll();
     }
+    public function donGetAllforShipper($noidung, $tenship)
+    {
+        $getOrders = $this->connect->prepare("SELECT * FROM donhang 
+        INNER JOIN phai ON donhang.ID_DH = phai.ID_DH 
+        INNER JOIN thanhtoan ON phai.ID_TT = thanhtoan.ID_TT 
+        INNER JOIN co ON thanhtoan.ID_TT = co.ID_TT 
+        INNER JOIN nguoinhan ON co.ID_NN = nguoinhan.ID_NN 
+        INNER JOIN cuahang ON donhang.ID_CH = cuahang.ID_CH
+        LEFT JOIN giao ON donhang.ID_DH = giao.ID_DH 
+        LEFT JOIN shipper ON giao.ID_SP = shipper.ID_SP 
+        WHERE shipper.TENTK = :tenship AND MA_DH LIKE :noidung");
+        $getOrders->bindParam(':noidung', $noidung, PDO::PARAM_STR);
+        $getOrders->bindParam(':tenship', $tenship, PDO::PARAM_STR);
+        $getOrders->setFetchMode(PDO::FETCH_OBJ);
+        $getOrders->execute();
+        return $getOrders->fetchAll();
+    }
+
+
     public function packetGetById($ID_DH)
     {
         $getId = $this->connect->prepare("SELECT * FROM donhang
@@ -176,20 +200,53 @@ class packet extends Database
         return $insert->rowCount();
     }
     //chỉnh sửa trạng thái và tên kho hiện tại
-    public function packetUpdate_dc_tt($TRANGTHAI_DH, $TEN_KHO, $ID_DH)
+    public function packetUpdate_dc_tt($TRANGTHAI_DH, $TEN_KHO, $GHICHU, $TEN_CH, $ID_DH)
     {
-        $update = $this->connect->prepare("UPDATE donhang SET TRANGTHAI_DH = ? WHERE ID_DH = ?");
-        $update->execute(array($TRANGTHAI_DH, $ID_DH));
 
-        $adddckho = $this->connect->prepare("INSERT INTO diachi (TEN_KHO) VALUES (?)");
-        $adddckho->execute(array($TEN_KHO));
-        $iddckho = $this->connect->lastInsertId();
 
-        $addkho = $this->connect->prepare("INSERT INTO kho (TEN_KHO) VALUES (?)");
-        $addkho->execute(array($TEN_KHO));
-        $idkho = $this->connect->lastInsertId();
+        $getKHO = $this->connect->prepare("SELECT ID_KHO FROM kho WHERE TEN_KHO = ?");
+        $getKHO->execute([$TEN_KHO]);
+        $idKHO = $getKHO->fetchColumn();
+
+        // Kiểm tra xem đã có bản ghi trong bảng thuoc cho đơn hàng này chưa
+        $checkExistence = $this->connect->prepare("SELECT ID_DH FROM thuoc WHERE ID_DH = ?");
+        $checkExistence->execute([$ID_DH]);
+        $existingRecord = $checkExistence->fetchColumn();
+
+        if ($existingRecord) {
+            // Nếu đã tồn tại, cập nhật giá trị ID_KHO
+            $updateThuoc = $this->connect->prepare("UPDATE thuoc SET ID_KHO = ? WHERE ID_DH = ?");
+            $updateThuoc->execute([$idKHO, $ID_DH]);
+        } else {
+            // Nếu chưa tồn tại, thêm bản ghi mới vào bảng thuoc
+            $add = $this->connect->prepare("INSERT INTO thuoc (ID_DH, ID_KHO) VALUES (?, ?)");
+            $add->execute(array($ID_DH, $idKHO));
+        }
+
+        $update = $this->connect->prepare("UPDATE donhang SET TRANGTHAI_DH = ?, GHICHU = ? WHERE ID_DH = ?");
+        $update->execute(array($TRANGTHAI_DH, $GHICHU, $ID_DH));
+
+        // Kiểm tra trạng thái đơn hàng
+        $getthuho = $this->connect->prepare("SELECT thanhtoan.THUHO
+                                    FROM donhang 
+                                    INNER JOIN phai ON donhang.ID_DH = phai.ID_DH 
+                                    INNER JOIN thanhtoan ON phai.ID_TT = thanhtoan.ID_TT 
+                                    WHERE donhang.ID_DH = ?");
+        $getthuho->execute([$ID_DH]);
+        $thuho = $getthuho->fetchColumn();
+
+        // Thực hiện phép cộng/trừ vào tài khoản của cửa hàng
+        if ($TRANGTHAI_DH == 'Giao thành công') {
+            // Cộng thuho và trừ 30k vào tài khoản của cửa hàng
+            $updateTK = $this->connect->prepare("UPDATE cuahang SET TAIKHOAN = COALESCE(TAIKHOAN, 0) + ? - 30000 WHERE TEN_CH = ?");
+            $thuho = ($thuho !== null) ? $thuho : 0; // Kiểm tra và thay thế thuho là null bằng 0
+            $updateTK->execute([$thuho, $TEN_CH]);
+        } elseif ($TRANGTHAI_DH == 'Đã hủy' || $TRANGTHAI_DH == 'Hoàn trả') {
+            // Trừ 30k từ tài khoản của cửa hàng
+            $updateTK = $this->connect->prepare("UPDATE cuahang SET TAIKHOAN = COALESCE(TAIKHOAN, 0) - 30000 WHERE TEN_CH = ?");
+            $updateTK->execute([$TEN_CH]);
+        }
     }
-
 
     public function checkShipperExist($TEN_SP)
     {

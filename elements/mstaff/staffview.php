@@ -6,7 +6,7 @@
     </div>
     <div class="body_them">
         <section class="them_body">
-            <form onsubmit="alert('Thành công')" name="newstaff" id="formadd_staff" method="post" enctype="multipart/form-data" action="./elements/mstaff/staffAct.php?reqact=addnew">
+            <form name="newstaff" id="formadd_staff" method="post" enctype="multipart/form-data" action="./elements/mstaff/staffAct.php?reqact=addnew">
                 <span class="title">Thông tin nhân viên</span>
                 <div class="fields">
                     <div class="input_group type-md">
@@ -222,41 +222,6 @@
                                 <td class="td_table"><?php echo $n->NGAYNHAP; ?></td>
                                 <td class="td_table"><?php echo $n->TENTK; ?></td>
                                 <td class="td_table"><?php echo $n->MATKHAU; ?></td>
-                                <td class="td_table set">
-                                    <?php
-                                    //tài khoản admin ko được xóa tk admin
-                                    if (isset($_SESSION['Quản lý']) and $n->LOAITK == 'Quản lý') {
-                                    ?>
-                                        <div class="koxoa">
-                                            <ion-icon name="trash"></ion-icon>
-                                        </div>
-
-                                    <?php
-                                    } else if (isset($_SESSION['Quản lý'])) {
-                                    ?>
-                                        <div class="xoa">
-                                            <a href="./elements/mstaff/staffAct.php?reqact=deletestaff&idstaff=<?php echo $n->ID_NV; ?>">
-                                                <ion-icon name="trash"></ion-icon>
-                                            </a>
-                                        </div>
-                                    <?php
-                                    }
-                                    ?>
-                                    <?php
-                                    //admin khong duoc update acc admin
-                                    if (isset($_SESSION['Quản lý']) and $n->LOAITK == 'Quản lý') {
-                                    ?>
-                                        <ion-icon class="koup" name="pencil"></ion-icon>
-                                    <?php
-                                    } else if (isset($_SESSION['Quản lý'])) {
-                                    ?>
-                                        <tempstaff class="btnup" value="<?php echo $n->ID_NV; ?>">
-                                            <ion-icon name="pencil"></ion-icon>
-                                        </tempstaff>
-                                </td>
-                            <?php
-                                    }
-                            ?>
                             </tr>
                         <?php
                         }
