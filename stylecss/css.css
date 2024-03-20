@@ -275,10 +275,13 @@
  }
  
  body {
-     height: 100vh;
+     height: 300vh;
      background-color: var(--body-color);
      transition: var(--tran-05);
-     background-image: url("../img/nen.png");
+ }
+ 
+ .customer_background {
+     background-image: url('../img/nen.png');
      background-repeat: no-repeat;
      background-size: 20%;
      background-attachment: scroll;
@@ -1258,6 +1261,24 @@
      font-style: normal;
  }
  
+ .info1 {
+     width: 400px;
+     height: 50px;
+     background-color: #fff;
+     box-sizing: border-box;
+     border-radius: 20px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     position: relative;
+     text-transform: uppercase;
+     line-height: 27px;
+ }
+ 
+ .info1 li {
+     margin-bottom: 10px;
+ }
+ 
  .nutdn {
      position: absolute;
      z-index: 9;
@@ -1330,4 +1351,201 @@
      z-index: 9;
      top: 65%;
      left: 30%;
+ }
+ /*home*/
+ 
+ .dash-content .title {
+     display: flex;
+     align-items: center;
+     margin: 0 0 30px 78px;
+ }
+ 
+ .dash-content .title i {
+     position: relative;
+     height: 35px;
+     width: 35px;
+     background-color: var(--primary-color);
+     border-radius: 6px;
+     color: var(--text-color);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 24px;
+ }
+ 
+ .dash-content .title .text {
+     font-size: 24px;
+     font-weight: 500;
+     color: var(--text-color);
+     margin-left: 10px;
+ }
+ 
+ .thongke {
+     display: flex;
+ }
+ 
+ .dash-content .boxes {
+     display: flex;
+     align-items: center;
+     height: 150px;
+     width: 60%;
+     justify-content: space-around;
+ }
+ 
+ .boxes .box {
+     width: 80%;
+ }
+ 
+ .dash-content .thongke .box {
+     padding: 15px 20px;
+     margin-left: 78px;
+     height: 150px;
+     background-color: var(--primary-color);
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     border-radius: 12px;
+     width: calc(100%/6-15px);
+ }
+ 
+ .thongke .box i {
+     font-size: 35px;
+     color: var(--text-color);
+ }
+ 
+ .thongke .box .text {
+     white-space: nowrap;
+     font-size: 18px;
+     font-weight: 500;
+     color: var(--text-color);
+ }
+ 
+ .thongke .box .number {
+     font-size: 40px;
+     font-weight: 500;
+ }
+ 
+ .thongke .box.box2 {
+     background-color: #1597f4;
+ }
+ 
+ .thongke .box.box3 {
+     background-color: #86e49d;
+ }
+ 
+ .thongke .box.box4 {
+     background-color: #ebc474;
+ }
+ 
+ .thongke .box.box5 {
+     background-color: #F4B8CE;
+ }
+ 
+ .thongke .box.box6 {
+     background-color: #e38fdf;
+ }
+ 
+ .thongke .box.box7 {
+     background-color: #33c9e3;
+ }
+ 
+ .right {
+     display: block;
+     height: 100%;
+     margin-left: 15%;
+ }
+ 
+ .right .box {
+     margin-bottom: 20px;
+     width: 80%;
+ }
+ /*footer*/
+ /* .footerContainer {
+     position: fixed;
+     bottom: 0;
+     background-color: #000;
+     opacity: .6;
+     width: 100%;
+     padding: 0 30px 20px;
+     height: 100px;
+     margin-left: 78px;
+ } */
+ 
+ .footerContainer {
+     position: relative;
+     min-height: 90px;
+ }
+ 
+ .footer {
+     position: fixed;
+     bottom: 0;
+     left: 0;
+     width: 100%;
+     height: 96px;
+     padding: 0 30px 20px;
+     text-align: center;
+     transition: 7s;
+ }
+ 
+ .footerContainer .socialIcons {
+     justify-content: center;
+     display: flex;
+ }
+ 
+ .socialIcons a {
+     text-decoration: none;
+     width: 50px;
+     justify-content: center;
+     display: flex;
+     align-items: center;
+     height: 50px;
+     background-color: #fff;
+     margin: 10px;
+     border-radius: 50%;
+ }
+ 
+ .socialIcons a i {
+     font-size: 2em;
+     color: #000;
+     opacity: .9;
+ }
+ 
+ .socialIcons a:hover {
+     background-color: #111;
+     transition: .5s;
+ }
+ 
+ .socialIcons a:hover i {
+     color: #fff;
+     transition: .5s;
+ }
+ 
+ .footerNav ul {
+     display: flex;
+     justify-content: center;
+     list-style-type: none;
+ }
+ 
+ .footerNav ul li a {
+     color: #000;
+     margin: 20px;
+     text-decoration: none;
+     font-size: 1em;
+     opacity: .7;
+     transition: .5s;
+ }
+ 
+ .footerNav ul li a:hover {
+     opacity: 1;
+ }
+ 
+ @media(max-width:700px) {
+     .footerNav ul {
+         flex-direction: column;
+     }
+     .footerNav ul li {
+         width: 100%;
+         text-align: center;
+         margin: 10px;
+     }
  }
