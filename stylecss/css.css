@@ -265,6 +265,7 @@
      --primary-color-light: #3A3B3C;
      --toggle-color: #FFF;
      --text-color: #CCC;
+     background-image: url('../img/nenlogin.png');
  }
  
  * {
@@ -278,9 +279,6 @@
      height: 100vh;
      background-color: var(--body-color);
      transition: var(--tran-05);
- }
- 
- .customer_background {
      background-image: url('../img/nen.png');
      background-repeat: no-repeat;
      background-size: 20%;
@@ -366,11 +364,13 @@
  
  .body_them_up {
      min-height: 40vh;
-     height: 80vh;
+     height: 60vh;
+     width: 80%;
+     justify-content: center;
      align-items: center;
      background-color: #ffffff;
      border-radius: .6rem;
-     margin: 0 10px 0 10px;
+     margin-left: 10%;
  }
  
  .giao {
@@ -423,10 +423,12 @@
  
  .phanchi {
      height: 40vh;
+     width: 80%;
      align-items: center;
+     justify-content: center;
+     margin-left: 10%;
      background-color: #ffffff;
      border-radius: .6rem;
-     margin: 0 10px 0 10px;
      overflow-y: scroll;
      overflow-x: hidden;
  }
@@ -988,7 +990,7 @@
      height: 550px;
      margin: auto;
      background-image: url("../img/nenlogin.png");
-     background-color: #000;
+     background-color: #18191A;
      background-repeat: no-repeat;
      background-size: 35%;
      background-attachment: scroll;

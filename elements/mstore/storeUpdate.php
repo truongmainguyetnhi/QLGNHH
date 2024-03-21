@@ -8,7 +8,8 @@ $getstore = $store->StoreGetById($idstore);
 <div class="body_update">
     <div class="body_them_up">
         <section class="them_body">
-            <form name="updatestore" id="update_store" class="test" onsubmit="alert('Thành công')" method="post" enctype="multipart/form-data" action="./elements/mstore/storeAct.php?reqact=updatestore">
+            <form name="updatestore" id="update_store" class="test" onsubmit="alert('Thành công')" method="post"
+                enctype="multipart/form-data" action="./elements/mstore/storeAct.php?reqact=updatestore">
                 <span class="title">Cập nhật thông tin cửa hàng</span>
                 <div class="fields">
                     <input type="hidden" name="idstore" value="<?php echo $idstore; ?>">
@@ -48,7 +49,8 @@ $getstore = $store->StoreGetById($idstore);
                         <span class="border"></span>
                     </div>
                     <div class="input_group type-md">
-                        <input type="text" name="taikhoandangnhapstore" value="<?php echo $getstore->TENTK; ?>" required>
+                        <input type="text" name="taikhoandangnhapstore" value="<?php echo $getstore->TENTK; ?>"
+                            required>
                         <label for=" taikhoandangnhapstore">Tên đăng nhập</label>
                         <span class="border"></span>
                     </div>
@@ -65,40 +67,37 @@ $getstore = $store->StoreGetById($idstore);
             </form>
         </section>
     </div>
-</div>
-
-
-<div class="table_khu">
-    <main class="vung_table">
-        <section class="table_header">
-            <h1>Danh sách cửa hàng</h1>
-        </section>
-        <section class="table_body">
-            <?php
+    <div class="table_khu">
+        <main class="vung_table">
+            <section class="table_header">
+                <h1>Danh sách cửa hàng</h1>
+            </section>
+            <section class="table_body">
+                <?php
             $obj = new store();
             $list_store = $obj->StoreGetAll();
             ?>
-            <table class="table_view">
-                <thead class="thead_table">
-                    <tr align="left" class="tr_table">
-                        <th class="th_table">Loại tài khoản</th>
-                        <th class="th_table">Tên cửa hàng</th>
-                        <th class="th_table">Số điện thoại</th>
-                        <th class="th_table">Tùy chọn</th>
-                        <th class="th_table">Email</th>
-                        <th class="th_table">Tỉnh/Thành phố</th>
-                        <th class="th_table">Phường/Xã</th>
-                        <th class="th_table">Đường, số nhà</th>
-                        <th class="th_table">Số dư tài khoản</th>
-                        <th class="th_table">Trạng thái</th>
-                        <th class="th_table">Tên đăng nhập</th>
-                        <th class="th_table">Mật khẩu</th>
-                    </tr>
-                </thead>
-                <tbody class="tbody_table">
-                    <?php
+                <table class="table_view">
+                    <thead class="thead_table">
+                        <tr align="left" class="tr_table">
+                            <th class="th_table">Loại tài khoản</th>
+                            <th class="th_table">Tên cửa hàng</th>
+                            <th class="th_table">Số điện thoại</th>
+                            <th class="th_table">Tùy chọn</th>
+                            <th class="th_table">Email</th>
+                            <th class="th_table">Tỉnh/Thành phố</th>
+                            <th class="th_table">Phường/Xã</th>
+                            <th class="th_table">Đường, số nhà</th>
+                            <th class="th_table">Số dư tài khoản</th>
+                            <th class="th_table">Trạng thái</th>
+                            <th class="th_table">Tên đăng nhập</th>
+                            <th class="th_table">Mật khẩu</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody_table">
+                        <?php
                     foreach ($list_store as $n) {
-                    ?>
+                        ?>
                         <tr class="tr_table">
                             <td class="td_table">
                                 <p class="status store"><?php echo $n->LOAITK; ?></p>
@@ -119,17 +118,17 @@ $getstore = $store->StoreGetById($idstore);
                                 <?php
                                 if ($n->TRANGTHAI == "on") {
                                 ?>
-                                    <a href="./elements/mstore/storeAct.php?reqact=setlock&idstore=<?php echo $n->ID_CH; ?> 
+                                <a href="./elements/mstore/storeAct.php?reqact=setlock&idstore=<?php echo $n->ID_CH; ?> 
                                     &trangthaistore=<?php echo $n->TRANGTHAI; ?>">
-                                        <ion-icon name="lock-open"></ion-icon>
-                                    </a>
+                                    <ion-icon name="lock-open"></ion-icon>
+                                </a>
                                 <?php
                                 } else {
                                 ?>
-                                    <a href="./elements/mstore/storeAct.php?reqact=setlock&idstore=<?php echo $n->ID_CH; ?>
+                                <a href="./elements/mstore/storeAct.php?reqact=setlock&idstore=<?php echo $n->ID_CH; ?>
                                     &trangthaistore=<?php echo $n->TRANGTHAI; ?>">
-                                        <ion-icon name="lock-closed"></ion-icon>
-                                    </a>
+                                    <ion-icon name="lock-closed"></ion-icon>
+                                </a>
                                 <?php
                                 }
                                 ?>
@@ -138,17 +137,18 @@ $getstore = $store->StoreGetById($idstore);
                             <td class="td_table"><?php echo $n->MATKHAU; ?></td>
 
                         </tr>
-                    <?php
+                        <?php
                     }
                     ?>
-                </tbody>
-            </table>
-        </section>
-    </main>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
     <script>
-        $("tempstore1").click(function() {
-            var idstore = $(this).attr("value");
-            $("#center").load("./elements/mstore/storeUpdate.php?&idstore=" + idstore);
-        });
+    $("tempstore1").click(function() {
+        var idstore = $(this).attr("value");
+        $("#center").load("./elements/mstore/storeUpdate.php?&idstore=" + idstore);
+    });
     </script>
 </div>
