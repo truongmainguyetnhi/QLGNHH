@@ -1,27 +1,27 @@
-document.getElementById('btnOpenForm').addEventListener('click', function() {
-    var bodyThem = document.querySelector('.body_them');
-
-    if (bodyThem.style.display === 'none') {
-        bodyThem.style.display = 'block';
-    } else {
-        bodyThem.style.display = 'none';
-    }
-});
+// Khai báo biến isOpen để theo dõi trạng thái mở / đóng của form
 var isOpen = false;
+
+// Lắng nghe sự kiện "click" trên phần tử có id là "btnOpenForm"
 document.getElementById('btnOpenForm').addEventListener('click', function() {
     var bodyThem = document.querySelector('.body_them');
-    var btnOpenForm = document.getElementById('btnOpenForm');
+    var ionIcon = document.querySelector('#btnOpenForm ion-icon');
 
+    // Nếu form đang được đóng, mở nó và thay đổi biểu tượng
     if (!isOpen) {
         bodyThem.style.display = 'block';
-        btnOpenForm.innerText = 'Đóng form';
+        ionIcon.setAttribute('name', 'close');
         isOpen = true;
     } else {
+        // Nếu form đang mở, đóng nó và thay đổi biểu tượng
         bodyThem.style.display = 'none';
-        btnOpenForm.innerText = 'Tạo đơn hàng mới';
+        ionIcon.setAttribute('name', 'add');
         isOpen = false;
     }
 });
+
+
+
+
 //chọn thanh toán
 document.addEventListener('DOMContentLoaded', () => {
     var phishipInputs = document.querySelectorAll('input[name="loaiphiship"]');
@@ -86,3 +86,37 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.href = 'login.php';
     });
 });
+
+
+
+//btnupdate
+$("tempstore").click(function() {
+    var idstore = $(this).attr("value");
+    $("#center").load("./elements/mstore/storeUpdate.php?&idstore=" + idstore);
+});
+$("tempship").click(function() {
+    var idship = $(this).attr("value");
+    $("#center").load("./elements/mshipper/shipperUpdate.php?&idship=" + idship);
+});
+$("tempstaff").click(function() {
+    var idstaff = $(this).attr("value");
+    $("#center").load("./elements/mstaff/staffUpdate.php?&idstaff=" + idstaff);
+});
+$("temppacket").click(function() {
+    var idpacket = $(this).attr("value");
+    $("#center").load("./elements/mpacket/packetUpdate.php?&idpacket=" + idpacket);
+});
+
+
+$(".xoa").click(() => {
+    alert("ĐÃ XÓA");
+})
+$(".koxoa").click(() => {
+    alert("KHÔNG THỂ XÓA bằng tài khoản này");
+})
+$(".koup").click(() => {
+    alert("KHÔNG THỂ UPDATE bằng tài khoản này");
+})
+$(".kolock").click(() => {
+    alert("KHÔNG THỂ THAY ĐỔI bằng tài khoản này");
+})

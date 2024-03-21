@@ -34,7 +34,7 @@ session_start();
     <div id="center">
         <?php require "elements/center.php" ?>
     </div>
-    </div>
+
     <nav class="sidebar close">
         <header>
             <div class="image-text">
@@ -114,7 +114,16 @@ session_start();
     <script src="https://code.jquery.com/jquery-3.6.4.js" type="text/javascript"></script>
     <script src="https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script src="js/jscript.js" type="text/javascript"></script>
+    <?php
+if ($_GET['req'] !== 'packetview') {
+    // Chỉ include các tệp script khi không ở trong trang packetview
+    echo '<script src="js/jscript.js" type="text/javascript"></script>';
+    echo '<script src="js/jsstore.js" type="text/javascript"></script>';
+}
+?>
+    <!-- <script src="js/jscript.js" type="text/javascript"></script>
+    <script src="js/jsstore.js" type="text/javascript"></script> -->
+
 </body>
 
 </html>

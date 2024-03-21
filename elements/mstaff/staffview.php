@@ -6,7 +6,8 @@
     </div>
     <div class="body_them">
         <section class="them_body">
-            <form name="newstaff" id="formadd_staff" method="post" enctype="multipart/form-data" action="./elements/mstaff/staffAct.php?reqact=addnew">
+            <form name="newstaff" id="formadd_staff" method="post" enctype="multipart/form-data"
+                action="./elements/mstaff/staffAct.php?reqact=addnew">
                 <span class="title">Thông tin nhân viên</span>
                 <div class="fields">
                     <div class="input_group type-md">
@@ -96,7 +97,8 @@
                     $currentDateTime = date('Y-m-d\TH:i');
                     ?>
                     <div class="input_group type-md">
-                        <input type="datetime-local" name="ngaystaff" required placeholder="Ngày nhập" value="<?php echo $currentDateTime; ?>">
+                        <input type="datetime-local" name="ngaystaff" required placeholder="Ngày nhập"
+                            value="<?php echo $currentDateTime; ?>">
                         <label for="ngaystaff" style="top: -0.5rem;">Ngày nhập</label>
                         <span class="border"></span>
                     </div>
@@ -144,85 +146,89 @@
                         <?php
                         foreach ($list_staff as $n) {
                         ?>
-                            <tr class="tr_table">
-                                <td class="td_table">
-                                    <?php
+                        <tr class="tr_table">
+                            <td class="td_table">
+                                <?php
                                     $nhi = $n->LOAITK;
                                     if ('Nhân viên' === $nhi) {
                                     ?>
-                                        <p class="status staff"><?php echo $n->LOAITK; ?></p>
-                                    <?php
+                                <p class="status staff"><?php echo $n->LOAITK; ?></p>
+                                <?php
                                     } elseif ('Quản lý' === $nhi) {
                                     ?>
-                                        <p class="status qly"><?php echo $n->LOAITK; ?></p>
-                                    <?php } ?>
-                                </td>
-                                <td class="td_table"><?php echo $n->TEN_NV; ?></td>
-                                <td class="td_table"><?php echo $n->SDT_NV; ?></td>
-                                <td class="td_table set">
-                                    <?php
+                                <p class="status qly"><?php echo $n->LOAITK; ?></p>
+                                <?php } ?>
+                            </td>
+                            <td class="td_table"><?php echo $n->TEN_NV; ?></td>
+                            <td class="td_table"><?php echo $n->SDT_NV; ?></td>
+                            <td class="td_table set">
+                                <?php
                                     //tài khoản admin ko được xóa tk admin
                                     if (isset($_SESSION['Quản lý']) and $n->LOAITK == 'Quản lý') {
                                     ?>
-                                        <div class="koxoa">
-                                            <ion-icon name="trash"></ion-icon>
-                                        </div>
-                                        <ion-icon class="koup" name="pencil"></ion-icon>
-                                    <?php
+                                <div class="koxoa">
+                                    <ion-icon name="trash"></ion-icon>
+                                </div>
+                                <ion-icon class="koup" name="pencil"></ion-icon>
+                                <?php
                                     } else if (isset($_SESSION['Quản lý'])) {
                                     ?>
-                                        <div class="xoa">
-                                            <a href="./elements/mstaff/staffAct.php?reqact=deletestaff&idstaff=<?php echo $n->ID_NV; ?>">
-                                                <ion-icon name="trash"></ion-icon>
-                                            </a>
-                                        </div>
-                                        <tempstaff class="btnup" value="<?php echo $n->ID_NV; ?>">
-                                            <ion-icon name="pencil"></ion-icon>
-                                        </tempstaff>
-                                    <?php
-                                    } ?>
-                                </td>
-                                <td class="td_table"><?php echo $n->EMAIL; ?></td>
-                                <td class="td_table"><?php echo $n->TINH_TP; ?></td>
-                                <td class="td_table"><?php echo $n->PHUONG_XA; ?></td>
-                                <td class="td_table"><?php echo $n->DUONG_SONHA; ?></td>
-                                <td class="td_table"><strong><?php echo $n->CCCD; ?></strong></td>
-                                <td class="td_table">
-                                    <?php
+                                <div class="xoa">
+                                    <a
+                                        href="./elements/mstaff/staffAct.php?reqact=deletestaff&idstaff=<?php echo $n->ID_NV; ?>">
+                                        <ion-icon name="trash"></ion-icon>
+                                    </a>
+                                </div>
+                                <tempstaff class="btnup" value="<?php echo $n->ID_NV; ?>">
+                                    <ion-icon name="pencil"></ion-icon>
+                                </tempstaff>
+                                <?php
+                                    } else {
+                                    ?>
+                                <ion-icon name="ban-outline"></ion-icon>
+                                <?php } ?>
+                            </td>
+                            <td class="td_table"><?php echo $n->EMAIL; ?></td>
+                            <td class="td_table"><?php echo $n->TINH_TP; ?></td>
+                            <td class="td_table"><?php echo $n->PHUONG_XA; ?></td>
+                            <td class="td_table"><?php echo $n->DUONG_SONHA; ?></td>
+                            <td class="td_table"><strong><?php echo $n->CCCD; ?></strong></td>
+                            <td class="td_table">
+                                <?php
                                     if ($n->TRANGTHAI == "on") {
                                         if (isset($_SESSION['Quản lý'])) {
                                     ?>
-                                            <div>
-                                                <a href="./elements/mstaff/staffAct.php?reqact=setlock&idstaff=<?php echo $n->ID_NV; ?>
+                                <div>
+                                    <a href="./elements/mstaff/staffAct.php?reqact=setlock&idstaff=<?php echo $n->ID_NV; ?>
                                     &trangthaistaff=<?php echo $n->TRANGTHAI; ?>">
-                                                    <ion-icon name="lock-open"></ion-icon>
-                                                </a>
-                                            </div>
-                                        <?php
+                                        <ion-icon name="lock-open"></ion-icon>
+                                    </a>
+                                </div>
+                                <?php
                                         } else { ?>
-                                            <div class="kolock">
-                                                <ion-icon name="lock-open"></ion-icon>
-                                            </div>
-                                        <?php }
+                                <div class="kolock">
+                                    <ion-icon name="lock-open"></ion-icon>
+                                </div>
+                                <?php }
                                     } else if ($n->TRANGTHAI == "off") {
                                         if (isset($_SESSION['Quản lý'])) { ?>
-                                            <div>
-                                                <a href="./elements/mstaff/staffAct.php?reqact=setlock&idstaff=<?php echo $n->ID_NV; ?>
+                                <div>
+                                    <a href="./elements/mstaff/staffAct.php?reqact=setlock&idstaff=<?php echo $n->ID_NV; ?>
                                     &trangthaistaff=<?php echo $n->TRANGTHAI; ?>">
-                                                    <ion-icon name="lock-closed"></ion-icon>
-                                                </a>
-                                            </div>
-                                        <?php } else { ?>
-                                            <div class="kolock">
-                                                <ion-icon name="lock-closed"></ion-icon>
-                                            </div>
-                                    <?php }
+                                        <ion-icon name="lock-closed"></ion-icon>
+                                    </a>
+                                </div>
+                                <?php } else { ?>
+                                <div class="kolock">
+                                    <ion-icon name="lock-closed"></ion-icon>
+                                </div>
+                                <?php }
                                     } ?>
-                                </td>
-                                <td class="td_table"><?php echo $n->NGAYNHAP; ?></td>
-                                <td class="td_table"><?php echo $n->TENTK; ?></td>
-                                <td class="td_table"><?php echo $n->MATKHAU; ?></td>
-                            </tr>
+                            </td>
+                            <td class="td_table"><?php echo $n->NGAYNHAP; ?></td>
+                            <td class="td_table"><?php echo $n->TENTK; ?></td>
+                            <td class="td_table"><?php echo $n->MATKHAU; ?></td>
+                        </tr>
                         <?php
                         }
                         ?>

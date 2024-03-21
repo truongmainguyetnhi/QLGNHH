@@ -25,16 +25,17 @@ $query_orders = "SELECT COUNT(*) AS total_orders FROM donhang";
 $result_orders = $conn->query($query_orders);
 $row_orders = $result_orders->fetch(PDO::FETCH_ASSOC);
 $total_orders = $row_orders['total_orders'];
+$total_sales = $total_orders * 30000;
 
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 $firstDayOfMonth = date('Y-m-01');
 $today = date('Y-m-d');
 $query_orders = "SELECT COUNT(*) AS total_orders FROM donhang WHERE thoigiantao BETWEEN '$firstDayOfMonth' AND '$today'";
 $result_orders = $conn->query($query_orders);
 $row_orders = $result_orders->fetch(PDO::FETCH_ASSOC);
 $total_orders_t = $row_orders['total_orders'];
-
 $total_sales_t = $total_orders_t * 30000;
-$total_sales = $total_orders * 30000;
+
 ?>
 <div class="footerContainer">
     <section class="dashboard">

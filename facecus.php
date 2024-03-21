@@ -39,76 +39,76 @@ require './elements/mod/packetCls.php';
             $obj = new packet();
             $list_packet = $obj->donGetAll($noidung);
     ?>
-            <div class="baoinfo">
-                <div class="info">
-                    <?php
+    <div class="baoinfo">
+        <div class="info">
+            <?php
                     if (empty($list_packet)) {
                         echo "<strong>Đơn hàng bạn tra cứu không tồn tại!!!</strong>";
                     } else { ?>
-                        <div class='info-container'>
-                            <?php
+            <div class='info-container'>
+                <?php
                             foreach ($list_packet as $n) {
                                 $status = '';
                                 switch ($n->TRANGTHAI_DH) {
                                     case 'Đã tạo đơn':
-                                        $status = "<span class='status DTD1'>$n->TRANGTHAI_DH</span>";
+                                        $status = "<span class='status DTD'>$n->TRANGTHAI_DH</span>";
                                         break;
                                     case 'Đang vận chuyển':
-                                        $status = "<span class='status DVC1'>$n->TRANGTHAI_DH</span>";
+                                        $status = "<span class='status DVC'>$n->TRANGTHAI_DH</span>";
                                         break;
                                     case 'Giao thành công':
-                                        $status = "<span class='status GTC1'>$n->TRANGTHAI_DH</span>";
+                                        $status = "<span class='status GTC'>$n->TRANGTHAI_DH</span>";
                                         break;
                                     case 'Đã hủy':
-                                        $status = "<span class='status DH1'>$n->TRANGTHAI_DH</span>";
+                                        $status = "<span class='status DH'>$n->TRANGTHAI_DH</span>";
                                         break;
                                     case 'Hoàn trả':
-                                        $status = "<span class='status HT1'>$n->TRANGTHAI_DH</span>";
+                                        $status = "<span class='status HT'>$n->TRANGTHAI_DH</span>";
                                         break;
                                     default:
                                         $status = "<span class='status'>$n->TRANGTHAI_DH</span>";
                                 }; ?>
 
-                                <ul id="mot">
-                                    <li>Mã đơn hàng: <strong><?php echo " $n->MA_DH"; ?></strong></li>
-                                    <li>Trạng thái: <strong><?php echo " $status"; ?></strong></li>
-                                    <li>Địa chỉ hiện tại: <strong><?php echo $n->TEN_KHO ?? 'Chưa có'; ?></strong></li>
-                                    <li>Tên hàng hóa: <strong><?php echo " $n->TEN_HH"; ?></strong></li>
-                                    <li>Tổng tiền hàng: <strong><?php echo " $n->TONGTIENHANG VND"; ?></strong></li>
-                                </ul>
+                <ul id="mot">
+                    <li>Mã đơn hàng: <strong><?php echo " $n->MA_DH"; ?></strong></li>
+                    <li>Trạng thái: <strong><?php echo " $status"; ?></strong></li>
+                    <li>Địa chỉ hiện tại: <strong><?php echo $n->TEN_KHO ?? 'Chưa có'; ?></strong></li>
+                    <li>Tên hàng hóa: <strong><?php echo " $n->TEN_HH"; ?></strong></li>
+                    <li>Tổng tiền hàng: <strong><?php echo " $n->TONGTIENHANG VND"; ?></strong></li>
+                </ul>
 
-                                <ul id="hai">
-                                    <li>Tên shipper: <strong><?php echo " $n->TEN_SP"; ?></strong></li>
-                                    <li>Tên cửa hàng: <strong><?php echo " $n->TEN_CH"; ?></strong></li>
-                                    <li>Tên người nhận: <strong><?php echo " $n->TEN_NN"; ?></strong></li>
-                                    <li>Số điện thoại: <strong><?php echo " $n->SDT_NN"; ?></strong></li>
-                                </ul>
-                        <?php
+                <ul id="hai">
+                    <li>Tên shipper: <strong><?php echo " $n->TEN_SP"; ?></strong></li>
+                    <li>Tên cửa hàng: <strong><?php echo " $n->TEN_CH"; ?></strong></li>
+                    <li>Tên người nhận: <strong><?php echo " $n->TEN_NN"; ?></strong></li>
+                    <li>Số điện thoại: <strong><?php echo " $n->SDT_NN"; ?></strong></li>
+                </ul>
+                <?php
                             }
                         }
                         ?>
-                        </div>
+            </div>
 
-                </div>
+        </div>
         <?php
         } else {
             echo "<div class='baoinfo'><div class='info'><strong>Vui lòng nhập mã đơn hàng</strong></div></div>";
         }
     }
         ?>
-            </div>
+    </div>
 
 
 </body>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        document.querySelector('.nutdn').addEventListener('click', function() {
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelector('.nutdn').addEventListener('click', function() {
 
-            window.location.href = 'login.php';
-        });
+        window.location.href = 'login.php';
     });
+});
 </script>
 
 </html>

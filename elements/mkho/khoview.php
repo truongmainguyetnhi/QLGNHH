@@ -6,8 +6,7 @@
     </div>
     <div class="body_them">
         <section class="them_body">
-            <form onsubmit="alert('Thành công')" name="newkho" id="formadd_kho" method="post"
-                enctype="multipart/form-data" action="./elements/mkho/khoAct.php?reqact=addnew">
+            <form name="newkho" id="formadd_kho" method="post" enctype="multipart/form-data" action="./elements/mkho/khoAct.php?reqact=addnew">
                 <span class="title">Thông tin kho hàng</span>
                 <div class="fields">
                     <div class="input_group type-md">
@@ -84,31 +83,31 @@
                         <?php
                         foreach ($list_kho as $n) {
                         ?>
-                        <tr class="tr_table">
-                            <td class="td_table"><strong><?php echo $n->TEN_KHO; ?></strong></td>
-                            <td class="td_table"><?php echo $n->TINH_TP; ?></td>
-                            <td class="td_table"><?php echo $n->PHUONG_XA; ?></td>
-                            <td class="td_table"><?php echo $n->DUONG_SONHA; ?></td>
-                            <td class="td_table tt">
-                                <?php
+                            <tr class="tr_table">
+                                <td class="td_table"><strong><?php echo $n->TEN_KHO; ?></strong></td>
+                                <td class="td_table"><?php echo $n->TINH_TP; ?></td>
+                                <td class="td_table"><?php echo $n->PHUONG_XA; ?></td>
+                                <td class="td_table"><?php echo $n->DUONG_SONHA; ?></td>
+                                <td class="td_table tt">
+                                    <?php
                                     if ($n->TRANGTHAI_KHO == "on") {
                                     ?>
-                                <a href="./elements/mkho/khoAct.php?reqact=setlock&idkho=<?php echo $n->ID_KHO; ?> 
+                                        <a href="./elements/mkho/khoAct.php?reqact=setlock&idkho=<?php echo $n->ID_KHO; ?> 
                                     &trangthaikho=<?php echo $n->TRANGTHAI_KHO; ?>">
-                                    <ion-icon name="lock-open"></ion-icon>
-                                </a>
-                                <?php
+                                            <ion-icon name="lock-open"></ion-icon>
+                                        </a>
+                                    <?php
                                     } else {
                                     ?>
-                                <a href="./elements/mkho/khoAct.php?reqact=setlock&idkho=<?php echo $n->ID_KHO; ?>
+                                        <a href="./elements/mkho/khoAct.php?reqact=setlock&idkho=<?php echo $n->ID_KHO; ?>
                                     &trangthaikho=<?php echo $n->TRANGTHAI_KHO; ?>">
-                                    <ion-icon name="lock-closed"></ion-icon>
-                                </a>
-                                <?php
+                                            <ion-icon name="lock-closed"></ion-icon>
+                                        </a>
+                                    <?php
                                     }
                                     ?>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
                         <?php
                         }
                         ?>

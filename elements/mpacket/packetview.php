@@ -5,7 +5,6 @@
     <div class="btn_container">
         <button id="btnphandon" class="btn share">
             <ion-icon name="funnel-outline"></ion-icon>
-            <span>Phân đơn</span>
         </button>
     </div>
     <div class="table_khu" id="chualoc">
@@ -144,10 +143,10 @@
                                 <?php } ?>
                             </td>
                             <td class="td_table"><strong><?php echo $n->TEN_SP ?? 'Chưa có'; ?></strong></td>
-                            <td class="td_table set">
-                                <temppacket class="btnup" value="<?php echo $n->ID_DH; ?>">
+                            <td class="td_table ">
+                                <div class="btnup" value="<?php echo $n->ID_DH; ?>">
                                     <ion-icon name="pencil"></ion-icon>
-                                </temppacket>
+                                </div>
                             </td>
                             <td class="td_table"><?php echo $n->TEN_CH; ?></td>
                             <td class="td_table"><?php echo $n->THOIGIANTAO; ?></td>
@@ -169,30 +168,47 @@
         </main>
     </div>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script>
-    //dongmopacket
-    var isOpenP = true; // Ban đầu chualoc mở
+    <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        // Lắng nghe sự kiện click cho các phần tử có lớp .btnup
+        document.querySelectorAll('.btnup').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var idpacket = this.getAttribute('value');
+                // Sử dụng AJAX để load trang packetUpdate.php vào #center
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        document.getElementById('center').innerHTML = xhr.responseText;
+                    }
+                };
+                xhr.open('GET', './elements/mpacket/packetUpdate.php?idpacket=' + idpacket,
+                    true);
+                xhr.send();
+            });
+        });
 
-    document.getElementById('btnphandon').addEventListener('click', function() {
-        var bodychualoc = document.getElementById('chualoc');
-        var bodyloc = document.getElementById('loc');
-        var ionIcon = document.querySelector('#btnphandon ion-icon');
-        var span = document.querySelector('#btnphandon span');
+        var mo = true; // Ban đầu chualoc mở
 
-        if (isOpenP) {
-            bodyloc.style.display = 'block';
-            bodychualoc.style.display = 'none';
+        document.getElementById('btnphandon').addEventListener('click', function() {
+            var bodychualoc = document.getElementById('chualoc');
+            var bodyloc = document.getElementById('loc');
+            var ionIcon = document.querySelector('#btnphandon ion-icon');
+            var span = document.querySelector('#btnphandon span');
 
-            ionIcon.setAttribute('name', 'layers-outline');
-            span.innerHTML = 'Tổng quát';
-            isOpenP = false;
-        } else {
-            bodyloc.style.display = 'none';
-            bodychualoc.style.display = 'block';
-            ionIcon.setAttribute('name', 'funnel-outline');
-            span.innerHTML = 'Phân đơn';
-            isOpenP = true;
-        }
+            if (mo) {
+                bodyloc.style.display = 'block';
+                bodychualoc.style.display = 'none';
+
+                ionIcon.setAttribute('name', 'layers-outline');
+                mo = false;
+            } else {
+                bodyloc.style.display = 'none';
+                bodychualoc.style.display = 'block';
+                ionIcon.setAttribute('name', 'funnel-outline');
+                mo = true;
+            }
+        });
     });
     </script>
+
 </div>

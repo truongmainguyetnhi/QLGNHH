@@ -8,8 +8,7 @@ $getstore = $store->StoreGetById($idstore);
 <div class="body_update">
     <div class="body_them_up">
         <section class="them_body">
-            <form name="updatestore" id="update_store" class="test" onsubmit="alert('Thành công')" method="post"
-                enctype="multipart/form-data" action="./elements/mstore/storeAct.php?reqact=updatestore">
+            <form name="updatestore" id="update_store" class="test" onsubmit="alert('Thành công')" method="post" enctype="multipart/form-data" action="./elements/mstore/storeAct.php?reqact=updatestore">
                 <span class="title">Cập nhật thông tin cửa hàng</span>
                 <div class="fields">
                     <input type="hidden" name="idstore" value="<?php echo $idstore; ?>">
@@ -49,8 +48,7 @@ $getstore = $store->StoreGetById($idstore);
                         <span class="border"></span>
                     </div>
                     <div class="input_group type-md">
-                        <input type="text" name="taikhoandangnhapstore" value="<?php echo $getstore->TENTK; ?>"
-                            required>
+                        <input type="text" name="taikhoandangnhapstore" value="<?php echo $getstore->TENTK; ?>" required>
                         <label for=" taikhoandangnhapstore">Tên đăng nhập</label>
                         <span class="border"></span>
                     </div>
@@ -101,45 +99,45 @@ $getstore = $store->StoreGetById($idstore);
                     <?php
                     foreach ($list_store as $n) {
                     ?>
-                    <tr class="tr_table">
-                        <td class="td_table">
-                            <p class="status store"><?php echo $n->LOAITK; ?></p>
-                        </td>
-                        <td class="td_table"><?php echo $n->TEN_CH; ?></td>
-                        <td class="td_table"><?php echo $n->SDT_CH; ?></td>
-                        <td class="td_table set">
-                            <tempstore1 class="btnup" value="<?php echo $n->ID_CH; ?>">
-                                <ion-icon name="pencil"></ion-icon>
-                            </tempstore1>
-                        </td>
-                        <td class="td_table"><?php echo $n->EMAIL; ?></td>
-                        <td class="td_table"><?php echo $n->TINH_TP; ?></td>
-                        <td class="td_table"><?php echo $n->PHUONG_XA; ?></td>
-                        <td class="td_table"><?php echo $n->DUONG_SONHA; ?></td>
-                        <td class="td_table"><strong><?php echo $n->TAIKHOAN . "VND"; ?></strong></td>
-                        <td class="td_table">
-                            <?php
+                        <tr class="tr_table">
+                            <td class="td_table">
+                                <p class="status store"><?php echo $n->LOAITK; ?></p>
+                            </td>
+                            <td class="td_table"><?php echo $n->TEN_CH; ?></td>
+                            <td class="td_table"><?php echo $n->SDT_CH; ?></td>
+                            <td class="td_table set">
+                                <tempstore1 class="btnup" value="<?php echo $n->ID_CH; ?>">
+                                    <ion-icon name="pencil"></ion-icon>
+                                </tempstore1>
+                            </td>
+                            <td class="td_table"><?php echo $n->EMAIL; ?></td>
+                            <td class="td_table"><?php echo $n->TINH_TP; ?></td>
+                            <td class="td_table"><?php echo $n->PHUONG_XA; ?></td>
+                            <td class="td_table"><?php echo $n->DUONG_SONHA; ?></td>
+                            <td class="td_table"><strong><?php echo $n->TAIKHOAN . "VND"; ?></strong></td>
+                            <td class="td_table">
+                                <?php
                                 if ($n->TRANGTHAI == "on") {
                                 ?>
-                            <a href="./elements/mstore/storeAct.php?reqact=setlock&idstore=<?php echo $n->ID_CH; ?> 
+                                    <a href="./elements/mstore/storeAct.php?reqact=setlock&idstore=<?php echo $n->ID_CH; ?> 
                                     &trangthaistore=<?php echo $n->TRANGTHAI; ?>">
-                                <ion-icon name="lock-open"></ion-icon>
-                            </a>
-                            <?php
+                                        <ion-icon name="lock-open"></ion-icon>
+                                    </a>
+                                <?php
                                 } else {
                                 ?>
-                            <a href="./elements/mstore/storeAct.php?reqact=setlock&idstore=<?php echo $n->ID_CH; ?>
+                                    <a href="./elements/mstore/storeAct.php?reqact=setlock&idstore=<?php echo $n->ID_CH; ?>
                                     &trangthaistore=<?php echo $n->TRANGTHAI; ?>">
-                                <ion-icon name="lock-closed"></ion-icon>
-                            </a>
-                            <?php
+                                        <ion-icon name="lock-closed"></ion-icon>
+                                    </a>
+                                <?php
                                 }
                                 ?>
-                        </td>
-                        <td class="td_table"><?php echo $n->TENTK; ?></td>
-                        <td class="td_table"><?php echo $n->MATKHAU; ?></td>
+                            </td>
+                            <td class="td_table"><?php echo $n->TENTK; ?></td>
+                            <td class="td_table"><?php echo $n->MATKHAU; ?></td>
 
-                    </tr>
+                        </tr>
                     <?php
                     }
                     ?>
@@ -148,9 +146,9 @@ $getstore = $store->StoreGetById($idstore);
         </section>
     </main>
     <script>
-    $("tempstore1").click(function() {
-        var idstore = $(this).attr("value");
-        $("#center").load("./elements/mstore/storeUpdate.php?&idstore=" + idstore);
-    });
+        $("tempstore1").click(function() {
+            var idstore = $(this).attr("value");
+            $("#center").load("./elements/mstore/storeUpdate.php?&idstore=" + idstore);
+        });
     </script>
 </div>
