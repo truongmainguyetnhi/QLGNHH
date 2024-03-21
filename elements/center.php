@@ -27,14 +27,15 @@
             case 'khoview':
                 require 'elements/mkho/khoview.php';
                 break;
-            case 'login':
-                require '';
+            case 'thongke':
+                require 'elements/thongke.php';
                 break;
         }
     } else {
         require 'elements/default.php';
     }
     ?>
+
 </body>
 
 

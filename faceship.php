@@ -131,7 +131,7 @@ require './elements/mod/packetCls.php';
                         ?>
         <div class='baoinfo'>
             <div class='info1'>
-                <strong>Đơn hàng đang ở trạng thái "<?php echo $n->TRANGTHAI_DH; ?>", không thể chỉnh sửa!</strong>
+                <span>Đơn hàng đã <strong><i>"<?php echo $n->TRANGTHAI_DH; ?>"</i></strong></span>
             </div>
         </div>
         <?php
