@@ -1,9 +1,14 @@
 <div>
+    <?php if (isset($_SESSION['Quản lý'])) { ?>
     <div class="btn_container">
         <button id="btnOpenForm" class="btn add">
             <ion-icon name="add"></ion-icon>
         </button>
     </div>
+    <?php } else { ?>
+    <div class="btn_container">
+    </div>
+    <?php } ?>
     <div class="body_them">
         <section class="them_body">
             <form name="newstaff" id="formadd_staff" method="post" enctype="multipart/form-data"
