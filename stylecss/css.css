@@ -46,7 +46,7 @@
      left: 0;
      padding: 10px 14px;
      height: 100%;
-     width: 15%;
+     width: 250px;
      background-color: var(--sidebar-color);
      transition: var(--tran-05);
      z-index: 100;
@@ -989,26 +989,27 @@
      width: 75%;
      height: 550px;
      margin: auto;
-     background-image: url("../img/nenlogin.png");
      background-color: #18191A;
      background-repeat: no-repeat;
-     background-size: 35%;
+     background-size: auto;
      background-attachment: scroll;
      background-position-x: 70%;
-     background-position-y: -15%;
+     background-position-y: -20%;
+     background-image: url("../img/nenlogin.png");
  }
  
- #logincenter {
+ .logincenter {
+     padding: 10px;
      position: absolute;
      top: 0;
      left: 0;
-     width: 30%;
-     height: auto;
+     width: 370px;
+     height: 580px;
      background-color: #ffffff;
      border-radius: 10px;
  }
  
- #logincenter .form_box {
+ .logincenter .form_box {
      justify-content: center;
      align-items: center;
      width: 100%;

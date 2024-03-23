@@ -14,7 +14,7 @@ session_start();
 </head>
 
 <body class="loginbody">
-    <div id="logincenter">
+    <div class="logincenter">
         <form id="loginForm" class="form_box" name="frmLogin" method="post">
             <h1>Sign in</h1>
             <div class="input_group type-md">
@@ -66,16 +66,16 @@ session_start();
     </div>
     <!--tách script cũ ko chạy :))) -->
     <script>
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-        var radioValue = document.querySelector('input[name="loaitk"]:checked').value;
-        if (radioValue === 'Shipper') {
-            this.action = 'elements/mshipper/shipperAct.php?reqact=checklogin';
-        } else if (radioValue === 'Nhân viên' || radioValue === 'Quản lý') {
-            this.action = 'elements/mstaff/staffAct.php?reqact=checklogin';
-        } else if (radioValue === 'Cửa hàng') {
-            this.action = 'elements/mstore/storeAct.php?reqact=checklogin';
-        }
-    });
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            var radioValue = document.querySelector('input[name="loaitk"]:checked').value;
+            if (radioValue === 'Shipper') {
+                this.action = 'elements/mshipper/shipperAct.php?reqact=checklogin';
+            } else if (radioValue === 'Nhân viên' || radioValue === 'Quản lý') {
+                this.action = 'elements/mstaff/staffAct.php?reqact=checklogin';
+            } else if (radioValue === 'Cửa hàng') {
+                this.action = 'elements/mstore/storeAct.php?reqact=checklogin';
+            }
+        });
     </script>
     <script src="https://code.jquery.com/jquery-3.6.4.js" type="text/javascript"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
