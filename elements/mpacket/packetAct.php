@@ -55,8 +55,9 @@ if (isset($_GET['reqact'])) {
             $TEN_KHO = $_POST['tenkho'];
             $GHICHU = $_POST['ghichu'];
             $TEN_CH = $_POST['tench'];
+            $NGAYGIAO = $_POST['ngaygiao'];
             $packet = new packet();
-            $rs = $packet->packetUpdate_dc_tt($TRANGTHAI_DH, $TEN_KHO, $GHICHU, $TEN_CH, $ID_DH);
+            $rs = $packet->packetUpdate_dc_tt($TRANGTHAI_DH, $TEN_KHO, $GHICHU, $TEN_CH, $NGAYGIAO, $ID_DH);
             if ($rs) {
                 header('location:../../faceship.php');
             } else {

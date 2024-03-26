@@ -200,10 +200,8 @@ class packet extends Database
         return $insert->rowCount();
     }
     //chỉnh sửa trạng thái và tên kho hiện tại
-    public function packetUpdate_dc_tt($TRANGTHAI_DH, $TEN_KHO, $GHICHU, $TEN_CH, $ID_DH)
+    public function packetUpdate_dc_tt($TRANGTHAI_DH, $TEN_KHO, $GHICHU, $TEN_CH, $NGAYGIAO, $ID_DH)
     {
-
-
         $getKHO = $this->connect->prepare("SELECT ID_KHO FROM kho WHERE TEN_KHO = ?");
         $getKHO->execute([$TEN_KHO]);
         $idKHO = $getKHO->fetchColumn();
@@ -246,6 +244,9 @@ class packet extends Database
             $updateTK = $this->connect->prepare("UPDATE cuahang SET TAIKHOAN = COALESCE(TAIKHOAN, 0) - 30000 WHERE TEN_CH = ?");
             $updateTK->execute([$TEN_CH]);
         }
+
+        $updatengay = $this->connect->prepare("UPDATE giao SET NGAYGIAO = ? WHERE ID_DH = ?");
+        $updatengay->execute(array($NGAYGIAO, $ID_DH));
     }
 
     public function checkShipperExist($TEN_SP)
